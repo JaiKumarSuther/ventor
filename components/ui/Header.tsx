@@ -1,19 +1,29 @@
-"use client";
-import { ChevronDown, Menu, X } from "lucide-react";
+'use client'
+import { ChevronDown, Menu, X, Search } from "lucide-react";
 import SearchInput from "./SearchInput";
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
 
 export default function Header() {
   const [search, setSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const mobileSearchInputRef = useRef<HTMLInputElement>(null);
+  const pathname = "/"; // Since we don't have usePathname in this setup
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const toggleMobileSearch = () => {
+    setIsMobileSearchOpen(!isMobileSearchOpen);
+  };
+
+  // Focus on search input when mobile search dropdown opens
+  useEffect(() => {
+    if (isMobileSearchOpen && mobileSearchInputRef.current) {
+      mobileSearchInputRef.current.focus();
+    }
+  }, [isMobileSearchOpen]);
 
   // Define the links
   const links = [
@@ -30,13 +40,13 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <Image src="/assets/logo.svg" width={170} height={56} alt="Ventor" />
+            <div className="text-xl font-bold text-[#8062F6]">Ventor</div>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-12">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
                 className={`transition-colors ${
@@ -46,7 +56,7 @@ export default function Header() {
                 }`}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -59,12 +69,12 @@ export default function Header() {
               className="w-64"
             />
             <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <Image src="/assets/bell.svg" width={24} height={24} alt="Notifications" />
+              <div className="w-6 h-6 bg-gray-400 rounded"></div>
             </button>
             <div className="flex items-center space-x-3">
               <span className="text-sm font-medium">Spades</span>
               <button className="flex items-center cursor-pointer space-x-1 hover:bg-[#1a1d24] rounded-lg p-1 transition-colors">
-                <Image src="/assets/profile.svg" width={38} height={38} alt="Profile" />
+                <div className="w-9 h-9 bg-gray-400 rounded-full"></div>
                 <ChevronDown className="h-4 w-4" />
               </button>
             </div>
@@ -72,11 +82,14 @@ export default function Header() {
 
           {/* Mobile Right Section */}
           <div className="flex lg:hidden items-center space-x-3">
-            <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <Image src="/assets/search.svg" width={20} height={20} alt="Ventor" />
+            <button 
+              onClick={toggleMobileSearch}
+              className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors"
+            >
+              <Search className="h-5 w-5" />
             </button>
             <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <Image src="/assets/bell.svg" width={20} height={20} alt="Notifications" />
+              <div className="w-5 h-5 bg-gray-400 rounded"></div>
             </button>
             <button
               onClick={toggleMobileMenu}
@@ -91,23 +104,28 @@ export default function Header() {
           </div>
         </div>
 
+        {/* Mobile Search Dropdown */}
+        {isMobileSearchOpen && (
+          <div className="lg:hidden border-t border-[#22242D]">
+            <div className="py-4 px-2">
+              <SearchInput
+                ref={mobileSearchInputRef}
+                placeholder="Search here..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden border-t border-[#22242D]">
             <div className="py-4 space-y-4">
-              {/* Mobile Search */}
-              <div className="px-2">
-                <SearchInput
-                  placeholder="Search here..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-
               {/* Mobile Navigation */}
               <nav className="space-y-2">
                 {links.map((link) => (
-                  <Link
+                  <a
                     key={link.href}
                     href={link.href}
                     className={`block px-4 py-3 rounded-lg transition-colors ${
@@ -117,7 +135,7 @@ export default function Header() {
                     }`}
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 ))}
               </nav>
 
@@ -125,7 +143,7 @@ export default function Header() {
               <div className="border-t border-[#22242D] pt-4">
                 <div className="flex items-center justify-between px-4 py-2">
                   <div className="flex items-center space-x-3">
-                    <Image src="/assets/profile.svg" width={20} height={20} alt="Profile" />
+                    <div className="w-5 h-5 bg-gray-400 rounded-full"></div>
                     <span className="text-sm font-medium">Spades</span>
                   </div>
                   <ChevronDown className="h-4 w-4" />
