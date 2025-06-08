@@ -33,7 +33,7 @@ const FloatingInput = ({
 }) => {
   return (
     <div className="relative">
-      <div className="w-full bg-[#101017] border min-h-[72px] border-[#22242D] rounded-md px-3 flex items-center">
+      <div className="w-full bg-[#101017] border min-h-[74px] border-[#22242D] rounded-md px-4 flex items-center pt-4">
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -41,7 +41,7 @@ const FloatingInput = ({
           className="bg-transparent w-full text-white font-semibold placeholder-[#fff] text-sm focus:outline-none"
         />
       </div>
-      <label className="absolute left-3 top-2 text-xs text-[#6A7A8C] transition-all">
+      <label className="absolute left-4 top-4 text-xs text-[#6A7A8C] transition-all">
         {label}
       </label>
     </div>
