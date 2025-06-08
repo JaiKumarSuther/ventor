@@ -79,13 +79,12 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
   return (
     <div className={`relative w-full ${className}`}>
       {/* Value labels above thumbs */}
-      {/* Value labels above thumbs */}
-      <div className="relative mb-2">
+      <div className="relative mb-4">
         <div
           className="absolute text-lg text-[#8761FF] font-semibold transform -translate-x-1/2 -translate-y-full"
           style={{
             left: `${minPercentage}%`,
-            marginTop: "-8px", // moves it a bit higher
+            marginTop: "-12px", // moves it a bit higher
           }}
         >
           {minValue.toFixed(1)}
@@ -94,7 +93,7 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
           className="absolute text-lg text-[#8761FF] font-semibold transform -translate-x-1/2 -translate-y-full"
           style={{
             left: `${maxPercentage}%`,
-            marginTop: "-8px", // moves it a bit higher
+            marginTop: "-12px", // moves it a bit higher
           }}
         >
           {maxValue.toFixed(1)}
