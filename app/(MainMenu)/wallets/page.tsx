@@ -51,7 +51,6 @@ export default function WalletsPage() {
       worth: "165.56",
       percent: "20%",
     },
-
   ];
 
   const tabs = [
@@ -74,34 +73,37 @@ export default function WalletsPage() {
 
       {/* Top bar */}
       <div className="border border-[#22242D]">
-        <div className="flex flex-col md:flex-row h-[160px] w-full bg-[#FFFFFF05]  mb-10 border-b border-[#22242D]">
-          <div className="flex-3 flex flex-col border-r px-5 py-10 gap-5 border-[#22242D]">
-            <ActionButtons />
-            <div className="flex gap-5">
-              <SmartSellControl
-                label="SMART SELL"
-                enabled={isSmartSellEnabled}
-                onToggle={() => setIsSmartSellEnabled(!isSmartSellEnabled)}
-              />
+  <div className="flex flex-col md:flex-row md:h-[160px] w-full bg-[#FFFFFF05] mb-10 border-b border-[#22242D]">
+      {/* Left side */}
+      <div className="flex-3 flex flex-col md:border-r px-3 md:px-5 py-5 md:py-10 gap-3 md:gap-5 border-[#22242D]">
+        <ActionButtons />
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-5">
+          <SmartSellControl
+            label="SMART SELL"
+            enabled={isSmartSellEnabled}
+            onToggle={() => setIsSmartSellEnabled(!isSmartSellEnabled)}
+          />
 
-              <div className="border border-[#22242D]" />
+          <div className="hidden sm:block border border-[#22242D]" />
 
-              <PresetSelector
-                label="CHOOSE PRESET"
-                selected="PRESET 1"
-                onSelect={(preset) => {
-                  console.log("Selected preset:", preset);
-                  // handle selection change here (e.g., open a dropdown or modal)
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="flex-2 flex flex-col justify-center items-center ">
-            <h2 className="text-[#6A7A8C] text-2xl">Live PNL</h2>
-            <h1 className="text-[#2FD271] text-4xl">+ 120.35 SOL</h1>
-          </div>
+          <PresetSelector
+            label="CHOOSE PRESET"
+            selected="PRESET 1"
+            onSelect={(preset) => {
+              console.log("Selected preset:", preset);
+              // handle selection change here (e.g., open a dropdown or modal)
+            }}
+          />
         </div>
+      </div>
+
+      {/* Right side */}
+      <div className="flex-2 flex flex-col justify-center items-center py-5 md:py-0 border-t md:border-t-0 border-[#22242D]">
+        <h2 className="text-[#6A7A8C] text-xl md:text-2xl">Live PNL</h2>
+        <h1 className="text-[#2FD271] text-2xl md:text-4xl">+ 120.35 SOL</h1>
+      </div>
+    </div>
+
         <WalletFilters
           selectAll={selectAll}
           onSelectAll={setSelectAll}

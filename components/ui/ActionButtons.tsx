@@ -8,10 +8,10 @@ export default function ActionButtons() {
   return (
     <div className="flex flex-wrap gap-2 items-center">
       {/* Sell Buttons */}
-      <button className="px-4 py-1.5 h-[34px] rounded-full bg-[#1A1B20] border border-[#22242D] text-white">
+      <button className="px-2 sm:px-4 py-1.5 h-[34px] rounded-full bg-[#1A1B20] border border-[#22242D] text-white text-xs sm:text-sm">
         Sell Dev
       </button>
-      <button className="px-4 py-1.5 h-[34px] rounded-full bg-[#1A1B20] border border-[#22242D] text-white">
+      <button className="px-2 sm:px-4 py-1.5 h-[34px] rounded-full bg-[#1A1B20] border border-[#22242D] text-white text-xs sm:text-sm">
         Sell All + Sell Dev
       </button>
 
@@ -19,7 +19,7 @@ export default function ActionButtons() {
       {redButtons.map((label, index) => (
         <button
           key={`red-${index}`}
-          className="px-3 py-1.5 h-[34px] rounded-full border border-[#22242D] text-[#E43021]"
+          className="px-2 sm:px-3 py-1.5 h-[34px] rounded-full border border-[#22242D] text-[#E43021] text-xs sm:text-sm"
         >
           {label}
         </button>
@@ -29,7 +29,7 @@ export default function ActionButtons() {
       {greenButtons.map((label, index) => (
         <button
           key={`green-${index}`}
-          className="px-3 py-1.5 h-[34px] rounded-full border border-[#22242D] text-[#2FD271]"
+          className="px-2 sm:px-3 py-1.5 h-[34px] rounded-full border border-[#22242D] text-[#2FD271] text-xs sm:text-sm"
         >
           {label}
         </button>

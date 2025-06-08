@@ -12,15 +12,15 @@ export default function SmartSellControl({
   onToggle,
 }: SmartSellControlProps) {
   return (
-    <div className="flex-1 flex items-center justify-between rounded-md px-4 py-2 cursor-pointer">
-      <div>
+    <div className="flex-1 flex items-center justify-between rounded-md px-2 sm:px-4 py-2 cursor-pointer min-w-0">
+      <div className="min-w-0">
         <p className="text-[#6A7A8C] text-xs">{label}</p>
         <h1 className="text-sm font-semibold text-white">
           {enabled ? "ON" : "OFF"}
         </h1>
       </div>
       <div
-        className={`w-10 h-5 rounded-full border border-[#22242D] flex items-center transition-colors relative ${
+        className={`w-10 h-5 rounded-full border border-[#22242D] flex items-center transition-colors relative shrink-0 ml-2 ${
           enabled ? "bg-green-500" : "bg-[#6A7A8C]"
         }`}
         onClick={onToggle}

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import PageContainer from "@/components/ui/PageContainer";
 import SummaryCard from "@/components/ui/SummaryCard";
@@ -10,6 +10,7 @@ import OutlinedButton from "@/components/ui/OutlinedButton";
 import GradientButton from "@/components/ui/GradientButton";
 
 export default function DashboardPage() {
+  const [search, setSearch] = useState('');
   const summaryData = [
     {
       id: 1,
@@ -79,10 +80,10 @@ export default function DashboardPage() {
         <div className="flex items-center gap-4 mb-6 flex-col md:flex-row">
           <div className="flex gap-4 justify-between w-full">
             <SearchInput
-              value={"Search"}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                console.log("Search input changed:", e.target.value);
-              }}
+              placeholder="Search here..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-64"
             />
             <FilterButton label="Filter" />
           </div>
