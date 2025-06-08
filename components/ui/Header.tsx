@@ -2,20 +2,22 @@
 import { ChevronDown, Menu, X, Search } from "lucide-react";
 import SearchInput from "./SearchInput";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const [search, setSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
-  const pathname = "/"; // Since we don't have usePathname in this setup
+  const pathname = "/"; // You can replace this with `usePathname()` if you need dynamic path handling
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const toggleMobileSearch = () => {
-    setIsMobileSearchOpen(!isMobileSearchOpen);
+    setIsMobileSearchOpen(!isMobileSearchOpen); // Toggle search visibility
   };
 
   // Focus on search input when mobile search dropdown opens
@@ -40,13 +42,13 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-xl font-bold text-[#8062F6]">Ventor</div>
+            <Image src="/assets/logo.svg" width={170} height={56} alt="Ventor" />
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-12">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className={`transition-colors ${
@@ -56,7 +58,7 @@ export default function Header() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -69,12 +71,12 @@ export default function Header() {
               className="w-64"
             />
             <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <div className="w-6 h-6 bg-gray-400 rounded"></div>
+              <Image src="/assets/bell.svg" width={24} height={24} alt="Notifications" />
             </button>
             <div className="flex items-center space-x-3">
               <span className="text-sm font-medium">Spades</span>
               <button className="flex items-center cursor-pointer space-x-1 hover:bg-[#1a1d24] rounded-lg p-1 transition-colors">
-                <div className="w-9 h-9 bg-gray-400 rounded-full"></div>
+                <Image src="/assets/profile.svg" width={38} height={38} alt="Profile" />
                 <ChevronDown className="h-4 w-4" />
               </button>
             </div>
@@ -82,14 +84,14 @@ export default function Header() {
 
           {/* Mobile Right Section */}
           <div className="flex lg:hidden items-center space-x-3">
-            <button 
+            <button
               onClick={toggleMobileSearch}
               className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors"
             >
               <Search className="h-5 w-5" />
             </button>
             <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <div className="w-5 h-5 bg-gray-400 rounded"></div>
+              <Image src="/assets/bell.svg" width={20} height={20} alt="Notifications" />
             </button>
             <button
               onClick={toggleMobileMenu}
@@ -125,7 +127,7 @@ export default function Header() {
               {/* Mobile Navigation */}
               <nav className="space-y-2">
                 {links.map((link) => (
-                  <a
+                  <Link
                     key={link.href}
                     href={link.href}
                     className={`block px-4 py-3 rounded-lg transition-colors ${
@@ -135,7 +137,7 @@ export default function Header() {
                     }`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </nav>
 
@@ -143,7 +145,7 @@ export default function Header() {
               <div className="border-t border-[#22242D] pt-4">
                 <div className="flex items-center justify-between px-4 py-2">
                   <div className="flex items-center space-x-3">
-                    <div className="w-5 h-5 bg-gray-400 rounded-full"></div>
+                    <Image src="/assets/profile.svg" width={20} height={20} alt="Profile" />
                     <span className="text-sm font-medium">Spades</span>
                   </div>
                   <ChevronDown className="h-4 w-4" />
