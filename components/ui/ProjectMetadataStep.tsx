@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Upload } from "lucide-react";
+import Image from "next/image";
 import DashboardActions from "@/components/ui/DashboardActions"; // Adjust path if needed
 
 interface ProjectMetadata {
@@ -96,17 +96,24 @@ export default function ProjectMetadataStep({
       </div>
 
       {/* Upload Box */}
-      <div className="space-y-2">
-        <div className="border-2 border-dashed border-[#22242D] rounded-lg p-8 text-center cursor-pointer">
-          <Upload className="mx-auto mb-4 text-[#535862]" size={48} />
-          <div className="flex gap-1 justify-center">
-            <p className="bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent">
+      <div className="w-full bg-[#101017] border border-[#22242D] rounded-md  h-35">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer">
+          <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
+            <Image
+              src="/assets/upload-cloud.svg"
+              width={20}
+              height={20}
+              alt="Upload"
+            />
+          </div>
+          <div className="flex gap-1 justify-center items-center">
+            <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
               Click to upload
             </p>
             <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
           </div>
-          <p className="text-xs text-[#6A7A8C] mt-2">
-            SVG, PNG, JPG or GIF (max. 800x400px)
+          <p className="text-xs text-[#6A7A8C]">
+            SVG, PNG, JPG or GIF (max. 800×400px)
           </p>
         </div>
       </div>
