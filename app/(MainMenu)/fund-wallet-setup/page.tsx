@@ -6,21 +6,46 @@ import DashboardActions from "@/components/ui/DashboardActions";
 import { Edit, Trash, ArrowLeft } from "lucide-react";
 import RoundedGradientCheckbox from "@/components/RoundedGradientCheckbox";
 import GradientCheckbox from "@/components/ui/GradientCheckbox";
+import Image from "next/image";
 
 const FundWalletPage = () => {
   // Define the type for the funding method state more strictly
-  const [fundingMethod, setFundingMethod] = useState<"easy" | "hard" | "mix">("hard");
+  const [fundingMethod, setFundingMethod] = useState<"easy" | "hard" | "mix">(
+    "hard"
+  );
   const [amount, setAmount] = useState<number>(25000);
   const [sliderValues, setSliderValues] = useState({ min: 3.8, max: 4.4 });
 
   const [addedWallets, setAddedWallets] = useState([
-    { name: "wallet_22x9A", wallets: "10 Wallets", tag: "Main Batch", date: "12 May,2025" },
-    { name: "wallet_02x7TG", wallets: "10 Wallets", tag: "Main Batch", date: "12 May,2025" },
-    { name: "wallet_5A4k5A", wallets: "10 Wallets", tag: "Main Batch", date: "12 May,2025" },
-    { name: "wallet_22x9A", wallets: "10 Wallets", tag: "Main Batch", date: "12 May,2025" },
+    {
+      name: "wallet_22x9A",
+      wallets: "10 Wallets",
+      tag: "Main Batch",
+      date: "12 May,2025",
+    },
+    {
+      name: "wallet_02x7TG",
+      wallets: "10 Wallets",
+      tag: "Main Batch",
+      date: "12 May,2025",
+    },
+    {
+      name: "wallet_5A4k5A",
+      wallets: "10 Wallets",
+      tag: "Main Batch",
+      date: "12 May,2025",
+    },
+    {
+      name: "wallet_22x9A",
+      wallets: "10 Wallets",
+      tag: "Main Batch",
+      date: "12 May,2025",
+    },
   ]);
 
-  const [checkedWallets, setCheckedWallets] = useState<boolean[]>(new Array(addedWallets.length).fill(false));
+  const [checkedWallets, setCheckedWallets] = useState<boolean[]>(
+    new Array(addedWallets.length).fill(false)
+  );
 
   // Fix the type of `method` parameter in handleFundingMethodChange
   const handleFundingMethodChange = (method: "easy" | "hard" | "mix") => {
@@ -67,15 +92,21 @@ const FundWalletPage = () => {
               <div
                 key={method}
                 className="flex items-center gap-2 cursor-pointer"
-                onClick={() => handleFundingMethodChange(method as "easy" | "hard" | "mix")}
+                onClick={() =>
+                  handleFundingMethodChange(method as "easy" | "hard" | "mix")
+                }
               >
                 <RoundedGradientCheckbox
                   checked={fundingMethod === method}
-                  onChange={() => handleFundingMethodChange(method as "easy" | "hard" | "mix")}
+                  onChange={() =>
+                    handleFundingMethodChange(method as "easy" | "hard" | "mix")
+                  }
                 />
                 <span
                   className={`${
-                    fundingMethod === method ? "text-[#8761FF]" : "text-[#6A7A8C]"
+                    fundingMethod === method
+                      ? "text-[#8761FF]"
+                      : "text-[#6A7A8C]"
                   } text-sm`}
                 >
                   {method === "easy" && "Easy Disperse"}
@@ -99,7 +130,7 @@ const FundWalletPage = () => {
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
-                className="bg-transparent text-white text-lg w-full outline-none"
+                className="bg-transparent text-white text-lg w-full outline-none appearance-none"
                 placeholder="Enter Amount"
               />
             </div>
@@ -133,12 +164,24 @@ const FundWalletPage = () => {
           </div>
 
           {/* Connect Wallet & Send to Address */}
-          <div className="flex justify-between gap-4 p-6">
-            <div className="flex-1 border border-[#22242D] h-24 flex items-center justify-center cursor-pointer">
-              <span className="text-[#6A7A8C]">Connect Wallet</span>
+          <div className="flex justify-between gap-3 p-3 md:p-6">
+            <div className="flex-1 bg-[#101114] rounded-xl border border-[#22242D] h-24 flex gap-1 flex-col items-center justify-center cursor-pointer">
+              <Image
+                src="/assets/fund-wallet.svg"
+                width={28}
+                height={28}
+                alt="wallet"
+              />
+              <span className="text-[#6A7A8C] text-sm">Connect Wallet</span>
             </div>
-            <div className="flex-1 border border-[#22242D] h-24 flex items-center justify-center cursor-pointer">
-              <span className="text-[#6A7A8C]">Send to Address</span>
+            <div className="flex-1 bg-[#101114] rounded-xl border border-[#22242D] h-24 flex gap-1 flex-col items-center justify-center cursor-pointer">
+              <Image
+                src="/assets/send-address.svg"
+                width={28}
+                height={28}
+                alt="wallet"
+              />
+              <span className="text-[#6A7A8C] text-sm">Send to Address</span>
             </div>
           </div>
 
@@ -162,7 +205,10 @@ const FundWalletPage = () => {
                 const bgColor = index % 2 === 0 ? "" : "bg-[#FFFFFF05]";
 
                 return (
-                  <div key={index} className={`border-t border-[#22242D] ${bgColor}`}>
+                  <div
+                    key={index}
+                    className={`border-t border-[#22242D] ${bgColor}`}
+                  >
                     {/* Desktop/Tablet Row */}
                     <div className="hidden md:grid grid-cols-[2.5fr_1fr_1fr_1fr_0.5fr] items-center px-4 md:px-6 h-[46px] min-w-[600px]">
                       <div className="flex items-center gap-2">
@@ -174,9 +220,13 @@ const FundWalletPage = () => {
                             setCheckedWallets(updated);
                           }}
                         />
-                        <span className="text-white text-sm">{wallet.name}</span>
+                        <span className="text-white text-sm">
+                          {wallet.name}
+                        </span>
                       </div>
-                      <span className="text-white text-sm">{wallet.wallets}</span>
+                      <span className="text-white text-sm">
+                        {wallet.wallets}
+                      </span>
                       <span className="text-white text-sm">{wallet.tag}</span>
                       <span className="text-white text-sm">{wallet.date}</span>
                       <div className="flex items-center gap-3">
@@ -184,13 +234,23 @@ const FundWalletPage = () => {
                           onClick={() => console.log(`Edit ${wallet.name}`)}
                           className="text-[#8761FF] text-xs flex items-center gap-1"
                         >
-                          <Edit size={14} />
+                          <Image
+                            src="/assets/edit.svg"
+                            width={20}
+                            height={20}
+                            alt="wallet"
+                          />
                         </button>
                         <button
                           onClick={() => handleDeleteWallet(index)}
-                          className="text-[#FF4D4D] text-xs flex items-center gap-1"
+                          className="text-xs flex items-center gap-1"
                         >
-                          <Trash size={14} />
+                          <Image
+                            src="/assets/remove.svg"
+                            width={14}
+                            height={14}
+                            alt="wallet"
+                          />
                         </button>
                       </div>
                     </div>
@@ -206,32 +266,52 @@ const FundWalletPage = () => {
                             setCheckedWallets(updated);
                           }}
                         />
-                        <span className="text-white text-sm font-medium">{wallet.name}</span>
+                        <span className="text-white text-sm font-medium">
+                          {wallet.name}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-[#6A7A8C] text-xs">No of Wallet:</span>
-                        <span className="text-white text-sm">{wallet.wallets}</span>
+                        <span className="text-[#6A7A8C] text-xs">
+                          No of Wallet:
+                        </span>
+                        <span className="text-white text-sm">
+                          {wallet.wallets}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-[#6A7A8C] text-xs">Tag:</span>
                         <span className="text-white text-sm">{wallet.tag}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-[#6A7A8C] text-xs">Creation Date:</span>
-                        <span className="text-white text-sm">{wallet.date}</span>
+                        <span className="text-[#6A7A8C] text-xs">
+                          Creation Date:
+                        </span>
+                        <span className="text-white text-sm">
+                          {wallet.date}
+                        </span>
                       </div>
                       <div className="flex justify-end gap-3">
                         <button
                           onClick={() => console.log(`Edit ${wallet.name}`)}
                           className="text-[#8761FF] text-xs flex items-center gap-1"
                         >
-                          <Edit size={14} /> Edit
+                           <Image
+                            src="/assets/edit.svg"
+                            width={14}
+                            height={14}
+                            alt="wallet"
+                          /> Edit
                         </button>
                         <button
                           onClick={() => handleDeleteWallet(index)}
-                          className="text-[#FF4D4D] text-xs flex items-center gap-1"
+                          className="text-xs text-[#8761FF] flex items-center gap-1"
                         >
-                          <Trash size={14} /> Delete
+                          <Image
+                            src="/assets/remove.svg"
+                            width={12}
+                            height={12}
+                            alt="wallet"
+                          /> Delete
                         </button>
                       </div>
                     </div>
