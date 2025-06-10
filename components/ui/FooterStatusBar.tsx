@@ -22,14 +22,14 @@ export default function FooterStatusBar() {
         {/* Desktop/Tablet separators and additional items */}
         <div className="h-4 border-l border-[#22242D] hidden sm:block" />
 
-        <div className="flex items-center gap-1 hidden md:flex">
+        <div className="items-center gap-1 hidden md:flex">
           <img src="/assets/pnl-tracker.svg" width={16} height={16} alt="PnL Tracker" className="w-4 h-4" />
           <span className="hidden lg:inline text-xs">PnL Tracker</span>
         </div>
 
         <div className="h-4 border-l border-[#22242D] hidden md:block" />
 
-        <div className="flex items-center gap-1 hidden lg:flex">
+        <div className="items-center gap-1 hidden lg:flex">
           <img src="/assets/salona.svg" width={16} height={16} alt="salona" className="w-4 h-4" />
           <span className="text-xs">$312.52</span>
         </div>

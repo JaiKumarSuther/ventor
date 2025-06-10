@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import PageContainer from "@/components/ui/PageContainer";
 import WalletCard from "@/components/ui/WalletCard";
@@ -13,52 +14,18 @@ export default function WalletsPage() {
   const [selectAll, setSelectAll] = useState(false);
   const [selectSnipeFailed, setSelectSnipeFailed] = useState(false);
   const [selectNoSupply, setSelectNoSupply] = useState(false);
-  // Example data for demonstration
+
   const walletData = [
-    {
-      id: "wallet_22x9A...3Fb",
-      holding: "222.3",
-      worth: "165.56",
-      percent: "20%",
-    },
-    {
-      id: "wallet_22x9A...3Fb",
-      holding: "222.3",
-      worth: "165.56",
-      percent: "20%",
-    },
-    {
-      id: "wallet_22x9A...3Fb",
-      holding: "222.3",
-      worth: "165.56",
-      percent: "20%",
-    },
-    {
-      id: "wallet_22x9A...3Fb",
-      holding: "222.3",
-      worth: "165.56",
-      percent: "20%",
-    },
-    {
-      id: "wallet_22x9A...3Fb",
-      holding: "222.3",
-      worth: "165.56",
-      percent: "20%",
-    },
-    {
-      id: "wallet_22x9A...3Fb",
-      holding: "222.3",
-      worth: "165.56",
-      percent: "20%",
-    },
+    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
+    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
+    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
+    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
+    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
+    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
   ];
 
   const tabs = [
-    {
-      label: "Swap Manager",
-      active: true,
-      onClick: () => console.log("Swap Manager"),
-    },
+    { label: "Swap Manager", active: true, onClick: () => console.log("Swap Manager") },
     { label: "Market Maker", onClick: () => console.log("Market Maker") },
     { label: "Smart Sell", onClick: () => console.log("Smart Sell") },
     { label: "Auto TP", onClick: () => console.log("Auto TP") },
@@ -71,39 +38,37 @@ export default function WalletsPage() {
         <TabsBar tabs={tabs} />
       </div>
 
-      {/* Top bar */}
+      {/* Top Bar */}
       <div className="border border-[#22242D]">
-  <div className="flex flex-col md:flex-row md:h-[160px] w-full bg-[#FFFFFF05] mb-10 border-b border-[#22242D]">
-      {/* Left side */}
-      <div className="flex-3 flex flex-col md:border-r px-3 md:px-5 py-5 md:py-10 gap-3 md:gap-5 border-[#22242D]">
-        <ActionButtons />
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-5">
-          <SmartSellControl
-            label="SMART SELL"
-            enabled={isSmartSellEnabled}
-            onToggle={() => setIsSmartSellEnabled(!isSmartSellEnabled)}
-          />
+        <div className="flex flex-col md:flex-row flex-wrap w-full bg-[#FFFFFF05] mb-10 border-b border-[#22242D] overflow-hidden">
+          {/* Left side */}
+          <div className="flex-1 md:flex-3 flex flex-col md:border-r px-3 md:px-5 py-5 md:py-10 gap-3 md:gap-5 border-[#22242D] min-w-0">
+            <ActionButtons />
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-5 w-full">
+              <SmartSellControl
+                label="SMART SELL"
+                enabled={isSmartSellEnabled}
+                onToggle={() => setIsSmartSellEnabled(!isSmartSellEnabled)}
+              />
+              <div className="hidden sm:block border border-[#22242D]" />
+              <PresetSelector
+                label="CHOOSE PRESET"
+                selected="PRESET 1"
+                onSelect={(preset) => {
+                  console.log("Selected preset:", preset);
+                }}
+              />
+            </div>
+          </div>
 
-          <div className="hidden sm:block border border-[#22242D]" />
-
-          <PresetSelector
-            label="CHOOSE PRESET"
-            selected="PRESET 1"
-            onSelect={(preset) => {
-              console.log("Selected preset:", preset);
-              // handle selection change here (e.g., open a dropdown or modal)
-            }}
-          />
+          {/* Right side */}
+          <div className="flex-1 md:flex-2 flex flex-col justify-center items-center py-5 md:py-0 border-t md:border-t-0 border-[#22242D]">
+            <h2 className="text-[#6A7A8C] text-xl md:text-2xl">Live PNL</h2>
+            <h1 className="text-[#2FD271] text-2xl md:text-4xl">+ 120.35 SOL</h1>
+          </div>
         </div>
-      </div>
 
-      {/* Right side */}
-      <div className="flex-2 flex flex-col justify-center items-center py-5 md:py-0 border-t md:border-t-0 border-[#22242D]">
-        <h2 className="text-[#6A7A8C] text-xl md:text-2xl">Live PNL</h2>
-        <h1 className="text-[#2FD271] text-2xl md:text-4xl">+ 120.35 SOL</h1>
-      </div>
-    </div>
-
+        {/* Filters */}
         <WalletFilters
           selectAll={selectAll}
           onSelectAll={setSelectAll}
