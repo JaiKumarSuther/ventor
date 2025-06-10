@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React, { useState } from "react";
 import { Edit } from "lucide-react";
 import GradientButton from "@/components/ui/GradientButton";
@@ -13,13 +13,9 @@ interface Wallet {
   age: number;
 }
 
-interface Batch {
-  id: number;
-  name: string;
-}
 
 export default function WalletsScreen() {
-  const [wallets, setWallets] = useState<Wallet[]>([
+  const [wallets] = useState<Wallet[]>([
     { id: 1, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
     { id: 2, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
     { id: 3, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
@@ -29,21 +25,12 @@ export default function WalletsScreen() {
 
   const [selectedWallets, setSelectedWallets] = useState<number[]>([]);
 
-  const [batches, setBatches] = useState<Batch[]>([
-    { id: 1, name: "Batch 1" },
-    { id: 2, name: "Batch 2" },
-  ]);
-
   const handleWalletSelect = (walletId: number) => {
     setSelectedWallets((prev) =>
       prev.includes(walletId)
         ? prev.filter((id) => id !== walletId)
         : [...prev, walletId]
     );
-  };
-
-  const handleBatchEdit = (batchId: number) => {
-    console.log(`Edit Batch ${batchId}`);
   };
 
   const handleFundWallet = () => {
@@ -70,7 +57,7 @@ export default function WalletsScreen() {
   }));
 
   return (
-    <div className="space-y-4 p-6">
+    <div className="space-y-4 md:p-6">
       <div className="flex items-center justify-between">
         <h2 className="text-white text-lg font-semibold">Wallets</h2>
         <GradientButton
@@ -106,7 +93,10 @@ export default function WalletsScreen() {
             <h3 className="text-white text-base font-semibold">Batches</h3>
           </div>
           <div className="flex flex-col">
-            {batches.map((batch) => (
+            {[
+              { id: 1, name: "Batch 1" },
+              { id: 2, name: "Batch 2" },
+            ].map((batch) => (
               <div
                 key={batch.id}
                 className="flex items-center justify-between px-4 py-3 border-b border-[#22242D] cursor-pointer hover:bg-[#1A1A1A]"
@@ -120,7 +110,7 @@ export default function WalletsScreen() {
                 </div>
                 <button
                   className="flex items-center gap-1 text-[#8761FF] text-xs"
-                  onClick={() => handleBatchEdit(batch.id)}
+                  onClick={() => console.log(`Edit Batch ${batch.id}`)}
                 >
                   <Edit size={14} />
                   Edit Batch

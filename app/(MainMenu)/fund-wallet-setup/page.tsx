@@ -8,6 +8,7 @@ import RoundedGradientCheckbox from "@/components/RoundedGradientCheckbox";
 import GradientCheckbox from "@/components/ui/GradientCheckbox";
 
 const FundWalletPage = () => {
+  // Define the type for the funding method state more strictly
   const [fundingMethod, setFundingMethod] = useState<"easy" | "hard" | "mix">("hard");
   const [amount, setAmount] = useState<number>(25000);
   const [sliderValues, setSliderValues] = useState({ min: 3.8, max: 4.4 });
@@ -19,9 +20,12 @@ const FundWalletPage = () => {
     { name: "wallet_22x9A", wallets: "10 Wallets", tag: "Main Batch", date: "12 May,2025" },
   ]);
 
-  const [checkedWallets, setCheckedWallets] = useState<boolean[]>(
-    new Array(addedWallets.length).fill(false)
-  );
+  const [checkedWallets, setCheckedWallets] = useState<boolean[]>(new Array(addedWallets.length).fill(false));
+
+  // Fix the type of `method` parameter in handleFundingMethodChange
+  const handleFundingMethodChange = (method: "easy" | "hard" | "mix") => {
+    setFundingMethod(method);
+  };
 
   const handleDualSliderChange = (minValue: number, maxValue: number) => {
     setSliderValues({ min: minValue, max: maxValue });
@@ -63,11 +67,11 @@ const FundWalletPage = () => {
               <div
                 key={method}
                 className="flex items-center gap-2 cursor-pointer"
-                onClick={() => setFundingMethod(method as any)}
+                onClick={() => handleFundingMethodChange(method as "easy" | "hard" | "mix")}
               >
                 <RoundedGradientCheckbox
                   checked={fundingMethod === method}
-                  onChange={() => setFundingMethod(method as any)}
+                  onChange={() => handleFundingMethodChange(method as "easy" | "hard" | "mix")}
                 />
                 <span
                   className={`${
@@ -141,7 +145,6 @@ const FundWalletPage = () => {
           {/* Added Wallets */}
           <div>
             <h3 className="text-white px-6 text-sm mb-2">Added Wallets</h3>
-
             {/* Desktop/Tablet Header */}
             <div className="hidden md:block overflow-x-auto border-t border-[#22242D]">
               <div className="grid grid-cols-[2.5fr_1fr_1fr_1fr_0.5fr] bg-[#101017] px-4 md:px-6 h-12 text-[#6A7A8C] text-xs font-medium items-center border-b border-[#22242D] min-w-[600px]">
