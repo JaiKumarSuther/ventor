@@ -76,8 +76,8 @@ export default function WalletsScreen() {
   }));
 
   return (
-    <div className="min-h-[900px] overflow-hidden bg-black">
-      <div className="h-full flex flex-col space-y-4 md:p-6 p-4">
+    <div className=" overflow-hidden bg-black">
+      <div className="flex flex-col space-y-4 md:p-6 p-4 ">
         {/* Header for Wallets Section */}
         <div className="flex items-center justify-between flex-shrink-0">
           <h2 className="text-white text-3xl font-semibold">Wallets</h2>
@@ -91,7 +91,7 @@ export default function WalletsScreen() {
         </div>
 
         {/* Wallets and Batches Sections - Fixed Height Container */}
-        <div className="flex-1 flex flex-col md:flex-row border border-[#22242D] overflow-hidden">
+        <div className="flex-1 flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[700px]">
           {/* Wallets Table - Left Section */}
           <div className="flex-1 flex flex-col border-r border-[#22242D] bg-[#0F0F10] overflow-hidden">
             {/* Header for Wallets Table */}
