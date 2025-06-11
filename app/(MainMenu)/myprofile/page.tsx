@@ -12,6 +12,7 @@ export default function ProfilePage() {
   const questsData = [
     {
       id: 1,
+      type: 'Refer',
       title: "Refer 2 People",
       description: "Refer 2 people to complete this quest.",
       progress: 2,
@@ -20,6 +21,7 @@ export default function ProfilePage() {
     },
     {
       id: 2,
+      type: 'Generate',
       title: "Generate 3 Volume",
       description: "3 Volume to complete this quest.",
       progress: 3,
@@ -28,6 +30,7 @@ export default function ProfilePage() {
     },
     {
       id: 3,
+      type: 'Reach',
       title: "Reach 56 PNL",
       description: "56 PNL to complete this quest.",
       progress: 56,
@@ -83,6 +86,7 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {questsData.map((quest) => (
               <QuestCard
+                type={quest.type}
                 key={quest.id}
                 title={quest.title}
                 description={quest.description}

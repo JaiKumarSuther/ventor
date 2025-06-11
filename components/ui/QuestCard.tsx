@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image"; // Importing Image component
 
 interface QuestCardProps {
+  type: string;
   title: string;
   description: string;
   progress: number;
@@ -11,6 +12,7 @@ interface QuestCardProps {
 }
 
 export default function QuestCard({
+  type,
   title,
   description,
   progress,
@@ -62,7 +64,7 @@ export default function QuestCard({
           />
           {status === "complete" ? (
             <div className="flex gap-2">
-              <span className="text-white">Done</span>
+              <span className="text-white">{type}</span>
               <h3 className="text-[#8761FF]">{description}</h3>
             </div>
           ) : (

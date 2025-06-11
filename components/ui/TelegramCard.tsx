@@ -9,7 +9,7 @@ interface TelegramCardProps {
 
 const TelegramCard: React.FC<TelegramCardProps> = ({ username, connected }) => {
   return (
-    <div className="p-4 rounded-lg border-b border-[#22242D] pb-5 flex items-center gap-4">
+    <div className="p-4 border-b border-[#22242D] pb-5 flex items-center gap-4">
       {/* Profile image placeholder */}
       <div className="w-10 h-10 rounded-full overflow-hidden relative">
         <Image

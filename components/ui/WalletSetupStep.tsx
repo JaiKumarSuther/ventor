@@ -5,6 +5,7 @@ import GradientButton from "@/components/ui/GradientButton";
 import GradientCheckbox from "@/components/ui/GradientCheckbox";
 import DashboardActions from "@/components/ui/DashboardActions";
 import DataTable from "@/components/ui/DataTable";
+import WalletPopup from "@/components/ui/WalletPopup"; // Adjust the path if necessary
 
 interface Wallet {
   id: number;
@@ -39,10 +40,38 @@ export default function WalletSetupStep({
   onCancel,
 }: WalletSetupStepProps) {
   const [wallets, setWallets] = useState<Wallet[]>([
-    { id: 1, name: "Wallet1", address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-    { id: 2, name: "Wallet2", address: "wallet_3y7ZK...1Ab", balance: 0, use: 1, age: 1 },
-    { id: 3, name: "Wallet3", address: "wallet_9xQ2L...7Vc", balance: 0, use: 1, age: 1 },
-    { id: 4, name: "Wallet4", address: "wallet_5mNpT...8Ys", balance: 0, use: 1, age: 1 },
+    {
+      id: 1,
+      name: "Wallet1",
+      address: "wallet_22x9A...3Fb",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
+    {
+      id: 2,
+      name: "Wallet2",
+      address: "wallet_3y7ZK...1Ab",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
+    {
+      id: 3,
+      name: "Wallet3",
+      address: "wallet_9xQ2L...7Vc",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
+    {
+      id: 4,
+      name: "Wallet4",
+      address: "wallet_5mNpT...8Ys",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
   ]);
 
   const [batches, setBatches] = useState<Batch[]>([
@@ -50,9 +79,15 @@ export default function WalletSetupStep({
     { id: 2, name: "Batch 2" },
   ]);
 
+  const [isPopupVisible, setPopupVisible] = useState<boolean>(false); // State for popup visibility
+
   // Initialize selectedWallets and selectedBatches from props.data if available
-  const [selectedWallets, setSelectedWallets] = useState<number[]>(data.selectedWallets || []);
-  const [selectedBatches, setSelectedBatches] = useState<number[]>(data.selectedBatches || [1]);
+  const [selectedWallets, setSelectedWallets] = useState<number[]>(
+    data.selectedWallets || []
+  );
+  const [selectedBatches, setSelectedBatches] = useState<number[]>(
+    data.selectedBatches || [1]
+  );
 
   // Keep local selection state in sync with parent data prop
   useEffect(() => {
@@ -62,13 +97,17 @@ export default function WalletSetupStep({
 
   const handleWalletSelect = (walletId: number) => {
     setSelectedWallets((prev) =>
-      prev.includes(walletId) ? prev.filter((id) => id !== walletId) : [...prev, walletId]
+      prev.includes(walletId)
+        ? prev.filter((id) => id !== walletId)
+        : [...prev, walletId]
     );
   };
 
   const handleBatchSelect = (batchId: number) => {
     setSelectedBatches((prev) =>
-      prev.includes(batchId) ? prev.filter((id) => id !== batchId) : [...prev, batchId]
+      prev.includes(batchId)
+        ? prev.filter((id) => id !== batchId)
+        : [...prev, batchId]
     );
   };
 
@@ -90,6 +129,10 @@ export default function WalletSetupStep({
         age: 1,
       },
     ]);
+  };
+
+  const handleWarmupWalletsClick = () => {
+    setPopupVisible(true); // Show the popup when the button is clicked
   };
 
   const handleSelectAllWallets = () => {
@@ -139,7 +182,9 @@ export default function WalletSetupStep({
         <div className="flex flex-col flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
           {/* Top Bar */}
           <div className="flex flex-col md:flex-row items-center justify-between p-4 gap-4">
-            <h3 className="text-white text-base font-semibold">Wallet ({wallets.length})</h3>
+            <h3 className="text-white text-base font-semibold">
+              Wallet ({wallets.length})
+            </h3>
             <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
               <GradientButton
                 label="New Wallets"
@@ -172,14 +217,17 @@ export default function WalletSetupStep({
 
           {/* Wallet Table - Scrollable */}
           <div className="flex-1 overflow-y-auto">
-            <DataTable headerColumns={["Address", "Balance", "# Use", "Age"]} rows={walletTableRows} />
+            <DataTable
+              headerColumns={["Address", "Balance", "# Use", "Age"]}
+              rows={walletTableRows}
+            />
           </div>
 
           {/* Bottom Action */}
           <div className="flex p-8">
             <GradientButton
               label="Warmup Wallets"
-              onClick={() => console.log("Warmup Wallets clicked")}
+              onClick={handleWarmupWalletsClick} // Trigger Popup when clicked
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
               className="h-10 px-5"
@@ -190,7 +238,9 @@ export default function WalletSetupStep({
         {/* Batch Selection */}
         <div className="flex flex-col flex-[3] border border-[#22242D] bg-[#0F0F10]">
           <div className="flex items-center justify-between px-4 py-4 border-b border-[#22242D]">
-            <h3 className="text-white text-base font-semibold">Batch Selection</h3>
+            <h3 className="text-white text-base font-semibold">
+              Batch Selection
+            </h3>
             <GradientButton
               label="New Batch"
               onClick={handleNewBatch}
@@ -239,6 +289,16 @@ export default function WalletSetupStep({
           </div>
         </div>
       </div>
+      {isPopupVisible && (
+        <WalletPopup
+          isOpen={isPopupVisible}
+          onClose={() => setPopupVisible(false)}
+          onSave={() => {
+            console.log("Saving wallets...");
+            setPopupVisible(false);
+          }}
+        />
+      )}
     </div>
   );
 }
