@@ -4,6 +4,7 @@ import GradientButton from "@/components/ui/GradientButton";
 import DualRangeSlider from "@/components/ui/DualRangeSlider";
 import DashboardActions from "@/components/ui/DashboardActions";
 import { ArrowLeft } from "lucide-react";
+
 import RoundedGradientCheckbox from "@/components/ui/RoundedGradientCheckbox";
 import GradientCheckbox from "@/components/ui/GradientCheckbox";
 import Image from "next/image";
