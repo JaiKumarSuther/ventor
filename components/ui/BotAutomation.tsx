@@ -14,10 +14,8 @@ interface BotAutomationProps {
 const BotAutomation: React.FC<BotAutomationProps> = ({
   autoSell,
   autoDump,
-  smartSell,
   toggleAutoSell,
   toggleAutoDump,
-  toggleSmartSell,
 }) => {
   return (
     <div>
@@ -29,7 +27,12 @@ const BotAutomation: React.FC<BotAutomationProps> = ({
           enabled={autoSell}
           onToggle={toggleAutoSell}
           icon={
-            <Image src="/assets/refresh.svg" width={20} height={20} alt="Refresh" />
+            <Image
+              src="/assets/refresh.svg"
+              width={20}
+              height={20}
+              alt="Refresh"
+            />
           }
         />
 
@@ -39,19 +42,40 @@ const BotAutomation: React.FC<BotAutomationProps> = ({
           enabled={autoDump}
           onToggle={toggleAutoDump}
           icon={
-            <Image src="/assets/warning.svg" width={20} height={20} alt="Warning" />
+            <Image
+              src="/assets/warning.svg"
+              width={20}
+              height={20}
+              alt="Warning"
+            />
           }
         />
 
-        <BotAutomationItem
-          title="Smart Sell Settings"
-          description="Update smart sell settings"
-          enabled={smartSell}
-          onToggle={toggleSmartSell}
-          icon={
-            <Image src="/assets/warning.svg" width={20} height={20} alt="Warning" />
-          }
-        />
+       
+        <div className="flex justify-between items-center py-4 rounded-lg mb-10">
+          <div className="flex gap-2 items-center">
+            <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11">
+               <Image
+              src="/assets/warning.svg"
+              width={20}
+              height={20}
+              alt="Warning"
+            />
+            </div>
+            <div>
+              <p className="text-white font-semibold">Smart Sell Settings</p>
+              <p className="text-[#6A7A8C] text-sm">Update smart sell settings</p>
+            </div>
+          </div>
+           <Image
+              src="/assets/edit-white.svg"
+              width={24}
+              height={24}
+              alt="Warning"
+              className="cursor-pointer"
+            />
+          
+        </div>
       </div>
       <p>Toggle instantly update bot behavior.</p>
     </div>

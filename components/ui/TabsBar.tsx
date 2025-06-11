@@ -14,7 +14,7 @@ interface TabsBarProps {
 
 export default function TabsBar({ tabs }: TabsBarProps) {
   return (
-    <div className="flex items-center gap-2 md:gap-4 sm:gap-11 py-2 w-full">
+    <div className="flex gap-2 md:gap-4 sm:gap-11 py-2 w-full">
       {/* Left Arrow Button */}
       <button className="text-white hover:text-[#8761FF] flex ">
         <ArrowLeft size={24} className="cursor-pointer sm:size-6 w-4 md:w-6" />

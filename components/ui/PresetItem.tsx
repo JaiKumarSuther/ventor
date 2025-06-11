@@ -1,5 +1,5 @@
 import React from "react";
-import { Edit, Trash2, Play } from "lucide-react";
+import Image from "next/image";
 
 interface PresetItemProps {
   title: string;
@@ -30,9 +30,15 @@ const PresetItem: React.FC<PresetItemProps> = ({
         </div>
       </div>
       <div className="flex items-center gap-3">
-        <Play size={18} color="#E8EAED" className="cursor-pointer" onClick={onPlay} />
-        <Edit size={18} color="#E8EAED" className="cursor-pointer" onClick={onEdit} />
-        <Trash2 size={18} color="#E8EAED" className="cursor-pointer" onClick={onDelete} />
+        <div className="cursor-pointer" onClick={onEdit}>
+          <Image src="/assets/pencil.svg" alt="Edit" width={20} height={20} />
+        </div>
+        <div className="cursor-pointer" onClick={onPlay}>
+          <Image src="/assets/play.svg" alt="Play" width={24} height={24} />
+        </div>
+        <div className="cursor-pointer" onClick={onDelete}>
+          <Image src="/assets/delete.svg" alt="Delete" width={24} height={24} />
+        </div>
       </div>
     </div>
   );

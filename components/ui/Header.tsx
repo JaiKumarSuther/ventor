@@ -1,16 +1,17 @@
-'use client'
+"use client";
 import { ChevronDown, Menu, X, Search } from "lucide-react";
 import SearchInput from "./SearchInput";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";  // Import usePathname
 
 export default function Header() {
   const [search, setSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
-  const pathname = "/"; // You can replace this with `usePathname()` if you need dynamic path handling
+  const pathname = usePathname();  // Get current pathname dynamically
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -53,7 +54,7 @@ export default function Header() {
                 href={link.href}
                 className={`transition-colors ${
                   pathname === link.href
-                    ? "text-[#8062F6] font-bold"
+                    ? "text-[#8761FF] font-bold"
                     : "hover:text-gray-300"
                 }`}
               >
@@ -132,7 +133,7 @@ export default function Header() {
                     href={link.href}
                     className={`block px-4 py-3 rounded-lg transition-colors ${
                       pathname === link.href
-                        ? "text-[#8062F6] font-bold bg-[#1a1d24]"
+                        ? "text-[#8761FF] font-bold bg-[#1a1d24]"
                         : "hover:bg-[#1a1d24]"
                     }`}
                   >

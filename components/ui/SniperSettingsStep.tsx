@@ -59,7 +59,7 @@ export default function SniperSettingsStep({
       {/* TOTAL BUNDLES & BUNDLE RANGE */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 w-full">
         <div className="flex items-center flex-col w-full md:flex-row md:w-auto flex-1 mb-4 md:mb-8">
-          <h1 className="w-full md:w-[45%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
+          <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             DEV BUY
           </h1>
           <div className="bg-[#101114] border border-[#22242D] rounded-lg flex justify-between items-center px-5 py-2 h-[72px] cursor-pointer w-full">
@@ -87,7 +87,7 @@ export default function SniperSettingsStep({
 
       {/* OTHER SLIDERS */}
       <div className="flex flex-col gap-6 md:gap-12 w-full">
-        <div className="flex flex-col md:flex-row w-full md:w-[520px] flex-1 mb-4 md:mb-8">
+        <div className="flex flex-col md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             TOTAL SNIPE
           </h1>
@@ -100,7 +100,7 @@ export default function SniperSettingsStep({
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-full md:w-[520px] flex-1 mb-4 md:mb-8">
+        <div className="flex flex-col md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             SNIPE RANGE
           </h1>
@@ -114,7 +114,7 @@ export default function SniperSettingsStep({
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-full md:w-[520px] flex-1 mb-4 md:mb-8">
+        <div className="flex flex-col md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             TID AMOUNT
           </h1>

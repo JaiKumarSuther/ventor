@@ -20,22 +20,19 @@ const WalletFilters: React.FC<WalletFiltersProps> = ({
   onSelectNoSupply,
 }) => {
   return (
-    <div className="flex items-center gap-4 px-6 pb-4">
-      <CustomCheckbox
-        checked={selectAll}
-        onChange={onSelectAll}
-        label="Select All"
-      />
-      <CustomCheckbox
-        checked={selectSnipeFailed}
-        onChange={onSelectSnipeFailed}
-        label="Select Snipe Failed"
-      />
-      <CustomCheckbox
-        checked={selectNoSupply}
-        onChange={onSelectNoSupply}
-        label="Select No Supply"
-      />
+    <div className="flex flex-col md:flex-row md:items-center gap-4 px-3 md:px-6 pb-4">
+      <div className="flex items-center gap-2">
+        <CustomCheckbox checked={selectAll} onChange={onSelectAll} />
+        <h1 className="text-sm font-semibold">Select All</h1>
+      </div>
+      <div className="flex items-center gap-2">
+        <CustomCheckbox checked={selectSnipeFailed} onChange={onSelectSnipeFailed} />
+        <h1 className="text-sm font-semibold">Select Snipe Failed</h1>
+      </div>
+      <div className="flex items-center gap-2">
+        <CustomCheckbox checked={selectNoSupply} onChange={onSelectNoSupply} />
+        <h1 className="text-sm font-semibold">Select No Supply</h1>
+      </div>
     </div>
   );
 };

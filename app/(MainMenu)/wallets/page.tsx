@@ -25,7 +25,8 @@ export default function WalletsPage() {
   ];
 
   const tabs = [
-    { label: "Swap Manager", active: true, onClick: () => console.log("Swap Manager") },
+    { label: "Overview", active: true, onClick: () => console.log("Overview") },
+    { label: "Swap Manager", onClick: () => console.log("Swap Manager") },
     { label: "Market Maker", onClick: () => console.log("Market Maker") },
     { label: "Smart Sell", onClick: () => console.log("Smart Sell") },
     { label: "Auto TP", onClick: () => console.log("Auto TP") },

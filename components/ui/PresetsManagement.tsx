@@ -37,7 +37,7 @@ const PresetsManagement: React.FC = () => {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-md md:text-2xl lg:text-3xl font-semibold text-white">Presents Management</h1>
         <GradientButton
-          label="Create Preset"
+          label="Create Present"
           onClick={handleOpenModal}
           gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
           hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
@@ -69,7 +69,7 @@ const PresetsManagement: React.FC = () => {
         Delete Preset? This action cannot be undone.
       </p>
 
-      {/* Create Preset Modal */}
+      {/* Create Present Modal */}
       <CreatePresetModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

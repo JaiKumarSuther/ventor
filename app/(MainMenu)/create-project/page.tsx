@@ -6,6 +6,7 @@ import ProjectMetadataStep from "@/components/ui/ProjectMetadataStep";
 import WalletSetupStep from "@/components/ui/WalletSetupStep";
 import SniperSettingsStep from "@/components/ui/SniperSettingsStep";
 import SettingOverview from "@/components/ui/OverviewStep";
+import LaunchModeStep from "@/components/ui/LaunchModeStep";
 
 export default function CreateProject() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -21,6 +22,7 @@ export default function CreateProject() {
     telegramUrl: "",
     selectedWallets: [] as number[],
     selectedBatches: [] as number[],
+    launchMode: "", // <-- Added field for Launch Mode
     sniperSettings: {
       devBuy: 2.4,
       totalSnipe: 2.4,
@@ -31,13 +33,14 @@ export default function CreateProject() {
 
   const steps = [
     { number: 1, title: "Project Metadata Configuration", subtitle: "Step 1" },
-    { number: 2, title: "Wallet setup", subtitle: "Step 2" },
-    { number: 3, title: "Sniper Settings", subtitle: "Step 3" },
-    { number: 4, title: "Overview", subtitle: "Step 4" },
+    { number: 2, title: "Launch Mode", subtitle: "Step 2" },
+    { number: 3, title: "Wallet setup", subtitle: "Step 3" },
+    { number: 4, title: "Sniper Settings", subtitle: "Step 4" },
+    { number: 5, title: "Overview", subtitle: "Step 5" },
   ];
 
   const handleNext = () => {
-    if (currentStep < 4) setCurrentStep(currentStep + 1);
+    if (currentStep < 5) setCurrentStep(currentStep + 1);
   };
 
   const handleCancel = () => {
@@ -72,6 +75,14 @@ export default function CreateProject() {
               />
             )}
             {currentStep === 2 && (
+              <LaunchModeStep
+                data={{ launchMode: projectData.launchMode }}
+                updateData={(data) => updateProjectData(data)}
+                onNext={handleNext}
+                onCancel={handleCancel}
+              />
+            )}
+            {currentStep === 3 && (
               <WalletSetupStep
                 data={projectData}
                 updateData={updateProjectData}
@@ -79,11 +90,14 @@ export default function CreateProject() {
                 onCancel={handleCancel}
               />
             )}
-            {currentStep === 3 && (
+            {currentStep === 4 && (
               <SniperSettingsStep onNext={handleNext} onCancel={handleCancel} />
             )}
-            {currentStep === 4 && (
-              <SettingOverview onFinish={handleFinish} onCancel={handleCancel} />
+            {currentStep === 5 && (
+              <SettingOverview
+                onFinish={handleFinish}
+                onCancel={handleCancel}
+              />
             )}
           </div>
         </div>

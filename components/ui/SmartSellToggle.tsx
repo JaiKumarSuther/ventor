@@ -21,7 +21,7 @@ export default function SmartSellControl({
       </div>
       <div
         className={`w-10 h-5 rounded-full border border-[#22242D] flex items-center transition-colors relative shrink-0 ml-2 ${
-          enabled ? "bg-green-500" : "bg-[#6A7A8C]"
+          enabled ? "bg-[#526FFF]" : "bg-[#6A7A8C]"
         }`}
         onClick={onToggle}
       >
