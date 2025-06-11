@@ -1,154 +1,168 @@
-  "use client";
-  import React from "react";
-  import Image from "next/image";
-  import DashboardActions from "@/components/ui/DashboardActions"; // Adjust path if needed
+"use client";
+import React from "react";
+import Image from "next/image";
+import DashboardActions from "@/components/ui/DashboardActions"; // Adjust path if needed
 
-  interface ProjectMetadata {
-    projectName?: string;
-    tokenSymbol?: string;
-    launchpad?: string;
-    description?: string;
-    twitterUrl?: string;
-    websiteUrl?: string;
-    telegramUrl?: string;
-  }
+interface ProjectMetadata {
+  projectName?: string;
+  tokenSymbol?: string;
+  launchpad?: string;
+  description?: string;
+  twitterUrl?: string;
+  websiteUrl?: string;
+  telegramUrl?: string;
+}
 
-  interface ProjectMetadataStepProps {
-    data: ProjectMetadata;
-    updateData: (data: Partial<ProjectMetadata>) => void;
-    onNext: () => void;
-    onCancel: () => void;
-  }
+interface ProjectMetadataStepProps {
+  data: ProjectMetadata;
+  updateData: (data: Partial<ProjectMetadata>) => void;
+  onNext: () => void;
+  onCancel: () => void;
+}
 
-  const FloatingInput = ({
-    label,
-    value,
-    placeholder,
-    onChange,
-  }: {
-    label: string;
-    value: string;
-    placeholder: string;
-    onChange: (value: string) => void;
-  }) => {
-    return (
-      <div className="relative">
-        <div className="w-full bg-[#101017] border min-h-[74px] border-[#22242D] rounded-md px-4 flex items-center pt-4">
-          <input
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            placeholder={placeholder}
-            className="bg-transparent w-full text-white font-semibold placeholder-[#fff] text-sm focus:outline-none"
-          />
-        </div>
-        <label className="absolute left-4 top-4 text-xs text-[#6A7A8C] transition-all">
-          {label}
-        </label>
+const FloatingInput = ({
+  label,
+  value,
+  placeholder,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  placeholder: string;
+  onChange: (value: string) => void;
+}) => {
+  return (
+    <div className="relative">
+      <div className="w-full bg-[#101017] border min-h-[74px] border-[#22242D] rounded-md px-4 flex items-center pt-4">
+        <input
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className="bg-transparent w-full text-white font-semibold placeholder-[#fff] text-sm focus:outline-none"
+        />
       </div>
-    );
+      <label className="absolute left-4 top-4 text-xs text-[#6A7A8C] transition-all">
+        {label}
+      </label>
+    </div>
+  );
+};
+
+export default function ProjectMetadataStep({
+  data,
+  updateData,
+  onNext,
+  onCancel,
+}: ProjectMetadataStepProps) {
+  const handleInputChange = (field: keyof ProjectMetadata, value: string) => {
+    updateData({ [field]: value });
   };
 
-  export default function ProjectMetadataStep({
-    data,
-    updateData,
-    onNext,
-    onCancel,
-  }: ProjectMetadataStepProps) {
-    const handleInputChange = (field: keyof ProjectMetadata, value: string) => {
-      updateData({ [field]: value });
-    };
-
-    return (
-      <div className="space-y-6">
-        {/* First row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <FloatingInput
-            label="Project Name"
-            value={data.projectName || ""}
-            placeholder="SOLPhoenix"
-            onChange={(value) => handleInputChange("projectName", value)}
-          />
-          <FloatingInput
-            label="Token Symbol"
-            value={data.tokenSymbol || ""}
-            placeholder="SOLPX"
-            onChange={(value) => handleInputChange("tokenSymbol", value)}
-          />
-          <FloatingInput
-            label="Launchpad"
-            value={data.launchpad || ""}
-            placeholder="Pump Fun"
-            onChange={(value) => handleInputChange("launchpad", value)}
-          />
-        </div>
-
-        {/* Description */}
-        <div className="relative">
-          <textarea
-            value={data.description || ""}
-            onChange={(e) => handleInputChange("description", e.target.value)}
-            placeholder="NFT launchpad for Solana creators"
-            className="w-full bg-[#101017] border border-[#22242D] rounded-md px-3 pt-6 pb-2 text-white placeholder-[#6A7A8C] text-sm min-h-[144px] resize-none focus:outline-none"
-          />
-          <label className="absolute left-3 top-2 text-xs text-[#B4B4B4]">
-            Description
-          </label>
-        </div>
-
-        {/* Upload Box */}
-        <div className="w-full bg-[#101017] border border-[#22242D] rounded-md  h-35">
-          <div className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer">
-            <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
-              <Image
-                src="/assets/upload-cloud.svg"
-                width={20}
-                height={20}
-                alt="Upload"
-              />
-            </div>
-            <div className="flex gap-1 justify-center items-center">
-              <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
-                Click to upload
-              </p>
-              <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
-            </div>
-            <p className="text-xs text-[#6A7A8C]">
-              SVG, PNG, JPG or GIF (max. 800×400px)
-            </p>
-          </div>
-        </div>
-
-        {/* Social URLs */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <FloatingInput
-            label="Twitter URL"
-            value={data.twitterUrl || ""}
-            placeholder="https://twitter.com/solph"
-            onChange={(value) => handleInputChange("twitterUrl", value)}
-          />
-          <FloatingInput
-            label="Website URL"
-            value={data.websiteUrl || ""}
-            placeholder="https://solphoenix.xyz"
-            onChange={(value) => handleInputChange("websiteUrl", value)}
-          />
-          <FloatingInput
-            label="Telegram URL"
-            value={data.telegramUrl || ""}
-            placeholder="https://solphoenix.xyz"
-            onChange={(value) => handleInputChange("telegramUrl", value)}
-          />
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex justify-end pt-6">
-          <DashboardActions
-            onFirstAction={onCancel}
-            onSecondAction={onNext}
-            firstLabel="Cancel"
-            secondLabel="Next"
-          />
-        </div>
+  return (
+    <div className="space-y-6">
+      {/* First row */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <FloatingInput
+          label="Project Name"
+          value={data.projectName || ""}
+          placeholder="SOLPhoenix"
+          onChange={(value) => handleInputChange("projectName", value)}
+        />
+        <FloatingInput
+          label="Token Symbol"
+          value={data.tokenSymbol || ""}
+          placeholder="SOLPX"
+          onChange={(value) => handleInputChange("tokenSymbol", value)}
+        />
+        <FloatingInput
+          label="Launchpad"
+          value={data.launchpad || ""}
+          placeholder="Pump Fun"
+          onChange={(value) => handleInputChange("launchpad", value)}
+        />
       </div>
-    );
-  }
+
+      {/* Description */}
+      <div className="relative">
+        <textarea
+          value={data.description || ""}
+          onChange={(e) => handleInputChange("description", e.target.value)}
+          placeholder="NFT launchpad for Solana creators"
+          className="w-full bg-[#101017] border border-[#22242D] rounded-md px-3 pt-6 pb-2 text-white placeholder-[#fff] text-sm min-h-[144px] resize-none focus:outline-none"
+        />
+        <label className="absolute left-3 top-2 text-xs text-[#6A7A8C]">
+          Description
+        </label>
+      </div>
+
+      {/* Upload Box (File Upload with Click Anywhere to Trigger) */}
+      <div className="w-full bg-[#101017] border border-[#22242D] rounded-md h-35">
+        <label htmlFor="file-upload" className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer">
+          <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
+            <Image
+              src="/assets/upload-cloud.svg"
+              width={20}
+              height={20}
+              alt="Upload"
+            />
+          </div>
+          <div className="flex gap-1 justify-center items-center">
+            <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
+              Click to upload
+            </p>
+            <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
+          </div>
+          <p className="text-xs text-[#6A7A8C]">
+            SVG, PNG, JPG, GIF or File (max. 800×400px)
+          </p>
+          {/* File input that is triggered by clicking the label */}
+          <input
+            type="file"
+            id="file-upload"
+            accept="image/*,.svg,.png,.jpg,.gif,.pdf"
+            className="hidden"
+            onChange={(e) => {
+              // Handle file change event
+              if (e.target.files) {
+                const file = e.target.files[0];
+                console.log("Selected file:", file);
+              }
+            }}
+          />
+        </label>
+      </div>
+
+      {/* Social URLs */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <FloatingInput
+          label="Twitter URL"
+          value={data.twitterUrl || ""}
+          placeholder="https://twitter.com/solph"
+          onChange={(value) => handleInputChange("twitterUrl", value)}
+        />
+        <FloatingInput
+          label="Website URL"
+          value={data.websiteUrl || ""}
+          placeholder="https://solphoenix.xyz"
+          onChange={(value) => handleInputChange("websiteUrl", value)}
+        />
+        <FloatingInput
+          label="Telegram URL"
+          value={data.telegramUrl || ""}
+          placeholder="https://solphoenix.xyz"
+          onChange={(value) => handleInputChange("telegramUrl", value)}
+        />
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex justify-end pt-6">
+        <DashboardActions
+          onFirstAction={onCancel}
+          onSecondAction={onNext}
+          firstLabel="Cancel"
+          secondLabel="Next"
+        />
+      </div>
+    </div>
+  );
+}

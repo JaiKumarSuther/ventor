@@ -8,17 +8,19 @@ interface SingleRangeSliderProps {
   initialValue?: number;
   onChange?: (value: number) => void;
   className?: string;
+  markers?: number[]; // New prop for static points
 }
 
 const gradient = "linear-gradient(0deg, #5A43C6, #8761FF)";
 
 const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
   min = 0,
-  max = 10,
-  step = 0.1,
-  initialValue = 5,
+  max = 100,
+  step = 1,
+  initialValue = 50,
   onChange,
   className = "",
+  markers = [],
 }) => {
   const [value, setValue] = useState(initialValue);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -67,24 +69,37 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
 
   return (
     <div className={`relative w-full ${className}`}>
-      {/* Value label above thumb */}
-      <div className="relative mb-2">
+      {/* Active value label */}
+      <div className="relative mb-4">
         <div
           className="absolute text-lg text-[#8761FF] font-semibold transform -translate-x-1/2 -translate-y-full"
           style={{
             left: `${percentage}%`,
-            marginTop: "-8px", // moves it a bit higher
+            marginTop: "-10px",
           }}
         >
-          {value.toFixed(1)}
+          {value.toFixed(0)}
         </div>
+
+        {/* Marker labels */}
+        {markers.map((marker, i) => {
+          const pos = getPercentage(marker);
+          return (
+            <div
+              key={i}
+              className="absolute text-sm text-[#BD402F] font-semibold transform -translate-x-1/2 -translate-y-full"
+              style={{ left: `${pos}%`, marginTop: "-10px" }}
+            >
+              {marker}
+            </div>
+          );
+        })}
       </div>
 
       {/* Track */}
       <div
         ref={sliderRef}
-        className="relative h-1 rounded-full"
-        style={{ background: "#22242D" }}
+        className="relative h-1 rounded-full bg-[#22242D]"
       >
         {/* Active range */}
         <div
@@ -97,7 +112,7 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
 
         {/* Thumb */}
         <div
-          className="absolute w-6 h-6 border-4 rounded-full cursor-grab active:cursor-grabbing transform -translate-x-1/2 -translate-y-1/2 top-1/2 transition-transform shadow-lg"
+          className="absolute w-6 h-6 border-4 rounded-full cursor-grab active:cursor-grabbing transform -translate-x-1/2 -translate-y-1/2 top-1/2 shadow-lg"
           style={{
             left: `${percentage}%`,
             background: "#22242D",
@@ -105,6 +120,18 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
           }}
           onMouseDown={handleMouseDown}
         />
+
+        {/* Marker points */}
+        {markers.map((marker, i) => {
+          const pos = getPercentage(marker);
+          return (
+            <div
+              key={`dot-${i}`}
+              className="absolute w-4 h-4 rounded-full bg-[#BD402F] top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${pos}%` }}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -1,97 +1,203 @@
 "use client";
 
 import React, { useState } from "react";
-import PageContainer from "@/components/ui/PageContainer";
-import WalletCard from "@/components/ui/WalletCard";
-import PresetSelector from "@/components/ui/PresetSelector";
-import TabsBar from "@/components/ui/TabsBar";
-import ActionButtons from "@/components/ui/ActionButtons";
-import SmartSellControl from "@/components/ui/SmartSellToggle";
-import WalletFilters from "@/components/ui/WalletFilters";
+import GradientButton from "@/components/ui/GradientButton";
+import GradientCheckbox from "@/components/ui/GradientCheckbox";
+import DataTable from "@/components/ui/DataTable";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function WalletsPage() {
-  const [isSmartSellEnabled, setIsSmartSellEnabled] = useState(false);
-  const [selectAll, setSelectAll] = useState(false);
-  const [selectSnipeFailed, setSelectSnipeFailed] = useState(false);
-  const [selectNoSupply, setSelectNoSupply] = useState(false);
+interface Wallet {
+  id: number;
+  address: string;
+  balance: number;
+  use: number;
+  age: number;
+}
 
-  const walletData = [
-    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
-    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
-    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
-    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
-    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
-    { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
-  ];
+export default function WalletsScreen() {
+  const [wallets] = useState<Wallet[]>([
+    { id: 1, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+    { id: 2, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+    { id: 3, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+    { id: 4, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+    { id: 5, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+  ]);
 
-  const tabs = [
-    { label: "Overview", active: true, onClick: () => console.log("Overview") },
-    { label: "Swap Manager", onClick: () => console.log("Swap Manager") },
-    { label: "Market Maker", onClick: () => console.log("Market Maker") },
-    { label: "Smart Sell", onClick: () => console.log("Smart Sell") },
-    { label: "Auto TP", onClick: () => console.log("Auto TP") },
-  ];
+  const [selectedWallets, setSelectedWallets] = useState<number[]>([]);
+
+  // Batch selection state
+  const [selectedBatches, setSelectedBatches] = useState<number[]>([]);
+
+  const [isBatchEditOpen, setIsBatchEditOpen] = useState(false); // Toggle for batch edit
+
+  const handleWalletSelect = (walletId: number) => {
+    setSelectedWallets((prev) =>
+      prev.includes(walletId)
+        ? prev.filter((id) => id !== walletId)
+        : [...prev, walletId]
+    );
+  };
+
+  const handleBatchSelect = (batchId: number) => {
+    setSelectedBatches((prev) =>
+      prev.includes(batchId)
+        ? prev.filter((id) => id !== batchId)
+        : [...prev, batchId]
+    );
+  };
+
+  const router = useRouter();
+  const handleFundWallet = () => {
+    router.push('/fund-wallet')
+  };
+
+  const handleEditBatch = () => {
+    setIsBatchEditOpen((prev) => !prev); // Toggle the batch edit table visibility
+  };
+
+  const walletRows = wallets.map((wallet) => ({
+    id: wallet.id,
+    isSelected: selectedWallets.includes(wallet.id),
+    onSelect: () => handleWalletSelect(wallet.id),
+    label: `Wallet ${wallet.id}`,
+    subLabel: wallet.address,
+    hasCopy: true,
+    icon: (
+      <div className="w-4 h-4 rounded-full bg-gradient-to-b from-[#5A43C6] to-[#8761FF] flex items-center justify-center">
+        <span className="text-xs font-bold text-white">Ξ</span>
+      </div>
+    ),
+    columns: [
+      <span key="balance">{wallet.balance}</span>,
+      <span key="use">{wallet.use}</span>,
+      <span key="age">{wallet.age}</span>,
+    ],
+  }));
 
   return (
-    <PageContainer>
-      {/* Tabs Bar */}
-      <div className="mb-6">
-        <TabsBar tabs={tabs} />
-      </div>
+    <div className="min-h-[900px] overflow-hidden bg-black">
+      <div className="h-full flex flex-col space-y-4 md:p-6 p-4">
+        {/* Header for Wallets Section */}
+        <div className="flex items-center justify-between flex-shrink-0">
+          <h2 className="text-white text-3xl font-semibold">Wallets</h2>
+          <GradientButton
+            label="Fund Wallet"
+            onClick={handleFundWallet}
+            gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+            hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+            className="px-6 py-2"
+          />
+        </div>
 
-      {/* Top Bar */}
-      <div className="border border-[#22242D]">
-        <div className="flex flex-col md:flex-row flex-wrap w-full bg-[#FFFFFF05] mb-10 border-b border-[#22242D] overflow-hidden">
-          {/* Left side */}
-          <div className="flex-1 md:flex-3 flex flex-col md:border-r px-3 md:px-5 py-5 md:py-10 gap-3 md:gap-5 border-[#22242D] min-w-0">
-            <ActionButtons />
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-5 w-full">
-              <SmartSellControl
-                label="SMART SELL"
-                enabled={isSmartSellEnabled}
-                onToggle={() => setIsSmartSellEnabled(!isSmartSellEnabled)}
+        {/* Wallets and Batches Sections - Fixed Height Container */}
+        <div className="flex-1 flex flex-col md:flex-row border border-[#22242D] overflow-hidden">
+          {/* Wallets Table - Left Section */}
+          <div className="flex-1 flex flex-col border-r border-[#22242D] bg-[#0F0F10] overflow-hidden">
+            {/* Header for Wallets Table */}
+            <div className="flex items-center justify-between p-4 gap-4 border-b border-[#22242D] flex-shrink-0">
+              <h3 className="text-white text-base font-semibold">Wallets</h3>
+              <GradientButton
+                label="Warmup Wallet"
+                onClick={handleFundWallet}
+                gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+                hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+                className="h-9 w-33"
               />
-              <div className="hidden sm:block border border-[#22242D]" />
-              <PresetSelector
-                label="CHOOSE PRESET"
-                selected="PRESET 1"
-                onSelect={(preset) => {
-                  console.log("Selected preset:", preset);
-                }}
-              />
+            </div>
+
+            {/* Wallet Table - Scrollable */}
+            <div className="flex-1 overflow-hidden">
+              <DataTable headerColumns={["Address", "Balance", "# Use", "Age"]} rows={walletRows} />
             </div>
           </div>
 
-          {/* Right side */}
-          <div className="flex-1 md:flex-2 flex flex-col justify-center items-center py-5 md:py-0 border-t md:border-t-0 border-[#22242D]">
-            <h2 className="text-[#6A7A8C] text-xl md:text-2xl">Live PNL</h2>
-            <h1 className="text-[#2FD271] text-2xl md:text-4xl">+ 120.35 SOL</h1>
+          {/* Batches List - Right Section */}
+          <div className="flex-1 bg-[#0F0F10] flex flex-col overflow-hidden">
+            {/* Header for Batches List */}
+            <div className="border-b border-[#22242D] p-[22px] flex-shrink-0">
+              <h3 className="text-white text-base">Batches</h3>
+            </div>
+
+            {/* Batches List - Always visible */}
+            <div className="overflow-hidden">
+              {[{ id: 1, name: "Batch 1" }, { id: 2, name: "Batch 2" }].map((batch) => (
+                <div
+                  key={batch.id}
+                  className="flex items-center justify-between px-4 py-3 border-b border-[#22242D] cursor-pointer hover:bg-[#1A1A1A] flex-shrink-0"
+                  onClick={() => handleBatchSelect(batch.id)}
+                >
+                  <div className="flex items-center gap-2">
+                    <GradientCheckbox
+                      checked={selectedBatches.includes(batch.id)}
+                      onChange={() => handleBatchSelect(batch.id)}
+                    />
+                    <span className="text-white text-sm">{batch.name}</span>
+                  </div>
+                  <button
+                    className="flex items-center cursor-pointer gap-1 text-[#8761FF] text-xs"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleEditBatch(); // Toggle the batch edit view
+                    }}
+                  >
+                    <Image src="/assets/edit.svg" width={20} height={20} alt="wallet" />
+                    Edit Batch
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Conditionally render the batch edit section */}
+            <div className="flex flex-col">
+              {isBatchEditOpen && (
+                <div className="h-full  flex flex-col overflow-hidden">
+                  {/* Upload Section */}
+                  <div className="bg-[#101114] h-40 flex border border-[#22242D] flex-shrink-0">
+                    <label
+                      htmlFor="file-upload"
+                      className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer w-full"
+                    >
+                      <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
+                        <Image
+                          src="/assets/upload-cloud.svg"
+                          width={20}
+                          height={20}
+                          alt="Upload"
+                        />
+                      </div>
+                      <div className="flex gap-1 justify-center items-center">
+                        <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
+                          Click to Add or Remove
+                        </p>
+                        <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
+                      </div>
+       
+                      <input
+                        type="file"
+                        id="file-upload"
+                        accept="image/*,.svg,.png,.jpg,.gif,.pdf"
+                        className="hidden"
+                        onChange={(e) => {
+                          if (e.target.files) {
+                            const file = e.target.files[0];
+                            console.log("Selected file:", file);
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
+
+                  {/* Batch Edit Table - Takes remaining space */}
+                  <div className="bg-[#101017] border border-[#22242D] flex-1 overflow-hidden">
+                    <DataTable headerColumns={["Address", "Balance", "# Use", "Age"]} rows={walletRows} />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-
-        {/* Filters */}
-        <WalletFilters
-          selectAll={selectAll}
-          onSelectAll={setSelectAll}
-          selectSnipeFailed={selectSnipeFailed}
-          onSelectSnipeFailed={setSelectSnipeFailed}
-          selectNoSupply={selectNoSupply}
-          onSelectNoSupply={setSelectNoSupply}
-        />
-
-        {/* Wallets Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 pb-4">
-          {walletData.map((wallet, index) => (
-            <WalletCard
-              key={index}
-              walletId={wallet.id}
-              holding={wallet.holding}
-              worth={wallet.worth}
-              percent={wallet.percent}
-            />
-          ))}
-        </div>
       </div>
-    </PageContainer>
+    </div>
   );
 }

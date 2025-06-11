@@ -4,6 +4,7 @@ import PageContainer from "@/components/ui/PageContainer";
 import StepIndicator from "@/components/ui/StepIndicator";
 import ProjectMetadataStep from "@/components/ui/ProjectMetadataStep";
 import WalletSetupStep from "@/components/ui/WalletSetupStep";
+import { useRouter } from "next/navigation";
 import SniperSettingsStep from "@/components/ui/SniperSettingsStep";
 import SettingOverview from "@/components/ui/OverviewStep";
 import LaunchModeStep from "@/components/ui/LaunchModeStep";
@@ -30,6 +31,7 @@ export default function CreateProject() {
       tidAmount: [78, 95, 97, 99],
     },
   });
+   const router = useRouter(); // Initialize useRouter
 
   const steps = [
     { number: 1, title: "Project Metadata Configuration", subtitle: "Step 1" },
@@ -46,9 +48,8 @@ export default function CreateProject() {
   const handleCancel = () => {
     console.log("Cancel clicked");
   };
-
   const handleFinish = () => {
-    console.log("Project created:", projectData);
+    router.push("/myprofile"); // Redirect to '/myprofile' using router.push
   };
 
   const updateProjectData = (data: Partial<typeof projectData>) => {
@@ -95,7 +96,7 @@ export default function CreateProject() {
             )}
             {currentStep === 5 && (
               <SettingOverview
-                onFinish={handleFinish}
+                onFinish={(handleFinish)}
                 onCancel={handleCancel}
               />
             )}

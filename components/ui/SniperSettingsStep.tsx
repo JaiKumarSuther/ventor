@@ -14,16 +14,10 @@ export default function SniperSettingsStep({
   onNext,
   onCancel,
 }: SniperSettingsStepProps) {
-  const [sliderValues, setSliderValues] = useState({ min: 200, max: 1000 });
-  const [singleSliderValue, setSingleSliderValue] = useState(500);
-
-  const handleDualSliderChange = (minValue: number, maxValue: number) => {
-    setSliderValues({ min: minValue, max: maxValue });
-  };
-
-  const handleSingleSliderChange = (value: number) => {
-    setSingleSliderValue(value);
-  };
+  const [buyRangeValues, setBuyRangeValues] = useState({ min: 3.8, max: 4.4 });
+  const [devBuyValue, setDevBuyValue] = useState(2.4);
+  const [totalSnipeValue, setTotalSnipeValue] = useState(2.4);
+  const [tidAmountValue, setTidAmountValue] = useState(97);
 
   return (
     <div className="flex flex-col gap-4 md:gap-8 p-2">
@@ -35,10 +29,11 @@ export default function SniperSettingsStep({
           </h1>
           <div className="w-full pt-6">
             <SingleRangeSlider
-              min={100}
-              max={2000}
-              initialValue={singleSliderValue}
-              onChange={handleSingleSliderChange}
+              min={0}
+              max={5}
+              step={0.1}
+              initialValue={devBuyValue}
+              onChange={setDevBuyValue}
             />
           </div>
         </div>
@@ -56,74 +51,50 @@ export default function SniperSettingsStep({
         </div>
       </div>
 
-      {/* TOTAL BUNDLES & BUNDLE RANGE */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 w-full">
-        <div className="flex items-center flex-col w-full md:flex-row md:w-auto flex-1 mb-4 md:mb-8">
-          <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
-            DEV BUY
-          </h1>
-          <div className="bg-[#101114] border border-[#22242D] rounded-lg flex justify-between items-center px-5 py-2 h-[72px] cursor-pointer w-full">
-            <div>
-              <p className="text-[#6A7A8C] text-xs">TOTAL BUNDLES</p>
-              <h1 className="text-sm font-semibold text-white pt-1">4</h1>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col items-center w-full md:flex-row md:w-[520px] flex-1 mb-4 md:mb-8">
-          <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
-            BUNDLE RANGE
-          </h1>
-          <div className="w-full pt-6">
-            <DualRangeSlider
-              min={100}
-              max={2000}
-              initialMinValue={sliderValues.min}
-              initialMaxValue={sliderValues.max}
-              onChange={handleDualSliderChange}
-            />
-          </div>
-        </div>
-      </div>
-
       {/* OTHER SLIDERS */}
       <div className="flex flex-col gap-6 md:gap-12 w-full">
-        <div className="flex flex-col md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
+        <div className="flex flex-col items-center md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             TOTAL SNIPE
           </h1>
           <div className="w-full pt-6">
             <SingleRangeSlider
-              min={100}
-              max={2000}
-              initialValue={singleSliderValue}
-              onChange={handleSingleSliderChange}
+              min={0}
+              max={5}
+              step={0.1}
+              initialValue={totalSnipeValue}
+              onChange={setTotalSnipeValue}
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
+        <div className="flex flex-col items-center md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
-            SNIPE RANGE
+            BUY RANGE
           </h1>
           <div className="w-full pt-6">
             <DualRangeSlider
-              min={100}
-              max={2000}
-              initialMinValue={sliderValues.min}
-              initialMaxValue={sliderValues.max}
-              onChange={handleDualSliderChange}
+              min={3.0}
+              max={5.0}
+              step={0.1}
+              average={4.0}
+              initialMinValue={buyRangeValues.min}
+              initialMaxValue={buyRangeValues.max}
+              onChange={(min, max) => setBuyRangeValues({ min, max })}
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
+        <div className="flex flex-col items-center md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             TID AMOUNT
           </h1>
           <div className="w-full pt-8">
             <SingleRangeSlider
-              min={100}
-              max={2000}
-              initialValue={singleSliderValue}
-              onChange={handleSingleSliderChange}
+              min={60}
+              max={102}
+              step={1}
+              markers={[75, 95, 99]}
+              initialValue={tidAmountValue}
+              onChange={setTidAmountValue}
             />
           </div>
         </div>

@@ -7,6 +7,7 @@ interface DualRangeSliderProps {
   step?: number;
   initialMinValue?: number;
   initialMaxValue?: number;
+  average?: number; // 👈 New average prop
   onChange?: (minValue: number, maxValue: number) => void;
   className?: string;
 }
@@ -19,6 +20,7 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
   step = 0.1,
   initialMinValue = 3.8,
   initialMaxValue = 4.4,
+  average,
   onChange,
   className = "",
 }) => {
@@ -75,29 +77,46 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
 
   const minPercentage = getPercentage(minValue);
   const maxPercentage = getPercentage(maxValue);
+  const averagePercentage =
+    average !== undefined ? getPercentage(average) : null;
 
   return (
     <div className={`relative w-full ${className}`}>
-      {/* Value labels above thumbs */}
+      {/* Value labels above thumbs and average */}
       <div className="relative mb-4">
         <div
           className="absolute text-lg text-[#8761FF] font-semibold transform -translate-x-1/2 -translate-y-full"
-          style={{
-            left: `${minPercentage}%`,
-            marginTop: "-12px", // moves it a bit higher
-          }}
+          style={{ left: `${minPercentage}%`, marginTop: "-12px" }}
         >
           {minValue.toFixed(1)}
         </div>
         <div
           className="absolute text-lg text-[#8761FF] font-semibold transform -translate-x-1/2 -translate-y-full"
-          style={{
-            left: `${maxPercentage}%`,
-            marginTop: "-12px", // moves it a bit higher
-          }}
+          style={{ left: `${maxPercentage}%`, marginTop: "-12px" }}
         >
           {maxValue.toFixed(1)}
         </div>
+        {average !== undefined && averagePercentage !== null && (
+          <>
+            {/* Average label */}
+            <div
+              className="absolute text-lg text-[#BD402F] font-semibold transform -translate-x-1/2 -translate-y-full"
+              style={{ left: `${averagePercentage}%`, marginTop: "-12px" }}
+            >
+              {average.toFixed(1)}
+            </div>
+
+            {/* Thicker vertical average marker */}
+            <div
+              className="absolute bg-[#BD402F] top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              style={{
+                left: `${averagePercentage}%`,
+                width: "4px",
+                height: "20px",
+              }}
+            />
+          </>
+        )}
       </div>
 
       {/* Track */}
@@ -137,6 +156,14 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
           }}
           onMouseDown={() => handleMouseDown("max")}
         />
+
+        {/* Average marker */}
+        {averagePercentage !== null && (
+          <div
+            className="absolute w-0.5 h-4 bg-red-500 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${averagePercentage}%` }}
+          />
+        )}
       </div>
     </div>
   );
