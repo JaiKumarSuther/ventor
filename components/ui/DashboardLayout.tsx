@@ -50,8 +50,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     <div className="flex flex-col space-y-4 md:p-6 p-4 w-full overflow-hidden bg-background min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between flex-shrink-0">
-        <div className="mb-6">
-          <h2 className="text-foreground text-3xl font-semibold">{title}</h2>
+        <div className="md:mb-4">
+          <h2 className="text-foreground text-3xl font-semibold mb-6 md:mb-3">{title}</h2>
           <TabsBar tabs={resolvedTabs} />
         </div>
         {buttonLabel && (
@@ -60,7 +60,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
             onClick={onButtonClick || (() => router.push("/fund-wallet"))}
             gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
             hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-            className="px-6 py-2"
+            className="w-44 md:w-32 py-2 text-xs md:text-base"
           />
         )}
       </div>

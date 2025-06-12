@@ -63,11 +63,7 @@ export default function WalletsScreen() {
     label: `Wallet ${wallet.id}`,
     subLabel: wallet.address,
     hasCopy: true,
-    icon: (
-      <div className="w-4 h-4 rounded-full bg-gradient-to-b from-[#5A43C6] to-[#8761FF] flex items-center justify-center">
-        <span className="text-xs font-bold text-white">Ξ</span>
-      </div>
-    ),
+
     columns: [
       <span key="balance">{wallet.balance}</span>,
       <span key="use">{wallet.use}</span>,
@@ -134,7 +130,7 @@ export default function WalletsScreen() {
                   onClick={handleRowClick}
                 >
                   <div className="flex items-center gap-2">
-                    <div onClick={handleCheckboxClick}>
+                    <div onClick={handleCheckboxClick} className="flex items-center">
                       <GradientCheckbox
                         checked={isSelected}
                         onChange={() => {}}
