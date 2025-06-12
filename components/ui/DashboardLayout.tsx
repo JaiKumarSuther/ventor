@@ -49,20 +49,23 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   return (
     <div className="flex flex-col space-y-4 md:p-6 p-4 w-full overflow-hidden bg-background min-h-screen">
       {/* Header */}
-      <div className="flex items-center justify-between flex-shrink-0">
-        <div className="md:mb-4">
-          <h2 className="text-foreground text-3xl font-semibold mb-6 md:mb-3">{title}</h2>
+      <div className="flex flex-col gap-4 flex-shrink-0 w-full">
+        {/* Title */}
+        <h2 className="text-foreground text-3xl font-semibold">{title}</h2>
+
+        {/* Tabs + Button in one row */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full">
           <TabsBar tabs={resolvedTabs} />
+          {buttonLabel && (
+            <GradientButton
+              label={buttonLabel}
+              onClick={onButtonClick || (() => router.push("/fund-wallet"))}
+              gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+              hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+              className="w-full md:w-44 py-2 text-xs md:text-base"
+            />
+          )}
         </div>
-        {buttonLabel && (
-          <GradientButton
-            label={buttonLabel}
-            onClick={onButtonClick || (() => router.push("/fund-wallet"))}
-            gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
-            hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-            className="w-44 md:w-32 py-2 text-xs md:text-base"
-          />
-        )}
       </div>
 
       {/* Content */}
