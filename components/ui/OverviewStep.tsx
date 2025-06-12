@@ -111,10 +111,12 @@ export default function SettingOverview({
               <div className="space-y-4">
                 <div className="flex items-center gap-5 bg-[#FFFFFF05] h-11 w-full p-4">
                   {/* Updated GradientCheckbox with state management */}
-                  <GradientCheckbox
-                    checked={selectedWalletIds.includes(1)} // Check if Batch 1 is selected
-                    onChange={() => handleCheckboxChange(1)} // On click, toggle the selection for Batch 1
-                  />
+                  <div onClick={(e) => e.stopPropagation()}>
+                    <GradientCheckbox
+                      checked={selectedWalletIds.includes(1)}
+                      onChange={() => handleCheckboxChange(1)}
+                    />
+                  </div>
                   <span className="text-white text-sm font-medium">
                     Batch 1
                   </span>
@@ -167,13 +169,14 @@ export default function SettingOverview({
           <div>
             {/* Top Header */}
             <div className="flex items-center justify-between px-4 py-4 border-b border-[#22242D]">
-              <h3 className="text-white text-base">
-                Selected Wallets
-              </h3>
+              <h3 className="text-white text-base">Selected Wallets</h3>
             </div>
             <div className="text-sm p-5 text-[#6A7A8C]">
               WALLETS:
-              <span className="text-white font-semibold"> {selectedWallets.length}</span>
+              <span className="text-white font-semibold">
+                {" "}
+                {selectedWallets.length}
+              </span>
             </div>
 
             {/* Wallet Table */}

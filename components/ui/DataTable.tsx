@@ -48,7 +48,8 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
               >
                 <div className="grid grid-cols-[2.5fr_1fr_1fr_0.5fr] items-center px-4 lg:px-6 h-[46px]">
                   {/* Label Column */}
-                  <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center gap-2 min-w-0"
+                   onClick={(e) => e.stopPropagation()}>
                     <GradientCheckbox
                       checked={row.isSelected}
                       onChange={row.onSelect}
@@ -102,7 +103,8 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
               >
                 {/* First row: Checkbox, Label, SubLabel, Copy */}
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="flex-shrink-0 pt-0.5">
+                  <div className="flex-shrink-0 pt-0.5"
+                  onClick={(e) => e.stopPropagation()}>
                     <GradientCheckbox
                       checked={row.isSelected}
                       onChange={row.onSelect}
@@ -110,7 +112,6 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      {row.icon && <div className="flex-shrink-0">{row.icon}</div>}
                       <span className="text-white text-sm font-medium truncate flex-1">
                         {row.label}
                       </span>

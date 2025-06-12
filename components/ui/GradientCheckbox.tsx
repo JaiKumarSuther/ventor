@@ -1,3 +1,4 @@
+
 "use client";
 import React from "react";
 
@@ -15,7 +16,7 @@ const GradientCheckbox: React.FC<GradientCheckboxProps> = ({
       <input
         type="checkbox"
         checked={checked}
-        onChange={(e) => onChange(e.target.checked)} // ✅ Properly handled
+        onChange={(e) => onChange(e.target.checked)}
         className={`
           appearance-none w-4 h-4 rounded-[0.25rem]
           border-2 border-[#8761FF]

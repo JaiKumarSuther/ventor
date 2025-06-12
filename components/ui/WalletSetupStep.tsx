@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Edit } from "lucide-react";
 import GradientButton from "@/components/ui/GradientButton";
 import GradientCheckbox from "@/components/ui/GradientCheckbox";
 import DashboardActions from "@/components/ui/DashboardActions";
 import DataTable from "@/components/ui/DataTable";
 import WalletPopup from "@/components/ui/WalletPopup"; // Adjust the path if necessary
+import Image from "next/image";
 
 interface Wallet {
   id: number;
@@ -258,7 +258,9 @@ export default function WalletSetupStep({
                 onClick={() => handleBatchSelect(batch.id)}
                 className="flex items-center justify-between border-b border-[#22242D] bg-[#101017] h-9 px-4 cursor-pointer"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2" 
+                onClick={(e) => e.stopPropagation()}
+                >
                   <GradientCheckbox
                     checked={selectedBatches.includes(batch.id)}
                     onChange={() => handleBatchSelect(batch.id)}
@@ -272,7 +274,12 @@ export default function WalletSetupStep({
                     console.log(`Edit ${batch.name}`);
                   }}
                 >
-                  <Edit size={14} />
+                  <Image
+                    src="/assets/edit.svg"
+                    width={20}
+                    height={20}
+                    alt="wallet"
+                  />
                   Edit Batch
                 </button>
               </div>

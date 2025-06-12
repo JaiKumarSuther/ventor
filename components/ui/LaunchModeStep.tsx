@@ -27,28 +27,30 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
       <div className="space-y-4">
         {/* Launch + Snipe Option */}
         <div
-          className="flex items-center justify-between gap-3 rounded-md p-4 cursor-pointer hover:bg-[#101217]"
+          className="flex items-center justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
           onClick={() => handleFundingMethodChange("launch-snipe")}
         >
-          <div className="flex items-center gap-2">
-            <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11">
-              <Image
-                src="/assets/refresh.svg"
-                width={20}
-                height={20}
-                alt="Refresh"
-              />
-            </div>
-            <div>
-              <h3 className="text-white font-semibold text-sm mb-1">
-                Launch + Snipe
-              </h3>
-              <p className="text-[#6A7A8C] text-sm">
-                Combines launch with real-time snipe detection and auto-adjusts
-                distribution to avoid front-running and bot activity.
-              </p>
-            </div>
+          {/* Icon */}
+          <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
+            <Image
+              src="/assets/refresh.svg"
+              width={20}
+              height={20}
+              alt="Refresh"
+            />
           </div>
+
+          {/* Description */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-white font-semibold text-sm mb-1">
+              Launch + Snipe
+            </h3>
+            <p className="text-[#6A7A8C] text-sm break-words">
+              Combines launch with real-time snipe detection and auto-adjusts distribution to avoid front-running and bot activity.
+            </p>
+          </div>
+
+          {/* Checkbox */}
           <RoundedGradientCheckbox
             checked={data.launchMode === "launch-snipe"}
             onChange={() => handleFundingMethodChange("launch-snipe")}
@@ -57,29 +59,30 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
 
         {/* Launch + Bundle + Snipe Option */}
         <div
-          className="flex items-center justify-between gap-3 rounded-md p-4 cursor-pointer hover:bg-[#101217]"
+          className="flex items-center justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
           onClick={() => handleFundingMethodChange("bundle-snipe")}
         >
-          <div className="flex items-center gap-2">
-            <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11">
-              <Image
-                src="/assets/refresh.svg"
-                width={20}
-                height={20}
-                alt="Refresh"
-              />
-            </div>
-            <div>
-              <h3 className="text-white font-semibold text-sm mb-1">
-                Launch + Bundle + Snipe
-              </h3>
-              <p className="text-[#6A7A8C] text-sm">
-                Launches the project and sends token batches to different
-                wallets in one seamless flow. Reduces transaction costs and
-                speeds up distribution.
-              </p>
-            </div>
+          {/* Icon */}
+          <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
+            <Image
+              src="/assets/refresh.svg"
+              width={20}
+              height={20}
+              alt="Refresh"
+            />
           </div>
+
+          {/* Description */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-white font-semibold text-sm mb-1">
+              Launch + Bundle + Snipe
+            </h3>
+            <p className="text-[#6A7A8C] text-sm break-words">
+              Launches the project and sends token batches to different wallets in one seamless flow. Reduces transaction costs and speeds up distribution.
+            </p>
+          </div>
+
+          {/* Checkbox */}
           <RoundedGradientCheckbox
             checked={data.launchMode === "bundle-snipe"}
             onChange={() => handleFundingMethodChange("bundle-snipe")}
