@@ -18,7 +18,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full cursor-pointer text-sm text-black px-3 ${className}`}
+      className={`rounded-full cursor-pointer font-[600] text-sm text-black px-3 ${className}`}
       style={{
         background: gradient,
         ...style, // ✅ Spread additional styles like width and height

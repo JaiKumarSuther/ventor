@@ -49,7 +49,7 @@ export default function WalletsScreen() {
 
   const router = useRouter();
   const handleFundWallet = () => {
-    router.push('/fund-wallet')
+    router.push("/fund-wallet");
   };
 
   const handleEditBatch = () => {
@@ -77,18 +77,7 @@ export default function WalletsScreen() {
 
   return (
     <div className=" overflow-hidden bg-black">
-      <div className="flex flex-col space-y-4 md:p-6 p-4 ">
-        {/* Header for Wallets Section */}
-        <div className="flex items-center justify-between flex-shrink-0">
-          <h2 className="text-white text-3xl font-semibold">Wallets</h2>
-          <GradientButton
-            label="Fund Wallet"
-            onClick={handleFundWallet}
-            gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
-            hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-            className="px-6 py-2"
-          />
-        </div>
+      
 
         {/* Wallets and Batches Sections - Fixed Height Container */}
         <div className="flex-1 flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[700px]">
@@ -108,7 +97,10 @@ export default function WalletsScreen() {
 
             {/* Wallet Table - Scrollable */}
             <div className="flex-1 overflow-hidden">
-              <DataTable headerColumns={["Address", "Balance", "# Use", "Age"]} rows={walletRows} />
+              <DataTable
+                headerColumns={["Address", "Balance", "# Use", "Age"]}
+                rows={walletRows}
+              />
             </div>
           </div>
 
@@ -121,7 +113,10 @@ export default function WalletsScreen() {
 
             {/* Batches List - Always visible */}
             <div className="overflow-hidden">
-              {[{ id: 1, name: "Batch 1" }, { id: 2, name: "Batch 2" }].map((batch) => (
+              {[
+                { id: 1, name: "Batch 1" },
+                { id: 2, name: "Batch 2" },
+              ].map((batch) => (
                 <div
                   key={batch.id}
                   className="flex items-center justify-between px-4 py-3 border-b border-[#22242D] cursor-pointer hover:bg-[#1A1A1A] flex-shrink-0"
@@ -141,7 +136,12 @@ export default function WalletsScreen() {
                       handleEditBatch(); // Toggle the batch edit view
                     }}
                   >
-                    <Image src="/assets/edit.svg" width={20} height={20} alt="wallet" />
+                    <Image
+                      src="/assets/edit.svg"
+                      width={20}
+                      height={20}
+                      alt="wallet"
+                    />
                     Edit Batch
                   </button>
                 </div>
@@ -170,9 +170,11 @@ export default function WalletsScreen() {
                         <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
                           Click to Add or Remove
                         </p>
-                        <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
+                        <p className="text-sm text-[#6A7A8C]">
+                          or drag and drop
+                        </p>
                       </div>
-       
+
                       <input
                         type="file"
                         id="file-upload"
@@ -190,14 +192,17 @@ export default function WalletsScreen() {
 
                   {/* Batch Edit Table - Takes remaining space */}
                   <div className="bg-[#101017] border border-[#22242D] flex-1 overflow-hidden">
-                    <DataTable headerColumns={["Address", "Balance", "# Use", "Age"]} rows={walletRows} />
+                    <DataTable
+                      headerColumns={["Address", "Balance", "# Use", "Age"]}
+                      rows={walletRows}
+                    />
                   </div>
                 </div>
               )}
             </div>
           </div>
         </div>
-      </div>
+
     </div>
   );
 }

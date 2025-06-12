@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import PageContainer from "@/components/ui/PageContainer";
 import WalletCard from "@/components/ui/WalletCard";
 import PresetSelector from "@/components/ui/PresetSelector";
-import TabsBar from "@/components/ui/TabsBar";
 import ActionButtons from "@/components/ui/ActionButtons";
 import SmartSellControl from "@/components/ui/SmartSellToggle";
 import WalletFilters from "@/components/ui/WalletFilters";
@@ -24,20 +23,10 @@ export default function WalletsPage() {
     { id: "wallet_22x9A...3Fb", holding: "222.3", worth: "165.56", percent: "20%" },
   ];
 
-  const tabs = [
-    { label: "Overview", active: true, onClick: () => console.log("Overview") },
-    { label: "Swap Manager", onClick: () => console.log("Swap Manager") },
-    { label: "Market Maker", onClick: () => console.log("Market Maker") },
-    { label: "Smart Sell", onClick: () => console.log("Smart Sell") },
-    { label: "Auto TP", onClick: () => console.log("Auto TP") },
-  ];
 
   return (
     <PageContainer>
       {/* Tabs Bar */}
-      <div className="mb-6">
-        <TabsBar tabs={tabs} />
-      </div>
 
       {/* Top Bar */}
       <div className="border border-[#22242D]">

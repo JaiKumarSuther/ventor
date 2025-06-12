@@ -3,7 +3,7 @@ import React from "react";
 
 interface GradientCheckboxProps {
   checked: boolean;
-  onChange: () => void;
+  onChange: (checked: boolean) => void;
 }
 
 const GradientCheckbox: React.FC<GradientCheckboxProps> = ({
@@ -15,7 +15,7 @@ const GradientCheckbox: React.FC<GradientCheckboxProps> = ({
       <input
         type="checkbox"
         checked={checked}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.checked)} // ✅ Properly handled
         className={`
           appearance-none w-4 h-4 rounded-[0.25rem]
           border-2 border-[#8761FF]

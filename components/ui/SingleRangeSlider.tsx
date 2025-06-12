@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useRef, useCallback } from "react";
 
@@ -28,18 +29,18 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
 
   const getPercentage = (val: number) => ((val - min) / (max - min)) * 100;
 
-  const handleMouseDown = useCallback(() => {
+  const handleStart = useCallback(() => {
     setIsDragging(true);
   }, []);
 
-  const handleMouseMove = useCallback(
-    (event: MouseEvent) => {
+  const handleMove = useCallback(
+    (clientX: number) => {
       if (!isDragging || !sliderRef.current) return;
 
       const rect = sliderRef.current.getBoundingClientRect();
       const percentage = Math.max(
         0,
-        Math.min(100, ((event.clientX - rect.left) / rect.width) * 100)
+        Math.min(100, ((clientX - rect.left) / rect.width) * 100)
       );
       const newValue = min + (percentage / 100) * (max - min);
       const steppedValue = Math.round(newValue / step) * step;
@@ -50,20 +51,46 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
     [isDragging, min, max, step, onChange]
   );
 
-  const handleMouseUp = useCallback(() => {
+  const handleMouseMove = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      handleMove(event.clientX);
+    },
+    [handleMove]
+  );
+
+  const handleTouchMove = useCallback(
+    (event: TouchEvent) => {
+      event.preventDefault();
+      if (event.touches.length > 0) {
+        handleMove(event.touches[0].clientX);
+      }
+    },
+    [handleMove]
+  );
+
+  const handleEnd = useCallback(() => {
     setIsDragging(false);
   }, []);
 
   React.useEffect(() => {
     if (isDragging) {
+      // Mouse events
       document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("mouseup", handleEnd);
+      
+      // Touch events
+      document.addEventListener("touchmove", handleTouchMove, { passive: false });
+      document.addEventListener("touchend", handleEnd);
+
       return () => {
         document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
+        document.removeEventListener("mouseup", handleEnd);
+        document.removeEventListener("touchmove", handleTouchMove);
+        document.removeEventListener("touchend", handleEnd);
       };
     }
-  }, [isDragging, handleMouseMove, handleMouseUp]);
+  }, [isDragging, handleMouseMove, handleTouchMove, handleEnd]);
 
   const percentage = getPercentage(value);
 
@@ -112,13 +139,14 @@ const SingleRangeSlider: React.FC<SingleRangeSliderProps> = ({
 
         {/* Thumb */}
         <div
-          className="absolute w-6 h-6 border-4 rounded-full cursor-grab active:cursor-grabbing transform -translate-x-1/2 -translate-y-1/2 top-1/2 shadow-lg"
+          className="absolute w-6 h-6 border-4 rounded-full cursor-grab active:cursor-grabbing transform -translate-x-1/2 -translate-y-1/2 top-1/2 shadow-lg touch-none"
           style={{
             left: `${percentage}%`,
             background: "#22242D",
             borderColor: "#8761FF",
           }}
-          onMouseDown={handleMouseDown}
+          onMouseDown={handleStart}
+          onTouchStart={handleStart}
         />
 
         {/* Marker points */}
