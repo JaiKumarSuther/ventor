@@ -8,6 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import RoundedGradientCheckbox from "@/components/ui/RoundedGradientCheckbox";
 import GradientCheckbox from "@/components/ui/GradientCheckbox";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const FundWalletPage = () => {
   // Define the type for the funding method state more strictly
@@ -65,6 +66,14 @@ const FundWalletPage = () => {
     const updatedChecked = [...checkedWallets];
     updatedChecked.splice(index, 1);
     setCheckedWallets(updatedChecked);
+  };
+  const router = useRouter();
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/wallets"); // fallback
+    }
   };
 
   return (
@@ -161,7 +170,9 @@ const FundWalletPage = () => {
         <div className="flex flex-col gap-6">
           {/* Top Bar */}
           <div className="flex items-center gap-2 border-b border-[#22242D] p-6">
-            <ArrowLeft size={20} className="text-white" />
+            <button onClick={handleBack} className="cursor-pointer">
+              <ArrowLeft size={20} className="text-white" />
+            </button>
             <h2 className="text-white text-lg font-semibold">Funding Method</h2>
           </div>
 
@@ -209,7 +220,12 @@ const FundWalletPage = () => {
                 return (
                   <div
                     key={index}
-                    className={`border-t border-[#22242D] ${bgColor}`}
+                    className={`border-t border-[#22242D] ${bgColor} cursor-pointer`}
+                    onClick={() => {
+                      const updated = [...checkedWallets];
+                      updated[index] = !updated[index];
+                      setCheckedWallets(updated);
+                    }}
                   >
                     {/* Desktop/Tablet Row */}
                     <div className="hidden md:grid grid-cols-[2.5fr_1fr_1fr_1fr_0.5fr] items-center px-4 md:px-6 h-[46px] min-w-[600px]">
@@ -234,7 +250,7 @@ const FundWalletPage = () => {
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => console.log(`Edit ${wallet.name}`)}
-                          className="text-[#8761FF] text-xs flex items-center gap-1"
+                          className="text-[#8761FF] cursor-pointer text-xs flex items-center gap-1"
                         >
                           <Image
                             src="/assets/edit.svg"
@@ -245,7 +261,7 @@ const FundWalletPage = () => {
                         </button>
                         <button
                           onClick={() => handleDeleteWallet(index)}
-                          className="text-xs flex items-center gap-1"
+                          className="text-xs flex items-center cursor-pointer gap-1"
                         >
                           <Image
                             src="/assets/remove.svg"
@@ -297,12 +313,13 @@ const FundWalletPage = () => {
                           onClick={() => console.log(`Edit ${wallet.name}`)}
                           className="text-[#8761FF] text-xs flex items-center gap-1"
                         >
-                           <Image
+                          <Image
                             src="/assets/edit.svg"
                             width={14}
                             height={14}
                             alt="wallet"
-                          /> Edit
+                          />{" "}
+                          Edit
                         </button>
                         <button
                           onClick={() => handleDeleteWallet(index)}
@@ -313,7 +330,8 @@ const FundWalletPage = () => {
                             width={12}
                             height={12}
                             alt="wallet"
-                          /> Delete
+                          />{" "}
+                          Delete
                         </button>
                       </div>
                     </div>
