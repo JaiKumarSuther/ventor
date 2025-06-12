@@ -20,7 +20,7 @@ interface DataTableProps {
 const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
   return (
     <div className="h-full flex flex-col">
-      {/* Desktop/Tablet Table Header - Hidden on mobile */}
+      {/* Desktop Header */}
       <div className="hidden md:block flex-shrink-0">
         <div className="grid grid-cols-[2.5fr_1fr_1fr_0.5fr] bg-[#101017] px-4 lg:px-6 h-9 text-[#6A7A8C] text-xs font-medium items-center border-b border-[#22242D]">
           {headerColumns.map((header, idx) => (
@@ -31,7 +31,7 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
         </div>
       </div>
 
-      {/* Table Body - Scrollable */}
+      {/* Table Body */}
       <div className="flex-1 overflow-y-auto">
         {rows.map((row, idx) => {
           const bgColor = idx % 2 === 0 ? "" : "bg-[#FFFFFF05]";
@@ -41,19 +41,19 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
               key={row.id}
               className={`border-b border-[#22242D] last:border-b-0 ${bgColor}`}
             >
-              {/* Desktop/Tablet Layout */}
+              {/* Desktop */}
               <div
                 onClick={row.onSelect}
                 className="hidden md:block cursor-pointer hover:bg-[#1A1A1A] transition-colors"
               >
                 <div className="grid grid-cols-[2.5fr_1fr_1fr_0.5fr] items-center px-4 lg:px-6 h-[46px]">
-                  {/* Label Column */}
-                  <div className="flex items-center gap-2 min-w-0"
-                   onClick={(e) => e.stopPropagation()}>
-                    <GradientCheckbox
-                      checked={row.isSelected}
-                      onChange={row.onSelect}
-                    />
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <GradientCheckbox
+                        checked={row.isSelected}
+                        onChange={() => row.onSelect()}
+                      />
+                    </div>
 
                     <div className="flex items-center min-w-0 flex-1 gap-2">
                       <span className="text-white text-sm font-medium truncate">
@@ -72,7 +72,6 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
                     </div>
                   </div>
 
-                  {/* Balance */}
                   <div className="flex items-center gap-2 text-white text-sm min-w-0">
                     <Image
                       src="/assets/salona.svg"
@@ -84,30 +83,26 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
                     <span className="truncate">{row.columns[0]}</span>
                   </div>
 
-                  {/* Use */}
                   <div className="text-white text-sm min-w-0">
                     <span className="truncate">{row.columns[1]}</span>
                   </div>
 
-                  {/* Age */}
                   <div className="text-white text-sm min-w-0">
                     <span className="truncate">{row.columns[2]}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Mobile Layout */}
+              {/* Mobile */}
               <div
                 onClick={row.onSelect}
                 className="md:hidden p-3 cursor-pointer hover:bg-[#1A1A1A] transition-colors"
               >
-                {/* First row: Checkbox, Label, SubLabel, Copy */}
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="flex-shrink-0 pt-0.5"
-                  onClick={(e) => e.stopPropagation()}>
+                  <div className="flex-shrink-0 pt-0.5" onClick={(e) => e.stopPropagation()}>
                     <GradientCheckbox
                       checked={row.isSelected}
-                      onChange={row.onSelect}
+                      onChange={() => row.onSelect()}
                     />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -131,9 +126,8 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
                   </div>
                 </div>
 
-                {/* Second row: Data columns with labels */}
+                {/* Mobile Column Data */}
                 <div className="ml-8 space-y-2">
-                  {/* Balance */}
                   <div className="flex items-center justify-between">
                     <span className="text-[#6A7A8C] text-xs">
                       {headerColumns[1]}:
@@ -152,7 +146,6 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
                     </div>
                   </div>
 
-                  {/* Use */}
                   <div className="flex items-center justify-between">
                     <span className="text-[#6A7A8C] text-xs">
                       {headerColumns[2]}:
@@ -160,7 +153,6 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
                     <span className="text-white text-sm">{row.columns[1]}</span>
                   </div>
 
-                  {/* Age */}
                   <div className="flex items-center justify-between">
                     <span className="text-[#6A7A8C] text-xs">
                       {headerColumns[3]}:

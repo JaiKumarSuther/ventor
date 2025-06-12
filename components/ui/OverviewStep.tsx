@@ -109,8 +109,10 @@ export default function SettingOverview({
             <div className="p-6 space-y-6">
               {/* Batch 1 Section */}
               <div className="space-y-4">
-                <div className="flex items-center gap-5 bg-[#FFFFFF05] h-11 w-full p-4">
-                  {/* Updated GradientCheckbox with state management */}
+                <div
+                  className="flex items-center gap-5 bg-[#FFFFFF05] h-11 w-full p-4 cursor-pointer"
+                  onClick={() => handleCheckboxChange(1)}
+                >
                   <div onClick={(e) => e.stopPropagation()}>
                     <GradientCheckbox
                       checked={selectedWalletIds.includes(1)}
