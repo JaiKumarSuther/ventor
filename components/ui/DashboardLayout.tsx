@@ -62,7 +62,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               onClick={onButtonClick || (() => router.push("/fund-wallet"))}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="w-full md:w-44 py-2 text-xs md:text-base"
+              className="w-full md:w-44 py-2 text-xs md:text-base font-normal"
             />
           )}
         </div>
