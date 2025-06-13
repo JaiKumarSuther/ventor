@@ -24,14 +24,6 @@ interface Batch {
 }
 
 export default function WalletsScreen() {
-  // const [wallets] = useState<Wallet[]>([
-  //   { id: 1, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-  //   { id: 2, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-  //   { id: 3, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-  //   { id: 4, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-  //   { id: 5, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-  // ]);
-
   const [isAdded, setIsAdded] = useState(false);
 
   const [selectedWalletIds, setSelectedWalletIds] = useState<number[]>([]);
@@ -173,7 +165,9 @@ export default function WalletsScreen() {
           <div>
             {selectedBatchId !== null &&
               selectedWalletIds.some(
-                (walletId) => !selectedBatch?.walletIds.includes(walletId)
+                (walletId) =>
+                  wallets.some((w) => w.id === walletId) &&
+                  !selectedBatch?.walletIds.includes(walletId)
               ) && (
                 <div className="p-4">
                   <button
@@ -366,6 +360,46 @@ export default function WalletsScreen() {
                   rows={walletRows}
                 />
               </div>
+              <div>
+              {selectedBatchId !== null &&
+  selectedWalletIds.some((id) =>
+    selectedBatch?.wallets.map((w) => w.id).includes(id)
+  ) && (
+    <div className="p-4">
+      <button
+        className="button-30 bg-red-600 text-white px-4 py-2 rounded"
+        onClick={() => {
+          const batch = batches.find((b) => b.id === selectedBatchId);
+          if (!batch) return;
+
+          const filteredWallets = batch.wallets.filter(
+            (w) => !selectedWalletIds.includes(w.id)
+          );
+          const filteredWalletIds = batch.walletIds.filter(
+            (id) => !selectedWalletIds.includes(id)
+          );
+
+          updateBatch(selectedBatchId, {
+            wallets: filteredWallets,
+            walletIds: filteredWalletIds,
+          });
+
+          setSelectedWalletIds([]);
+        }}
+      >
+        Remove{" "}
+        {
+          selectedWalletIds.filter((id) =>
+            selectedBatch?.wallets.map((w) => w.id).includes(id)
+          ).length
+        }{" "}
+        Wallet(s) from {selectedBatch?.name}
+      </button>
+    </div>
+)}
+
+              </div>
+              <div></div>
             </div>
           )}
         </div>

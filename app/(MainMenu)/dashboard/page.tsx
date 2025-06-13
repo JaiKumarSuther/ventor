@@ -10,9 +10,8 @@ import { useRouter } from "next/navigation";
 import OutlinedButton from "@/components/ui/OutlinedButton";
 import GradientButton from "@/components/ui/GradientButton";
 
-
 export default function DashboardPage() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const summaryData = [
     {
       id: 1,
@@ -61,7 +60,7 @@ export default function DashboardPage() {
   };
 
   const handleCreateProject = () => {
-    router.push('/create-project')
+    router.push("/create-project");
   };
 
   return (
@@ -116,7 +115,8 @@ export default function DashboardPage() {
             pnl="2%"
             projectId={`VX1A-9034-${index + 1}`}
             status={index % 2 === 0 ? "Launched" : "Not Launched"}
-            onClick={() => router.push("/swap-manager")}
+            onDoubleClick={() => router.push("/swap-manager")}
+            onMoreClick={() => router.push("/swap-manager")}
           />
         ))}
       </div>
