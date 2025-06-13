@@ -2,7 +2,7 @@
 
 import React from "react";
 import GradientButton from "@/components/ui/GradientButton";
-import { useRouter } from "next/navigation";
+  import { useRouter } from "next/navigation";
 
 interface TabItem {
   label: string;

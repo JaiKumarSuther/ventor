@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import OutlinedButton from "@/components/ui/OutlinedButton";
 import GradientButton from "@/components/ui/GradientButton";
 
+
 export default function DashboardPage() {
   const [search, setSearch] = useState('');
   const summaryData = [
@@ -60,8 +61,7 @@ export default function DashboardPage() {
   };
 
   const handleCreateProject = () => {
-    console.log("Create Project clicked!");
-    // Implement logic here
+    router.push('/create-project')
   };
 
   return (
