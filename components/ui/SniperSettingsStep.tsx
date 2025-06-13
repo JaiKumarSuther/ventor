@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import DashboardActions from "./DashboardActions";
 import DualRangeSlider from "./DualRangeSlider";
 import SingleRangeSlider from "./SingleRangeSlider";
-import { ChevronDown } from "lucide-react";
 
 interface SniperSettingsStepProps {
   onNext: () => void;
@@ -18,14 +17,7 @@ export default function SniperSettingsStep({
   const [devBuyValue, setDevBuyValue] = useState(2.4);
   const [totalSnipeValue, setTotalSnipeValue] = useState(2.4);
   const [tidAmountValue, setTidAmountValue] = useState(97);
-  const [selectedCount, setSelectedCount] = useState<number>(5);
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
-
-  const toggleDropdown = () => setShowDropdown((prev) => !prev);
-  const selectCount = (count: number) => {
-    setSelectedCount(count);
-    setShowDropdown(false);
-  };
+  const [selectedCount] = useState<number>(5);
 
   return (
     <div className="flex flex-col gap-4 md:gap-8 p-2">

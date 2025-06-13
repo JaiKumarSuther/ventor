@@ -211,10 +211,13 @@ export default function ProjectMetadataStep({
           <div className="flex flex-wrap gap-3 mt-2">
             {uploadedImages.map((src, idx) => (
               <div key={idx} className="relative">
-                <img
+                <Image
                   src={src}
                   alt={`Uploaded ${idx + 1}`}
-                  className="h-20 w-20 object-cover rounded border border-[#333]"
+                  width={80}
+                  height={80}
+                  className="object-cover rounded border border-[#333]"
+                  style={{ height: "80px", width: "80px" }}
                 />
                 <button
                   className="absolute cursor-pointer top-[-6px] right-[-6px] bg-red-600 rounded-full text-white w-5 h-5 text-xs flex items-center justify-center"

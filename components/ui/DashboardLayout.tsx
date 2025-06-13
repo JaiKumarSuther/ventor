@@ -2,7 +2,7 @@
 
 import React from "react";
 import GradientButton from "@/components/ui/GradientButton";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface TabItem {
   label: string;
@@ -23,27 +23,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   title = "Wallets",
   buttonLabel = "Fund Wallet",
   onButtonClick,
-  customTabs,
 }) => {
   const router = useRouter();
-  const pathname = usePathname();
-
-  const defaultTabs: TabItem[] = [
-    { label: "Overview", route: "/wallets" },
-    { label: "Swap Manager", route: "/swap-manager" },
-    { label: "Market Maker", route: "/market-maker" },
-    { label: "Smart Sell", route: "/smart-sell" },
-    { label: "Auto TP", route: "/auto-tp" },
-  ];
-
-  const resolvedTabs = (customTabs || defaultTabs).map((tab) => ({
-    ...tab,
-    active: pathname === tab.route,
-    onClick: () => {
-      if (tab.route) router.push(tab.route);
-      else tab.onClick?.();
-    },
-  }));
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-background px-4 md:px-6 overflow-hidden">
