@@ -116,7 +116,7 @@ export default function DashboardPage() {
             projectId={`VX1A-9034-${index + 1}`}
             status={index % 2 === 0 ? "Launched" : "Not Launched"}
             onDoubleClick={() => router.push("/swap-manager")}
-            onMoreClick={() => router.push("/swap-manager")}
+            onMoreClick={() => router.push("/create-project")}
           />
         ))}
       </div>
