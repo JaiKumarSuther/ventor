@@ -29,7 +29,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   return (
     <div className="flex flex-col w-full min-h-screen bg-background px-4 md:px-6 overflow-hidden">
       {/* Header */}
-      <div className="w-full flex flex-col gap-4 md:flex-row md:items-center justify-between py-4">
+      <div className="w-full flex gap-4 mb-6 flex-row md:items-center justify-between py-4">
         <h2 className="text-foreground text-3xl font-semibold">{title}</h2>
 
         {buttonLabel && (
@@ -38,7 +38,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
             onClick={onButtonClick || (() => router.push("/fund-wallet"))}
             gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
             hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-            className="w-full md:w-44 py-2 text-xs md:text-base"
+            className="w-34 py-2 text-base "
           />
         )}
       </div>

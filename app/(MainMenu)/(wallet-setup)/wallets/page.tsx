@@ -143,8 +143,8 @@ export default function WalletsScreen() {
 
   return (
     <div className="overflow-hidden bg-black">
-      <div className="flex-1 flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[700px]">
-        <div className="flex flex-col border-r border-[#22242D] bg-[#0F0F10] w-1/2">
+      <div className="flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[700px]">
+        <div className="flex flex-col border-b md:border-b-0 md:border-r border-[#22242D] bg-[#0F0F10] w-full md:w-1/2">
           <div className="flex items-center justify-between p-4 gap-4 border-b border-[#22242D] flex-shrink-0">
             <h3 className="text-white text-base font-semibold">Wallets</h3>
             <GradientButton
@@ -361,43 +361,44 @@ export default function WalletsScreen() {
                 />
               </div>
               <div>
-              {selectedBatchId !== null &&
-  selectedWalletIds.some((id) =>
-    selectedBatch?.wallets.map((w) => w.id).includes(id)
-  ) && (
-    <div className="p-4">
-      <button
-        className="button-30 bg-red-600 text-white px-4 py-2 rounded"
-        onClick={() => {
-          const batch = batches.find((b) => b.id === selectedBatchId);
-          if (!batch) return;
+                {selectedBatchId !== null &&
+                  selectedWalletIds.some((id) =>
+                    selectedBatch?.wallets.map((w) => w.id).includes(id)
+                  ) && (
+                    <div className="p-4">
+                      <button
+                        className="button-30 bg-red-600 text-white px-4 py-2 rounded"
+                        onClick={() => {
+                          const batch = batches.find(
+                            (b) => b.id === selectedBatchId
+                          );
+                          if (!batch) return;
 
-          const filteredWallets = batch.wallets.filter(
-            (w) => !selectedWalletIds.includes(w.id)
-          );
-          const filteredWalletIds = batch.walletIds.filter(
-            (id) => !selectedWalletIds.includes(id)
-          );
+                          const filteredWallets = batch.wallets.filter(
+                            (w) => !selectedWalletIds.includes(w.id)
+                          );
+                          const filteredWalletIds = batch.walletIds.filter(
+                            (id) => !selectedWalletIds.includes(id)
+                          );
 
-          updateBatch(selectedBatchId, {
-            wallets: filteredWallets,
-            walletIds: filteredWalletIds,
-          });
+                          updateBatch(selectedBatchId, {
+                            wallets: filteredWallets,
+                            walletIds: filteredWalletIds,
+                          });
 
-          setSelectedWalletIds([]);
-        }}
-      >
-        Remove{" "}
-        {
-          selectedWalletIds.filter((id) =>
-            selectedBatch?.wallets.map((w) => w.id).includes(id)
-          ).length
-        }{" "}
-        Wallet(s) from {selectedBatch?.name}
-      </button>
-    </div>
-)}
-
+                          setSelectedWalletIds([]);
+                        }}
+                      >
+                        Remove{" "}
+                        {
+                          selectedWalletIds.filter((id) =>
+                            selectedBatch?.wallets.map((w) => w.id).includes(id)
+                          ).length
+                        }{" "}
+                        Wallet(s) from {selectedBatch?.name}
+                      </button>
+                    </div>
+                  )}
               </div>
               <div></div>
             </div>

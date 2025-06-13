@@ -97,7 +97,7 @@ const FundWalletPage = () => {
           <h3 className="w-full md:w-[30%] font-[500] text-[#6A7A8C] text-sm">
             FUNDING METHOD
           </h3>
-          <div className="flex gap-6 items-center w-full md:w-[70%]">
+          <div className="flex justify-between items-center w-full md:w-[75%]">
             {["easy", "hard", "mix"].map((method) => (
               <div
                 key={method}
