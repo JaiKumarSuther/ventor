@@ -16,6 +16,8 @@ export default function ReferralSection() {
     }
   };
 
+  
+
   return (
     <div className="space-y-4">
       <h2 className="text-white text-xl font-semibold">Referral</h2>

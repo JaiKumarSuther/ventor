@@ -1,7 +1,6 @@
-// components/ui/StatsCard.tsx
 "use client";
 import React from "react";
-import { User, BarChart2, Gift, DollarSign } from "lucide-react"; // Import icons from Lucide
+import Image from "next/image";
 
 interface StatsCardProps {
   title: string;
@@ -10,16 +9,14 @@ interface StatsCardProps {
   alreadyClaimed?: string; // e.g., "8.5 SOL"
 }
 
-const getIcon = (title: string) => {
+const getIconPath = (title: string): string | null => {
   switch (title) {
-    case "Total claimed":
-      return <DollarSign size={20} className="text-[#8761FF]" />;
     case "Referrals":
-      return <User size={20} className="text-[#8761FF]" />;
+      return "/assets/referrals.svg";
     case "Volume":
-      return <BarChart2 size={20} className="text-[#8761FF]" />;
+      return "/assets/volume.svg";
     case "Rewards":
-      return <Gift size={20} className="text-[#8761FF]" />;
+      return "/assets/rewards.svg";
     default:
       return null;
   }
@@ -31,8 +28,10 @@ const StatsCard: React.FC<StatsCardProps> = ({
   subtitle,
   alreadyClaimed,
 }) => {
+  const iconPath = getIconPath(title);
+
   return (
-    <div className="p-4 bg-[#101017] border border-[#22242D] rounded-lg space-y-2 relative">
+    <div className="p-4 md:w-[300px] bg-[#101017] border border-[#22242D] rounded-lg space-y-2 relative">
       {/* Already Claimed Badge */}
       {alreadyClaimed && (
         <div className="absolute top-2 right-2 bg-[#1A1B20] text-xs text-white px-2 py-1 rounded">
@@ -41,10 +40,12 @@ const StatsCard: React.FC<StatsCardProps> = ({
       )}
 
       {/* Icon and Title */}
-      <div className="flex items-center gap-2">
-        {getIcon(title)}
-        <h4 className="text-[#B4B4B4] text-sm">{title}</h4>
+      <div className="flex items-center justify-center bg-[#101217] border-[#22242D] gap-2 w-9 h-9 rounded-full border">
+        {iconPath && (
+          <Image src={iconPath} alt={title} width={20} height={20} />
+        )}
       </div>
+        <h4 className="text-[#B4B4B4] text-sm">{title}</h4>
 
       {/* Value */}
       <p className="text-white text-lg font-semibold">{value}</p>
