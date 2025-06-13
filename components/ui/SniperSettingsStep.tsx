@@ -18,7 +18,7 @@ export default function SniperSettingsStep({
   const [devBuyValue, setDevBuyValue] = useState(2.4);
   const [totalSnipeValue, setTotalSnipeValue] = useState(2.4);
   const [tidAmountValue, setTidAmountValue] = useState(97);
-  const [selectedCount, setSelectedCount] = useState<number>(4);
+  const [selectedCount, setSelectedCount] = useState<number>(5);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
   const toggleDropdown = () => setShowDropdown((prev) => !prev);
@@ -29,7 +29,7 @@ export default function SniperSettingsStep({
 
   return (
     <div className="flex flex-col gap-4 md:gap-8 p-2">
-      {/* DEV BUY & TOTAL WALLETS */}
+      {/* DEV BUY & TOTAL WALLETS SELECTED */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 w-full">
         <div className="flex flex-col items-center w-full md:flex-row md:w-auto flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[50%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
@@ -45,45 +45,19 @@ export default function SniperSettingsStep({
             />
           </div>
         </div>
-        <div className="relative flex flex-col items-center w-full md:flex-row md:w-auto flex-1 gap-2 md:gap-6 mb-4 md:mb-8">
-          <h1 className="font-[500] text-[#6A7A8C] text-sm w-full md:w-auto mb-2 md:mb-0">
+
+        <div className="flex flex-col w-full md:w-auto flex-1 mb-4 md:mb-8">
+          <h1 className="font-[500] text-[#6A7A8C] text-sm mb-2">
             TOTAL WALLETS SELECTED
           </h1>
-          <div
-            className="bg-[#101114] border border-[#22242D] rounded-lg flex justify-between items-center px-5 py-2 h-[72px] cursor-pointer w-full relative"
-            onClick={toggleDropdown}
-          >
-            <div>
-              <p className="text-[#6A7A8C] text-xs">
-                Number of wallets selected
-              </p>
-              <h1 className="text-sm font-semibold text-white pt-1">
-                {selectedCount}
-              </h1>
-            </div>
-            <ChevronDown
-              size={20}
-              color="#6A7A8C"
-              className={`transform transition-transform duration-300 ${
-                showDropdown ? "rotate-180" : "rotate-0"
-              }`}
-            />
-            {showDropdown && (
-              <div className="absolute top-[78px] left-0 right-0 bg-[#101114] border border-[#22242D] rounded-lg z-10 max-h-60 overflow-y-auto">
-                {[...Array(10)].map((_, index) => {
-                  const value = index + 1;
-                  return (
-                    <div
-                      key={value}
-                      onClick={() => selectCount(value)}
-                      className="px-5 py-2 text-white hover:bg-[#1a1b1f] cursor-pointer"
-                    >
-                      {value}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+
+          <div className="bg-[#101114] border border-[#22242D] rounded-lg px-5 py-4">
+            <p className="text-[#6A7A8C] text-xs mb-1">
+              Number of wallets selected
+            </p>
+            <h1 className="text-sm font-semibold text-white">
+              {selectedCount}
+            </h1>
           </div>
         </div>
       </div>
@@ -104,6 +78,7 @@ export default function SniperSettingsStep({
             />
           </div>
         </div>
+
         <div className="flex flex-col items-center md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             BUY RANGE
@@ -113,13 +88,13 @@ export default function SniperSettingsStep({
               min={3.0}
               max={5.0}
               step={0.1}
-              average={4.0}
               initialMinValue={buyRangeValues.min}
               initialMaxValue={buyRangeValues.max}
               onChange={(min, max) => setBuyRangeValues({ min, max })}
             />
           </div>
         </div>
+
         <div className="flex flex-col items-center md:flex-row w-full md:w-[545px] flex-1 mb-4 md:mb-8">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             TID AMOUNT

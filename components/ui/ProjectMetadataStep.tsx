@@ -66,7 +66,7 @@ export default function ProjectMetadataStep({
   );
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
-  const launchpadOptions = ["Pump Fun", "Bank", "LaunchLab"];
+  const launchpadOptions = ["Pump Fun", "Bonk", "LaunchLab"];
 
   const toggleDropdown = () => setShowDropdown((prev) => !prev);
 

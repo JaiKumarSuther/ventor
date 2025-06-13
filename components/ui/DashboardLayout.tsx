@@ -2,7 +2,6 @@
 
 import React from "react";
 import GradientButton from "@/components/ui/GradientButton";
-import TabsBar from "@/components/ui/TabsBar";
 import { useRouter, usePathname } from "next/navigation";
 
 interface TabItem {
@@ -47,31 +46,27 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   }));
 
   return (
-    <div className="flex flex-col space-y-4 md:p-6 p-4 w-full overflow-hidden bg-background min-h-screen">
+    <div className="flex flex-col w-full min-h-screen bg-background px-4 md:px-6 overflow-hidden">
       {/* Header */}
-      <div className="flex flex-col gap-4 flex-shrink-0 w-full">
-        {/* Title */}
+      <div className="w-full flex flex-col gap-4 md:flex-row md:items-center justify-between py-4">
         <h2 className="text-foreground text-3xl font-semibold">{title}</h2>
 
-        {/* Tabs + Button in one row */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full">
-          <TabsBar tabs={resolvedTabs} />
-          {buttonLabel && (
-            <GradientButton
-              label={buttonLabel}
-              onClick={onButtonClick || (() => router.push("/fund-wallet"))}
-              gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
-              hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="w-full md:w-44 py-2 text-xs md:text-base"
-            />
-          )}
-        </div>
+        {buttonLabel && (
+          <GradientButton
+            label={buttonLabel}
+            onClick={onButtonClick || (() => router.push("/fund-wallet"))}
+            gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+            hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+            className="w-full md:w-44 py-2 text-xs md:text-base"
+          />
+        )}
       </div>
 
       {/* Content */}
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 w-full">{children}</div>
     </div>
   );
 };
 
 export default DashboardLayout;
+

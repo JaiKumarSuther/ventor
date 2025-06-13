@@ -7,6 +7,13 @@ import PresetSelector from "@/components/ui/PresetSelector";
 import ActionButtons from "@/components/ui/ActionButtons";
 import SmartSellControl from "@/components/ui/SmartSellToggle";
 import WalletFilters from "@/components/ui/WalletFilters";
+import TabsBar from "@/components/ui/TabsBar";
+
+interface TabItem {
+  label: string;
+  route?: string;
+  onClick?: () => void;
+}
 
 export default function WalletsPage() {
   const [isSmartSellEnabled, setIsSmartSellEnabled] = useState(false);
@@ -14,6 +21,15 @@ export default function WalletsPage() {
   const [selectSnipeFailed, setSelectSnipeFailed] = useState(false);
   const [selectNoSupply, setSelectNoSupply] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState("Present 1");
+
+  const defaultTabs: TabItem[] = [
+    { label: "Overview", route: "/wallets" },
+    { label: "Swap Manager", route: "/swap-manager" },
+    { label: "Market Maker", route: "/market-maker" },
+    { label: "Smart Sell", route: "/smart-sell" },
+    { label: "Auto TP", route: "/auto-tp" },
+  ];
+
   const walletData = [
     {
       id: "wallet_22x9A...3Fb",
@@ -56,9 +72,9 @@ export default function WalletsPage() {
   return (
     <PageContainer>
       {/* Tabs Bar */}
+      <TabsBar tabs={defaultTabs} />
 
-      {/* Top Bar */}
-      <div className="border border-[#22242D]">
+      <div className="border border-[#22242D] mt-5">
         <div className="flex flex-col md:flex-row flex-wrap w-full bg-[#FFFFFF05] mb-10 border-b border-[#22242D]">
           {/* Left side */}
           <div className="flex-1 md:flex-3 flex flex-col md:border-r px-3 md:px-5 py-5 md:py-10 gap-3 md:gap-5 border-[#22242D] min-w-0">

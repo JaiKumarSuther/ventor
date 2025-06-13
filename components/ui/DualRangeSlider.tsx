@@ -21,7 +21,7 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
   step = 0.1,
   initialMinValue = 3.8,
   initialMaxValue = 4.4,
-  average,
+  
   onChange,
   className = "",
 }) => {
@@ -104,9 +104,8 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
 
   const minPercentage = getPercentage(minValue);
   const maxPercentage = getPercentage(maxValue);
-  const averagePercentage =
-    average !== undefined ? getPercentage(average) : null;
-
+const averageValue = (minValue + maxValue) / 2;
+const averagePercentage = getPercentage(averageValue);
   return (
     <div className={`relative w-full ${className}`}>
       {/* Value labels above thumbs and average */}
@@ -123,14 +122,14 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
         >
           {maxValue.toFixed(1)}
         </div>
-        {average !== undefined && averagePercentage !== null && (
+        {averagePercentage !== null && (
           <>
             {/* Average label */}
             <div
               className="absolute text-lg text-[#BD402F] font-semibold transform -translate-x-1/2 -translate-y-full"
               style={{ left: `${averagePercentage}%`, marginTop: "-12px" }}
             >
-              {average.toFixed(1)}
+              {averageValue.toFixed(1)}
             </div>
 
             {/* Thicker vertical average marker */}

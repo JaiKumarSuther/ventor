@@ -6,6 +6,7 @@ import GradientCheckbox from "@/components/ui/GradientCheckbox";
 import DataTable from "@/components/ui/DataTable";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import WalletPopup from "@/components/ui/WalletPopup";
 
 interface Wallet {
   id: number;
@@ -23,43 +24,50 @@ interface Batch {
   wallets: Wallet[]; // 🔥 Each batch has its own set of wallets
 }
 
-
 export default function WalletsScreen() {
-  const [wallets] = useState<Wallet[]>([
-    { id: 1, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-    { id: 2, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-    { id: 3, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-    { id: 4, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
-    { id: 5, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+  // const [wallets] = useState<Wallet[]>([
+  //   { id: 1, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+  //   { id: 2, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+  //   { id: 3, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+  //   { id: 4, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+  //   { id: 5, address: "wallet_22x9A...3Fb", balance: 0, use: 1, age: 1 },
+  // ]);
+
+  const [isAdded, setIsAdded] = useState(false);
+
+  const [selectedWalletIds, setSelectedWalletIds] = useState<number[]>([]);
+  const [wallets, setWallets] = useState<Wallet[]>([
+    { id: 101, address: "wallet_L1...aaaa", balance: 0, use: 1, age: 1 },
+    { id: 102, address: "wallet_L2...bbbb", balance: 0, use: 1, age: 1 },
+    { id: 103, address: "wallet_L3...cccc", balance: 0, use: 1, age: 1 },
   ]);
 
-  
-const [batches, setBatches] = useState<Batch[]>([
-  {
-    id: 1,
-    name: "Batch 1",
-    isEditing: false,
-    walletIds: [],
-    images: [],
-    wallets: [
-      { id: 1, address: "wallet_A1...xyz", balance: 0, use: 1, age: 1 },
-      { id: 2, address: "wallet_A2...abc", balance: 0, use: 1, age: 1 },
-    ],
-  },
-  {
-    id: 2,
-    name: "Batch 2",
-    isEditing: false,
-    walletIds: [],
-    images: [],
-    wallets: [
-      { id: 3, address: "wallet_B1...def", balance: 0, use: 1, age: 1 },
-      { id: 4, address: "wallet_B2...ghi", balance: 0, use: 1, age: 1 },
-    ],
-  },
-]);
+  const [batches, setBatches] = useState<Batch[]>([
+    {
+      id: 1,
+      name: "Batch 1",
+      isEditing: false,
+      walletIds: [],
+      images: [],
+      wallets: [
+        { id: 201, address: "wallet_B1...xxyy", balance: 0, use: 1, age: 1 },
+        { id: 202, address: "wallet_B2...zzee", balance: 0, use: 1, age: 1 },
+      ],
+    },
+    {
+      id: 2,
+      name: "Batch 2",
+      isEditing: false,
+      walletIds: [],
+      images: [],
+      wallets: [
+        { id: 301, address: "wallet_C1...qqww", balance: 0, use: 1, age: 1 },
+        { id: 302, address: "wallet_C2...rrtt", balance: 0, use: 1, age: 1 },
+      ],
+    },
+  ]);
 
-
+  const [isPopupVisible, setPopupVisible] = useState(false);
   const [selectedBatchId, setSelectedBatchId] = useState<number | null>(null);
 
   const router = useRouter();
@@ -96,7 +104,10 @@ const [batches, setBatches] = useState<Batch[]>([
         const reader = new FileReader();
         reader.onload = () => {
           updateBatch(selectedBatchId, {
-            images: [...(batches.find((b) => b.id === selectedBatchId)?.images || []), reader.result as string],
+            images: [
+              ...(batches.find((b) => b.id === selectedBatchId)?.images || []),
+              reader.result as string,
+            ],
           });
         };
         reader.readAsDataURL(file);
@@ -104,59 +115,132 @@ const [batches, setBatches] = useState<Batch[]>([
     });
   };
 
-//   const getWalletUsageCount = (walletId: number): number => {
-//   return batches.filter((b) => b.walletIds.includes(walletId)).length;
-// };
+  //   const getWalletUsageCount = (walletId: number): number => {
+  //   return batches.filter((b) => b.walletIds.includes(walletId)).length;
+  // };
 
   const selectedBatch = batches.find((b) => b.id === selectedBatchId);
 
-const walletRows =
-  selectedBatch?.wallets.map((wallet) => ({
-    id: wallet.id,
-    isSelected: selectedBatch.walletIds.includes(wallet.id),
-    onSelect: () => handleWalletSelect(wallet.id),
-    label: `Wallet ${wallet.id}`,
-    subLabel: wallet.address,
-    hasCopy: true,
-    columns: [
-      <span key="balance">{wallet.balance}</span>,
-      <span key="use">{wallet.use}</span>,
-      <span key="age">{wallet.age}</span>,
-    ],
-  })) ?? [];
+  const walletRows =
+    selectedBatch?.wallets.map((wallet) => ({
+      id: wallet.id,
+      onSelect: () => {
+        setSelectedWalletIds((prev) =>
+          prev.includes(wallet.id)
+            ? prev.filter((id) => id !== wallet.id)
+            : [...prev, wallet.id]
+        );
+      },
+      isSelected: selectedWalletIds.includes(wallet.id),
 
-  const allWalletRows = wallets.map((wallet) => ({
-  id: wallet.id,
-  isSelected: false,
-  onSelect: () => {},
-  label: `Wallet ${wallet.id}`,
-  subLabel: wallet.address,
-  hasCopy: true,
-  columns: [
-    <span key="balance">{wallet.balance}</span>,
-    <span key="use">{wallet.use}</span>,
-    <span key="age">{wallet.age}</span>,
-  ],
-}));
+      label: `Wallet ${wallet.id}`,
+      subLabel: wallet.address,
+      hasCopy: true,
+      columns: [
+        <span key="balance">{wallet.balance}</span>,
+        <span key="use">{wallet.use}</span>,
+        <span key="age">{wallet.age}</span>,
+      ],
+    })) ?? [];
 
+  const allWalletRows = wallets.map((wallet) => {
+    const isSelected = selectedBatch?.walletIds.includes(wallet.id) ?? false;
 
+    return {
+      id: wallet.id,
+      onSelect: () => {
+        setSelectedWalletIds((prev) =>
+          prev.includes(wallet.id)
+            ? prev.filter((id) => id !== wallet.id)
+            : [...prev, wallet.id]
+        );
+      },
+      isSelected: selectedWalletIds.includes(wallet.id),
+      label: `Wallet ${wallet.id}`,
+      subLabel: wallet.address,
+      hasCopy: true,
+      columns: [
+        <span key="balance">{wallet.balance}</span>,
+        <span key="use">{wallet.use}</span>,
+        <span key="age">{wallet.age}</span>,
+      ],
+    };
+  });
 
   return (
     <div className="overflow-hidden bg-black">
       <div className="flex-1 flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[700px]">
-        <div className="flex-1 flex flex-col border-r border-[#22242D] bg-[#0F0F10] overflow-hidden">
+        <div className="flex flex-col border-r border-[#22242D] bg-[#0F0F10] w-1/2">
           <div className="flex items-center justify-between p-4 gap-4 border-b border-[#22242D] flex-shrink-0">
             <h3 className="text-white text-base font-semibold">Wallets</h3>
             <GradientButton
               label="Warmup Wallet"
-              onClick={handleFundWallet}
+              onClick={() => setPopupVisible(true)}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
               className="h-9 w-33"
             />
           </div>
-          <div className="flex-1 overflow-hidden">
-            <DataTable headerColumns={["Address", "Balance", "# Use", "Age"]} rows={allWalletRows} />
+
+          <div className=" overflow-hidden">
+            <DataTable
+              headerColumns={["Address", "Balance", "# Use", "Age"]}
+              rows={allWalletRows}
+            />
+          </div>
+          <div>
+            {selectedBatchId !== null &&
+              selectedWalletIds.some(
+                (walletId) => !selectedBatch?.walletIds.includes(walletId)
+              ) && (
+                <div className="p-4">
+                  <button
+                    className="button-30"
+                    onClick={() => {
+                      const batch = batches.find(
+                        (b) => b.id === selectedBatchId
+                      );
+                      if (!batch) return;
+
+                      const updatedWalletIds = Array.from(
+                        new Set([...batch.walletIds, ...selectedWalletIds])
+                      );
+
+                      const walletsToAdd = wallets.filter((w) =>
+                        selectedWalletIds.includes(w.id)
+                      );
+
+                      const updatedWallets = Array.from(
+                        new Set([
+                          ...batch.wallets,
+                          ...walletsToAdd.filter(
+                            (w) =>
+                              !batch.wallets.some(
+                                (existing) => existing.id === w.id
+                              )
+                          ),
+                        ])
+                      );
+
+                      updateBatch(selectedBatchId, {
+                        walletIds: updatedWalletIds,
+                        wallets: updatedWallets,
+                      });
+
+                      setSelectedWalletIds([]);
+                      setIsAdded(true);
+
+                      setTimeout(() => {
+                        setIsAdded(false);
+                      }, 1000); // ⏱ 1 second
+                    }}
+                  >
+                    {isAdded
+                      ? "✅ Added!"
+                      : `Add ${selectedWalletIds.length} Wallet(s) to ${selectedBatch?.name}`}
+                  </button>
+                </div>
+              )}
           </div>
         </div>
 
@@ -174,13 +258,21 @@ const walletRows =
               onClick={() => setSelectedBatchId(batch.id)}
             >
               <div className="flex items-center gap-2">
-                <GradientCheckbox checked={batch.id === selectedBatchId} onChange={() => {}} />
+                <GradientCheckbox
+                  checked={batch.id === selectedBatchId}
+                  onChange={() => {}}
+                />
                 {batch.isEditing ? (
                   <input
                     value={batch.name}
-                    onChange={(e) => updateBatch(batch.id, { name: e.target.value })}
+                    onChange={(e) =>
+                      updateBatch(batch.id, { name: e.target.value })
+                    }
                     onBlur={() => updateBatch(batch.id, { isEditing: false })}
-                    onKeyDown={(e) => e.key === "Enter" && updateBatch(batch.id, { isEditing: false })}
+                    onKeyDown={(e) =>
+                      e.key === "Enter" &&
+                      updateBatch(batch.id, { isEditing: false })
+                    }
                     className="bg-transparent border border-gray-600 rounded px-2 text-white"
                     autoFocus
                   />
@@ -205,7 +297,12 @@ const walletRows =
                 className="flex items-center cursor-pointer gap-1 text-[#8761FF] text-xs"
                 onClick={(e) => handleEditBatch(e, batch.id)}
               >
-                <Image src="/assets/edit.svg" width={20} height={20} alt="edit" />
+                <Image
+                  src="/assets/edit.svg"
+                  width={20}
+                  height={20}
+                  alt="edit"
+                />
                 Edit Batch
               </button>
             </div>
@@ -222,9 +319,17 @@ const walletRows =
                   handleImageUpload(e.dataTransfer.files);
                 }}
               >
-                <label htmlFor="file-upload" className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-[#444] p-6 text-center cursor-pointer w-full hover:bg-[#18191b]">
+                <label
+                  htmlFor="file-upload"
+                  className="flex flex-col items-center justify-center gap-2 rounded-lg  border-[#444] p-6 text-center cursor-pointer w-full hover:bg-[#18191b]"
+                >
                   <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
-                    <Image src="/assets/upload-cloud.svg" width={20} height={20} alt="Upload" />
+                    <Image
+                      src="/assets/upload-cloud.svg"
+                      width={20}
+                      height={20}
+                      alt="Upload"
+                    />
                   </div>
                   <div className="flex gap-1 justify-center items-center">
                     <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
@@ -246,12 +351,18 @@ const walletRows =
                   <div className="flex flex-wrap gap-3 mt-2">
                     {selectedBatch.images.map((src, idx) => (
                       <div key={idx} className="relative">
-                        <img src={src} alt={`Uploaded ${idx + 1}`} className="h-20 w-20 object-cover rounded border border-[#333]" />
+                        <img
+                          src={src}
+                          alt={`Uploaded ${idx + 1}`}
+                          className="h-20 w-20 object-cover rounded border border-[#333]"
+                        />
                         <button
                           className="absolute cursor-pointer top-[-6px] right-[-6px] bg-red-600 rounded-full text-white w-5 h-5 text-xs flex items-center justify-center"
                           onClick={() =>
                             updateBatch(selectedBatch.id, {
-                              images: selectedBatch.images.filter((_, i) => i !== idx),
+                              images: selectedBatch.images.filter(
+                                (_, i) => i !== idx
+                              ),
                             })
                           }
                           type="button"
@@ -266,20 +377,28 @@ const walletRows =
 
               {/* Wallets Table per Batch */}
               <div className="bg-[#101017] border border-[#22242D] flex-1 overflow-hidden">
-                <DataTable headerColumns={["Address", "Balance", "# Use", "Age"]} rows={walletRows} />
+                <DataTable
+                  headerColumns={["Address", "Balance", "# Use", "Age"]}
+                  rows={walletRows}
+                />
               </div>
             </div>
           )}
         </div>
       </div>
+      {isPopupVisible && (
+        <WalletPopup
+          isOpen={isPopupVisible}
+          onClose={() => setPopupVisible(false)}
+          onSave={() => {
+            console.log("Saving wallets...");
+            setPopupVisible(false);
+          }}
+        />
+      )}
     </div>
   );
 }
-
-
-
-
-
 
 // "use client";
 

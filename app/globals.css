@@ -34,3 +34,122 @@ body {
 .bg-radial-circle {
   background: radial-gradient(circle at center, var(--tw-gradient-stops));
 }
+
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #1A1A1A;
+  border-radius: 6px;
+  border: 1px solid #2E2E3A;
+  box-shadow: 0 2px 4px rgba(135, 97, 255, 0.1),
+              0 6px 12px rgba(135, 97, 255, 0.1),
+              inset 0 -2px 0 rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  color: #E5E5F0;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  padding: 0 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.button-30:hover {
+  background-color: #2A2A3A;
+  box-shadow: 0 4px 12px rgba(135, 97, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.button-30:active {
+  background-color: #20202D;
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button-30:focus {
+  outline: 2px solid #8761FF;
+  outline-offset: 2px;
+}
+.checkbox-wrapper-42 input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-42 label {
+  display: inline-block;
+}
+
+.checkbox-wrapper-42 .cbx {
+  position: relative;
+  top: 1px;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #c8ccd4;
+  border-radius: 3px;
+  vertical-align: middle;
+  transition: background 0.1s ease;
+  cursor: pointer;
+  background: white;
+}
+
+.checkbox-wrapper-42 .cbx:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 5px;
+  height: 11px;
+  opacity: 0;
+  transform: rotate(45deg) scale(0);
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transition: all 0.3s ease;
+  transition-delay: 0.15s;
+}
+
+.checkbox-wrapper-42 .lbl {
+  margin-left: 5px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.checkbox-wrapper-42 input[type="checkbox"]:checked ~ .cbx {
+  border-color: transparent;
+  background: linear-gradient(to right, #5A43C6, #8761FF);
+  animation: jelly-42 0.6s ease;
+}
+
+.checkbox-wrapper-42 input[type="checkbox"]:checked ~ .cbx:after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+@keyframes jelly-42 {
+  from {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  40% {
+    transform: scale(0.75, 1.25);
+  }
+  50% {
+    transform: scale(1.15, 0.85);
+  }
+  65% {
+    transform: scale(0.95, 1.05);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}

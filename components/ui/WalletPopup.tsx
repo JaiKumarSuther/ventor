@@ -18,8 +18,11 @@ const FloatingInput = ({
     <div className="relative">
       <div className="w-full bg-[#101017] border min-h-[74px] border-[#22242D] rounded-md px-4 flex items-center pt-4">
         <input
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value.replace(/\D/g, ""))}
           placeholder={placeholder}
           className="bg-transparent w-full text-white font-semibold placeholder-[#fff] text-sm focus:outline-none"
         />
@@ -37,7 +40,11 @@ interface WalletPopupProps {
   onSave: (wallets: string) => void;
 }
 
-const WalletPopup: React.FC<WalletPopupProps> = ({ isOpen, onClose, onSave }) => {
+const WalletPopup: React.FC<WalletPopupProps> = ({
+  isOpen,
+  onClose,
+  onSave,
+}) => {
   const [wallets, setWallets] = useState<string>("");
 
   const handleSave = () => {

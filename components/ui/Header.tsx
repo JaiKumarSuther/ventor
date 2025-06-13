@@ -4,14 +4,14 @@ import SearchInput from "./SearchInput";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";  // Import usePathname
+import { usePathname } from "next/navigation"; // Import usePathname
 
 export default function Header() {
   const [search, setSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
-  const pathname = usePathname();  // Get current pathname dynamically
+  const pathname = usePathname(); // Get current pathname dynamically
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -43,7 +43,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <Image src="/assets/logo.svg" width={170} height={56} alt="Ventor" />
+            <Image
+              src="/assets/logo.svg"
+              width={170}
+              height={56}
+              alt="Ventor"
+            />
           </div>
 
           {/* Desktop Navigation */}
@@ -65,34 +70,52 @@ export default function Header() {
 
           {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center space-x-6">
-            <SearchInput
-              placeholder="Search here..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-64"
-            />
+            {pathname === "/dashboard" && (
+              <SearchInput
+                placeholder="Search here..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-64"
+              />
+            )}
             <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <Image src="/assets/bell.svg" width={24} height={24} alt="Notifications" />
+              <Image
+                src="/assets/bell.svg"
+                width={24}
+                height={24}
+                alt="Notifications"
+              />
             </button>
             <div className="flex items-center space-x-3">
               <span className="text-sm font-medium">Spades</span>
               <button className="flex items-center cursor-pointer space-x-1 hover:bg-[#1a1d24] rounded-lg p-1 transition-colors">
-                <Image src="/assets/profile.svg" width={38} height={38} alt="Profile" />
+                <Image
+                  src="/assets/profile.svg"
+                  width={38}
+                  height={38}
+                  alt="Profile"
+                />
                 <ChevronDown className="h-4 w-4" />
               </button>
             </div>
           </div>
 
-          {/* Mobile Right Section */}
           <div className="flex lg:hidden items-center space-x-3">
-            <button
-              onClick={toggleMobileSearch}
-              className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors"
-            >
-              <Search className="h-5 w-5" />
-            </button>
+            {pathname === "/dashboard" && (
+              <button
+                onClick={toggleMobileSearch}
+                className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+            )}
             <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <Image src="/assets/bell.svg" width={20} height={20} alt="Notifications" />
+              <Image
+                src="/assets/bell.svg"
+                width={20}
+                height={20}
+                alt="Notifications"
+              />
             </button>
             <button
               onClick={toggleMobileMenu}
@@ -108,7 +131,8 @@ export default function Header() {
         </div>
 
         {/* Mobile Search Dropdown */}
-        {isMobileSearchOpen && (
+
+        {pathname === "/dashboard" && isMobileSearchOpen && (
           <div className="lg:hidden border-t border-[#22242D]">
             <div className="py-4 px-2">
               <SearchInput
@@ -146,7 +170,12 @@ export default function Header() {
               <div className="border-t border-[#22242D] pt-4">
                 <div className="flex items-center justify-between px-4 py-2">
                   <div className="flex items-center space-x-3">
-                    <Image src="/assets/profile.svg" width={20} height={20} alt="Profile" />
+                    <Image
+                      src="/assets/profile.svg"
+                      width={20}
+                      height={20}
+                      alt="Profile"
+                    />
                     <span className="text-sm font-medium">Spades</span>
                   </div>
                   <ChevronDown className="h-4 w-4" />

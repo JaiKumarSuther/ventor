@@ -22,10 +22,10 @@ export default function WalletCard({
       {/* Header */}
       <div className="flex items-center gap-2">
         <CustomCheckbox
+        label="Wallet"
           checked={isChecked}
           onChange={setIsChecked}
         />
-        <h3 className="text-lg font-semibold text-white">Wallet</h3>
       </div>
 
       {/* Info Grid */}

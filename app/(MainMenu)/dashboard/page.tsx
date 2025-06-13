@@ -6,6 +6,7 @@ import SummaryCard from "@/components/ui/SummaryCard";
 import FilterButton from "@/components/ui/FilterButton";
 import ProjectCard from "@/components/ui/ProjectCard";
 import SearchInput from "@/components/ui/SearchInput";
+import { useRouter } from "next/navigation";
 import OutlinedButton from "@/components/ui/OutlinedButton";
 import GradientButton from "@/components/ui/GradientButton";
 
@@ -50,6 +51,7 @@ export default function DashboardPage() {
       value: "37 SOL",
     },
   ];
+  const router = useRouter();
 
   // Handler functions
   const handleGetBackAllSOL = () => {
@@ -114,6 +116,7 @@ export default function DashboardPage() {
             pnl="2%"
             projectId={`VX1A-9034-${index + 1}`}
             status={index % 2 === 0 ? "Launched" : "Not Launched"}
+            onClick={() => router.push("/swap-manager")}
           />
         ))}
       </div>
