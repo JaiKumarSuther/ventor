@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 import DashboardActions from "@/components/ui/DashboardActions"; // Adjust path if needed
 
 interface ProjectMetadata {
@@ -58,6 +59,23 @@ export default function ProjectMetadataStep({
     updateData({ [field]: value });
   };
 
+  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
+
+  const [selectedLaunchpad, setSelectedLaunchpad] = useState<string>(
+    data.launchpad || "Pump Fun"
+  );
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
+  const launchpadOptions = ["Pump Fun", "Bank", "LaunchLab"];
+
+  const toggleDropdown = () => setShowDropdown((prev) => !prev);
+
+  const selectLaunchpad = (value: string) => {
+    setSelectedLaunchpad(value);
+    handleInputChange("launchpad", value); // update parent data
+    setShowDropdown(false);
+  };
+
   return (
     <div className="space-y-6">
       {/* First row */}
@@ -74,12 +92,46 @@ export default function ProjectMetadataStep({
           placeholder="SOLPX"
           onChange={(value) => handleInputChange("tokenSymbol", value)}
         />
-        <FloatingInput
-          label="Launchpad"
-          value={data.launchpad || ""}
-          placeholder="Pump Fun"
-          onChange={(value) => handleInputChange("launchpad", value)}
-        />
+
+        <div className="relative flex flex-col items-center w-full md:flex-row md:w-auto flex-1 gap-2 md:gap-6 mb-4 md:mb-8">
+          <div className="relative flex flex-col items-center w-full md:flex-row md:w-auto flex-1 gap-2 md:gap-6 mb-4 md:mb-8">
+            <div
+              className="bg-[#101114] border border-[#22242D] rounded-lg flex justify-between items-center px-5 py-2 h-[72px] cursor-pointer w-full relative"
+              onClick={toggleDropdown}
+            >
+              <div>
+                <p className="text-[#6A7A8C] text-xs">Launchpad</p>
+                <h1 className="text-sm font-semibold text-white pt-1">
+                  {selectedLaunchpad}
+                </h1>
+              </div>
+              <ChevronDown
+                size={20}
+                color="#6A7A8C"
+                className={`transform transition-transform duration-300 ${
+                  showDropdown ? "rotate-180" : "rotate-0"
+                }`}
+              />
+              {showDropdown && (
+                <div className="absolute top-[78px] left-0 right-0 bg-[#101114] border border-[#22242D] rounded-lg z-10 max-h-60 overflow-y-auto">
+                  {launchpadOptions.map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      className="w-full text-left px-5 py-2 text-white hover:bg-[#1a1b1f] cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevents re-triggering toggleDropdown
+                        selectLaunchpad(option);
+                      }}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Description */}
@@ -96,8 +148,27 @@ export default function ProjectMetadataStep({
       </div>
 
       {/* Upload Box (File Upload with Click Anywhere to Trigger) */}
-      <div className="w-full bg-[#101017] border border-[#22242D] rounded-md h-35">
-        <label htmlFor="file-upload" className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer">
+      <div
+        className="bg-[#101114] flex flex-col border border-[#22242D] p-4 gap-4"
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={(e) => {
+          e.preventDefault();
+          const files = Array.from(e.dataTransfer.files);
+          files.forEach((file) => {
+            if (file.type.startsWith("image/")) {
+              const reader = new FileReader();
+              reader.onload = () => {
+                setUploadedImages((prev) => [...prev, reader.result as string]);
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+        }}
+      >
+        <label
+          htmlFor="file-upload"
+          className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-[#444] p-6 text-center cursor-pointer w-full hover:bg-[#18191b]"
+        >
           <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
             <Image
               src="/assets/upload-cloud.svg"
@@ -108,28 +179,58 @@ export default function ProjectMetadataStep({
           </div>
           <div className="flex gap-1 justify-center items-center">
             <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
-              Click to upload
+              Click to Add or Remove
             </p>
             <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
           </div>
-          <p className="text-xs text-[#6A7A8C]">
-            SVG, PNG, JPG, GIF or File (max. 800×400px)
-          </p>
-          {/* File input that is triggered by clicking the label */}
           <input
             type="file"
             id="file-upload"
-            accept="image/*,.svg,.png,.jpg,.gif,.pdf"
+            accept="image/*"
+            multiple
             className="hidden"
             onChange={(e) => {
-              // Handle file change event
-              if (e.target.files) {
-                const file = e.target.files[0];
-                console.log("Selected file:", file);
-              }
+              const files = Array.from(e.target.files || []);
+              files.forEach((file) => {
+                if (file.type.startsWith("image/")) {
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    setUploadedImages((prev) => [
+                      ...prev,
+                      reader.result as string,
+                    ]);
+                  };
+                  reader.readAsDataURL(file);
+                }
+              });
             }}
           />
         </label>
+
+        {uploadedImages.length > 0 && (
+          <div className="flex flex-wrap gap-3 mt-2">
+            {uploadedImages.map((src, idx) => (
+              <div key={idx} className="relative">
+                <img
+                  src={src}
+                  alt={`Uploaded ${idx + 1}`}
+                  className="h-20 w-20 object-cover rounded border border-[#333]"
+                />
+                <button
+                  className="absolute cursor-pointer top-[-6px] right-[-6px] bg-red-600 rounded-full text-white w-5 h-5 text-xs flex items-center justify-center"
+                  onClick={() =>
+                    setUploadedImages((prev) =>
+                      prev.filter((_, i) => i !== idx)
+                    )
+                  }
+                  type="button"
+                >
+                  X
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Social URLs */}
