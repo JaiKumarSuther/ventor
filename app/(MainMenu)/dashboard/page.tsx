@@ -50,6 +50,7 @@ export default function DashboardPage() {
       title: "Total PNL",
       value: "37 SOL",
     },
+    
   ];
   const router = useRouter();
 
@@ -106,20 +107,22 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-        {/* Dummy Project Cards */}
-        {Array.from({ length: 6 }).map((_, index) => (
-          <ProjectCard
-            key={index}
-            title={`SOLPhoenix SOL ${index + 1}`}
-            pnl="2%"
-            projectId={`VX1A-9034-${index + 1}`}
-            status={index % 2 === 0 ? "Launched" : "Not Launched"}
-            onDoubleClick={() => router.push("/swap-manager")}
-            onMoreClick={() => router.push("/create-project")}
-          />
-        ))}
-      </div>
+<div className="w-full max-h-[500px] overflow-y-auto pr-1">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+    {Array.from({ length: 12 }).map((_, index) => (
+      <ProjectCard
+        key={index}
+        title={`SOLPhoenix SOL ${index + 1}`}
+        pnl="2%"
+        projectId={`VX1A-9034-${index + 1}`}
+        status={index % 2 === 0 ? "Launched" : "Not Launched"}
+        onDoubleClick={() => router.push("/swap-manager")}
+        onMoreClick={() => router.push("/create-project")}
+      />
+    ))}
+  </div>
+</div>
+
     </PageContainer>
   );
 }

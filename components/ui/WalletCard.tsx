@@ -22,7 +22,7 @@ export default function WalletCard({
       {/* Header */}
       <div className="flex items-center gap-2">
         <CustomCheckbox
-        label="Wallet"
+          label="Wallet"
           checked={isChecked}
           onChange={setIsChecked}
         />
@@ -48,7 +48,7 @@ export default function WalletCard({
         {[25, 50, 100].map((value) => (
           <button
             key={`green-${value}`}
-            className="flex-1 py-1 text-xs rounded-md bg-[#1A1B20] border border-[#22242D] text-green-500"
+            className="flex-1 py-1 text-xs rounded-md bg-[#1A1B20] border border-[#22242D] text-green-500 hover:bg-[#0f2a1b]/40 transition"
           >
             {value}
           </button>
@@ -56,7 +56,7 @@ export default function WalletCard({
         {[25, 50, 100].map((value) => (
           <button
             key={`red-${value}`}
-            className="flex-1 py-1 text-xs rounded-md bg-[#1A1B20] border border-[#22242D] text-red-500"
+            className="flex-1 py-1 text-xs rounded-md bg-[#1A1B20] border border-[#22242D] text-red-500 hover:bg-[#2a0f0f]/40 transition"
           >
             {value}
           </button>

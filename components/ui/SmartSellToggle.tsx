@@ -1,4 +1,5 @@
 import React from "react";
+import CustomToggleSwitch from "./CustomToggleSwitch";
 
 interface SmartSellControlProps {
   label: string;
@@ -19,18 +20,11 @@ export default function SmartSellControl({
           {enabled ? "ON" : "OFF"}
         </h1>
       </div>
-      <div
-        className={`w-10 h-5 rounded-full border border-[#22242D] flex items-center transition-colors relative shrink-0 ml-2 ${
-          enabled ? "bg-[#526FFF]" : "bg-[#6A7A8C]"
-        }`}
-        onClick={onToggle}
-      >
-        <div
-          className={`w-4 h-4 rounded-full bg-[#E8F5E9] shadow transition-transform absolute top-0.5 left-0.5 ${
-            enabled ? "translate-x-5" : "translate-x-0"
-          }`}
-        />
-      </div>
+      <CustomToggleSwitch
+        id={`switch-${label.replace(/\s+/g, "-").toLowerCase()}`}
+        checked={enabled}
+        onChange={onToggle ?? (() => {})}
+      />
     </div>
   );
 }
