@@ -65,7 +65,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
               value={presetName}
               onChange={(e) => setPresetName(e.target.value)}
               className="bg-transparent text-white placeholder-white outline-none mt-1"
-              placeholder="Phoniex"
+              // placeholder="Phoniex"
             />
           </div>
 
@@ -81,7 +81,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
                 value={devBuy}
                 onChange={(e) => setDevBuy(e.target.value)}
                 className="bg-transparent text-white placeholder-white outline-none mt-1"
-                placeholder="0%"
+                // placeholder="0%"
               />
             </div>
 
@@ -95,7 +95,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
                 value={devTip}
                 onChange={(e) => setDevTip(e.target.value)}
                 className="bg-transparent text-white placeholder-white outline-none mt-1"
-                placeholder="0 SOL"
+                // placeholder="0 SOL"
               />
             </div>
 
@@ -109,7 +109,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
                 value={snipeWallet}
                 onChange={(e) => setSnipeWallet(e.target.value)}
                 className="bg-transparent text-white placeholder-white outline-none mt-1"
-                placeholder="0%"
+                // placeholder="0%"
               />
             </div>
 
@@ -123,7 +123,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
                 value={snipeBuy}
                 onChange={(e) => setSnipeBuy(e.target.value)}
                 className="bg-transparent text-white placeholder-white outline-none mt-1"
-                placeholder="0%"
+                // placeholder="0%"
               />
             </div>
 
@@ -137,7 +137,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
                 value={snipeTip}
                 onChange={(e) => setSnipeTip(e.target.value)}
                 className="bg-transparent text-white placeholder-white outline-none mt-1"
-                placeholder="0 SOL"
+                // placeholder="0 SOL"
               />
             </div>
 
@@ -151,7 +151,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
                 value={maxSniper}
                 onChange={(e) => setMaxSniper(e.target.value)}
                 className="bg-transparent text-white placeholder-white outline-none mt-1"
-                placeholder="0%"
+                // placeholder="0%"
               />
             </div>
           </div>
