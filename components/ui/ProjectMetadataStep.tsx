@@ -167,7 +167,7 @@ export default function ProjectMetadataStep({
       >
         <label
           htmlFor="file-upload"
-          className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-[#444] p-6 text-center cursor-pointer w-full hover:bg-[#18191b]"
+          className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer w-full hover:bg-[#18191b]"
         >
           <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
             <Image
@@ -177,12 +177,15 @@ export default function ProjectMetadataStep({
               alt="Upload"
             />
           </div>
-          <div className="flex gap-1 justify-center items-center">
-            <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
+          <div className="flex flex-wrap gap-1 justify-center items-center text-center px-2 sm:px-0">
+            <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium whitespace-nowrap">
               Click to Add or Remove
             </p>
-            <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
+            <p className="text-sm text-[#6A7A8C] whitespace-nowrap">
+              or drag and drop
+            </p>
           </div>
+
           <input
             type="file"
             id="file-upload"

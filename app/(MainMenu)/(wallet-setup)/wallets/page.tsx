@@ -307,12 +307,13 @@ export default function WalletsScreen() {
                       alt="Upload"
                     />
                   </div>
-                  <div className="flex gap-1 justify-center items-center">
+                  <div className="flex flex-wrap gap-x-2 gap-y-1 justify-center items-center text-center sm:text-start">
                     <p className="text-sm bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent font-medium">
                       Click to Add or Remove
                     </p>
                     <p className="text-sm text-[#6A7A8C]">or drag and drop</p>
                   </div>
+
                   <input
                     type="file"
                     id="file-upload"
@@ -327,13 +328,15 @@ export default function WalletsScreen() {
                   <div className="flex flex-wrap gap-3 mt-2">
                     {selectedBatch.images.map((src, idx) => (
                       <div key={idx} className="relative">
-                        <Image
-                          src={src}
-                          alt={`Uploaded ${idx + 1}`}
-                          width={80}
-                          height={80}
-                          className="object-cover rounded border border-[#333]"
-                        />
+                        <div className="w-20 h-20 relative">
+                          <Image
+                            src={src}
+                            alt={`Uploaded ${idx + 1}`}
+                            fill
+                            className="object-cover rounded border border-[#333]"
+                          />
+                        </div>
+
                         <button
                           className="absolute cursor-pointer top-[-6px] right-[-6px] bg-red-600 rounded-full text-white w-5 h-5 text-xs flex items-center justify-center"
                           onClick={() =>
