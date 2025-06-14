@@ -29,12 +29,12 @@ const PresetItem: React.FC<PresetItemProps> = ({
           <p className="text-[#6A7A8C] text-sm">{description}</p>
         </div>
       </div>
-      <div className="flex items-center gap-3">
-        <div className="cursor-pointer" onClick={onEdit}>
-          <Image src="/assets/pencil.svg" alt="Edit" width={20} height={20} />
-        </div>
+      <div className="flex items-center gap-5">
         <div className="cursor-pointer" onClick={onPlay}>
-          <Image src="/assets/play.svg" alt="Play" width={24} height={24} />
+          <Image src="/assets/play.svg" alt="Play" width={32} height={32} />
+        </div>
+        <div className="cursor-pointer" onClick={onEdit}>
+          <Image src="/assets/pencil.svg" alt="Edit" width={24} height={24} />
         </div>
         <div className="cursor-pointer" onClick={onDelete}>
           <Image src="/assets/delete.svg" alt="Delete" width={24} height={24} />

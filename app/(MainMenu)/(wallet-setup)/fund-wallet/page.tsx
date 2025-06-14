@@ -15,7 +15,7 @@ const FundWalletPage = () => {
   const [fundingMethod, setFundingMethod] = useState<"easy" | "hard" | "mix">(
     "hard"
   );
-  const [amount, setAmount] = useState<number>(25000);
+  const [amount, setAmount] = useState<number>(0);
   const [sliderValues, setSliderValues] = useState({ min: 3.8, max: 4.4 });
 
   const [addedWallets, setAddedWallets] = useState([
@@ -93,11 +93,11 @@ const FundWalletPage = () => {
         </div>
 
         {/* Funding Method */}
-        <div className="flex flex-col p-5 md:flex-row justify-between items-center gap-4 md:gap-8 w-full">
+        <div className="flex flex-col p-5 md:flex-row justify-between items-center gap-0 md:gap-0 w-full">
           <h3 className="w-full md:w-[30%] font-[500] text-[#6A7A8C] text-sm">
             FUNDING METHOD
           </h3>
-          <div className="flex justify-between items-center w-full md:w-[75%]">
+          <div className="flex justify-between items-center w-full md:w-[64%]">
             {["easy", "hard", "mix"].map((method) => (
               <div
                 key={method}
@@ -137,12 +137,21 @@ const FundWalletPage = () => {
             </h1>
             <div className="bg-[#101114] w-full border border-[#22242D] rounded-lg flex justify-between items-center px-5 py-2 h-[72px]">
               <input
-                type="number"
+                type="text"
                 value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d*\.?\d*$/.test(value)) {
+                    setAmount(value === "" ? 0 : Number(value));
+                  }
+                }}
                 className="bg-transparent text-white text-lg w-full outline-none appearance-none"
                 placeholder="Enter Amount"
               />
+
+              <span className="text-white text-lg font-medium pl-3 whitespace-nowrap">
+                SOL
+              </span>
             </div>
           </div>
 

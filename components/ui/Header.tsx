@@ -40,7 +40,7 @@ export default function Header() {
   return (
     <header className="bg-[#06070B] border-b border-[#22242D] text-white sticky top-0 z-50">
       <div className="px-4 sm:px-6 lg:px-10">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-start gap-8 h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
             <Image
@@ -50,53 +50,54 @@ export default function Header() {
               alt="Ventor"
             />
           </div>
+          <div className="flex-1 flex gap-2 justify-between">
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-10">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`transition-colors ${
+                    pathname === link.href
+                      ? "text-[#8761FF] font-bold"
+                      : "hover:text-gray-300"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-12">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`transition-colors ${
-                  pathname === link.href
-                    ? "text-[#8761FF] font-bold"
-                    : "hover:text-gray-300"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop Right Section */}
-          <div className="hidden lg:flex items-center space-x-6">
-            {pathname === "/dashboard" && (
-              <SearchInput
-                placeholder="Search here..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-64"
-              />
-            )}
-            <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
-              <Image
-                src="/assets/bell.svg"
-                width={24}
-                height={24}
-                alt="Notifications"
-              />
-            </button>
-            <div className="flex items-center space-x-3">
-              <span className="text-sm font-medium">Spades</span>
-              <button className="flex items-center cursor-pointer space-x-1 hover:bg-[#1a1d24] rounded-lg p-1 transition-colors">
-                <Image
-                  src="/assets/profile.svg"
-                  width={38}
-                  height={38}
-                  alt="Profile"
+            {/* Desktop Right Section */}
+            <div className="hidden lg:flex items-center space-x-6">
+              {pathname === "/dashboard" && (
+                <SearchInput
+                  placeholder="Search here..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-64"
                 />
-                <ChevronDown className="h-4 w-4" />
+              )}
+              <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
+                <Image
+                  src="/assets/bell.svg"
+                  width={24}
+                  height={24}
+                  alt="Notifications"
+                />
               </button>
+              <div className="flex items-center space-x-3">
+                <span className="text-sm font-medium">Spades</span>
+                <button className="flex items-center cursor-pointer space-x-1 hover:bg-[#1a1d24] rounded-lg p-1 transition-colors">
+                  <Image
+                    src="/assets/profile.svg"
+                    width={38}
+                    height={38}
+                    alt="Profile"
+                  />
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
 

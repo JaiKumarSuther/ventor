@@ -67,6 +67,138 @@ export default function WalletsPage() {
       worth: "165.56",
       percent: "20%",
     },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
   ];
 
   return (
@@ -115,16 +247,18 @@ export default function WalletsPage() {
         />
 
         {/* Wallets Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 pb-4">
-          {walletData.map((wallet, index) => (
-            <WalletCard
-              key={index}
-              walletId={wallet.id}
-              holding={wallet.holding}
-              worth={wallet.worth}
-              percent={wallet.percent}
-            />
-          ))}
+        <div className="max-h-[600px] overflow-y-auto px-4 pb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pr-2">
+            {walletData.map((wallet, index) => (
+              <WalletCard
+                key={index}
+                walletId={wallet.id}
+                holding={wallet.holding}
+                worth={wallet.worth}
+                percent={wallet.percent}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </PageContainer>
