@@ -75,23 +75,14 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                   min="0"
                   className="bg-transparent outline-none border border-[#333] text-white px-2 py-1 rounded w-[120px]"
                   value={tipValue}
+                  onBlur={() => setIsEditing(false)} // auto-save on blur
                   onChange={(e) => {
                     const value = e.target.value;
-                    // Optional: allow empty string or valid decimal
                     if (value === "" || /^[0-9]*\.?[0-9]*$/.test(value)) {
                       setTipValue(value);
                     }
                   }}
                 />
-              </div>
-              <div className="flex justify-between w-full">
-                <span className="text-white font-semibold">SOL</span>
-                <button
-                  onClick={handleSave}
-                  className="bg-[#526FFF] cursor-pointer text-white text-sm px-3 py-1 rounded hover:opacity-90"
-                >
-                  Save
-                </button>
               </div>
             </div>
           ) : (
@@ -127,6 +118,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                       min="0"
                       className="bg-transparent outline-none border border-[#333] text-white px-2 py-1 rounded w-[120px]"
                       value={slippageValue}
+                      onBlur={() => setSlippageEditing(false)} // auto-save on blur
                       onChange={(e) => {
                         const value = e.target.value;
                         if (value === "" || /^[0-9]*\.?[0-9]*$/.test(value)) {
@@ -134,14 +126,9 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                         }
                       }}
                     />
+
                     <span className="text-white font-semibold">%</span>
                   </div>
-                  <button
-                    onClick={() => setSlippageEditing(false)}
-                    className="bg-[#526FFF] cursor-pointer text-white text-sm px-3 py-1 rounded hover:opacity-90"
-                  >
-                    Save
-                  </button>
                 </div>
               ) : (
                 <div className="flex items-center justify-between">
