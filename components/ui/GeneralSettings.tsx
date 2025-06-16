@@ -21,10 +21,7 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [tipValue, setTipValue] = useState("0.101");
 
-  const handleSave = () => {
-    setIsEditing(false);
-    // You can trigger any save logic here
-  };
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold text-white mb-2">
