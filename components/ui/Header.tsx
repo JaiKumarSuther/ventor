@@ -4,7 +4,7 @@ import SearchInput from "./SearchInput";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Import usePathname
+import { usePathname, useRouter } from "next/navigation"; // Import usePathname
 
 export default function Header() {
   const [search, setSearch] = useState("");
@@ -37,12 +37,15 @@ export default function Header() {
     { label: "Settings", href: "/settings" },
   ];
 
+  const router = useRouter();
+
   return (
     <header className="bg-[#06070B] border-b border-[#22242D] text-white sticky top-0 z-50">
       <div className="px-4 sm:px-6 lg:px-10">
         <div className="flex items-center justify-start gap-8 h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center"
+          >
             <Image
               src="/assets/logo.svg"
               width={170}
@@ -91,6 +94,7 @@ export default function Header() {
                 <button className="flex items-center cursor-pointer space-x-1 hover:bg-[#1a1d24] rounded-lg p-1 transition-colors">
                   <Image
                     src="/assets/profile.svg"
+                    onClick={() => router.push('/myprofile')}
                     width={38}
                     height={38}
                     alt="Profile"
@@ -173,6 +177,7 @@ export default function Header() {
                   <div className="flex items-center space-x-3">
                     <Image
                       src="/assets/profile.svg"
+                      onClick={() => router.push('/myprofile')}
                       width={20}
                       height={20}
                       alt="Profile"
