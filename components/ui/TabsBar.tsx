@@ -1,11 +1,12 @@
 "use client";
+
 import { ArrowLeft } from "lucide-react";
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface Tab {
   label: string;
-  active?: boolean;
+  route?: string;
   onClick?: () => void;
 }
 
@@ -15,12 +16,21 @@ interface TabsBarProps {
 
 export default function TabsBar({ tabs }: TabsBarProps) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleBack = () => {
     if (window.history.length > 1) {
       router.back();
     } else {
-      router.push("/wallets");
+      router.push("/");
+    }
+  };
+
+  const handleTabClick = (tab: Tab) => {
+    if (tab.onClick) {
+      tab.onClick();
+    } else if (tab.route) {
+      router.push(tab.route);
     }
   };
 
@@ -35,18 +45,21 @@ export default function TabsBar({ tabs }: TabsBarProps) {
       </button>
 
       {/* Tabs */}
-      <div className="flex flex-wrap  gap-2 sm:gap-6 w-full justify-start">
-        {tabs.map((tab, index) => (
-          <button
-            key={index}
-            onClick={tab.onClick}
-            className={`${
-              tab.active ? "text-[#8761FF]" : "text-white"
-            } text-xs sm:text-sm md:text-base cursor-pointer hover:text-[#8761FF] font-semibold transition`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="flex flex-wrap gap-2 sm:gap-6 w-full justify-start">
+        {tabs.map((tab, index) => {
+          const isActive = tab.route && pathname.startsWith(tab.route);
+          return (
+            <button
+              key={index}
+              onClick={() => handleTabClick(tab)}
+              className={`${
+                isActive ? "text-[#8761FF]" : "text-white"
+              } text-xs sm:text-sm md:text-base cursor-pointer hover:text-[#8761FF] font-semibold transition`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
