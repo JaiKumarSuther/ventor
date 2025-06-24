@@ -27,7 +27,7 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
             <polyline points="1 6.29411765 4.5 10 11 1" />
           </svg>
         </span>
-        <span>{label}</span>
+        {label && <span>{label}</span>}
       </label>
     </div>
   );

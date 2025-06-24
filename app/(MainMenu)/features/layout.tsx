@@ -16,6 +16,7 @@ interface TabItem {
     { label: "Smart Sell", route: "/features/smart-sell" },
     { label: "Auto TP", route: "/features/auto-tp" },
   ];
+  
 
 
 export default function DashboardModules({ children }: { children: React.ReactNode }) {
