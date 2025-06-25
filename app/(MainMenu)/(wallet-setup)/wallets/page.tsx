@@ -250,14 +250,19 @@ export default function WalletsScreen() {
                 gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
                 hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
                 className="w-34 py-2 text-base"
-                // Optional for spacing
+        
               />
               <GradientButton
                 label="Fund Wallets"
                 onClick={onButtonClick || (() => router.push("/fund-wallet"))}
                 gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
                 hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-                className="w-34 py-2 text-base "
+                className="w-34 py-2 text-base"
+                disabled={selectedWalletIds.length === 0} // Disable button if no wallets are selected
+                style={{
+                  cursor:
+                    selectedWalletIds.length === 0 ? "not-allowed" : "pointer", // Make it visually disabled
+                }}
               />
             </div>
           </div>

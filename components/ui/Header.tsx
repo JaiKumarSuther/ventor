@@ -1,6 +1,5 @@
 "use client";
-import { ChevronDown, Menu, X, Search } from "lucide-react";
-import SearchInput from "./SearchInput";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation"; // Import usePathname
 export default function Header() {
   // const [search, setSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [isMobileSearchOpen] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname(); // Get current pathname dynamically
 
@@ -17,9 +16,7 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleMobileSearch = () => {
-    setIsMobileSearchOpen(!isMobileSearchOpen); // Toggle search visibility
-  };
+
 
   // Focus on search input when mobile search dropdown opens
   useEffect(() => {

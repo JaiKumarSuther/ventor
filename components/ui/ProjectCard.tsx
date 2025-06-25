@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
 import StatusBadge from "./StatusBadge";
 import { EllipsisVertical } from "lucide-react";
 
@@ -10,8 +11,16 @@ interface ProjectCardProps {
   status: "Launched" | "Not Launched";
   onClick?: () => void;
   onDoubleClick?: () => void;
-  onMoreClick?: () => void;
+  onMoreClick?: (route: string) => void;
 }
+
+const menuItems = [
+  { label: "Overview", route: "/features/overview" },
+  { label: "Swap Manager", route: "/features/swap-manager" },
+  { label: "Market Maker", route: "/features/market-maker" },
+  { label: "Smart Sell", route: "/features/smart-sell" },
+  { label: "Auto TP", route: "/features/auto-tp" },
+];
 
 export default function ProjectCard({
   title,
@@ -20,10 +29,10 @@ export default function ProjectCard({
   status,
   onClick,
   onDoubleClick,
-  onMoreClick,
 }: ProjectCardProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter(); // Initialize useRouter for navigation
 
   // Hide dropdown when clicking outside
   useEffect(() => {
@@ -56,16 +65,20 @@ export default function ProjectCard({
           />
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-40 bg-[#1A1B20] border border-[#333] shadow-lg z-50">
-              <button
-                className="w-full cursor-pointer text-left text-sm text-white px-4 py-2 hover:bg-[#2a2b30]"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowDropdown(false);
-                  onMoreClick?.();
-                }}
-              >
-                Open The Project
-              </button>
+              {menuItems.map((item, index) => (
+                <button
+                  key={index}
+                  className="w-full cursor-pointer text-left text-sm text-white px-4 py-2 hover:bg-[#2a2b30]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowDropdown(false);
+                    // Use router.push to navigate to the selected route
+                    router.push(item.route); // Navigate to the selected route
+                  }}
+                >
+                  {item.label}
+                </button>
+              ))}
             </div>
           )}
         </div>

@@ -6,8 +6,8 @@ import { ArrowLeft } from "lucide-react"; // Import the back arrow icon
 
 const SendToAddressPage = () => {
   const [timeRemaining, setTimeRemaining] = useState<number>(3600); // Example: 1 hour in seconds
-  const [amount, setAmount] = useState<number>(100); // Example amount to send (e.g., 100 SOL)
-  const [address, setAddress] = useState<string>("wallet_22x9A...3Fb");
+  const [amount] = useState<number>(100); // Example amount to send (e.g., 100 SOL)
+  const [address] = useState<string>("wallet_22x9A...3Fb");
 
   const router = useRouter();
 

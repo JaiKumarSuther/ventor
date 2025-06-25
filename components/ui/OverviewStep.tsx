@@ -13,13 +13,6 @@ export default function SettingOverview({
   onFinish,
   onCancel,
 }: SettingOverviewProps) {
-  // Mock data based on the image
-  const settingData = {
-    devBuy: "2.4",
-    totalSnipe: "2.4",
-    burRange: "3.8 - 4.4",
-    tipAmount: "97",
-  };
 
   const selectedWallets = [
     {

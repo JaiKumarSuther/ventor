@@ -82,6 +82,7 @@ export default function CreateProject() {
                 onCancel={handleCancel}
               />
             )}
+            
             {currentStep === 2 && (
               <LaunchModeStep
                 data={{ launchMode: projectData.launchMode }}
@@ -90,6 +91,7 @@ export default function CreateProject() {
                 onCancel={handleCancel}
               />
             )}
+
             {currentStep === 3 && (
               <WalletSetupStep
                 data={projectData}

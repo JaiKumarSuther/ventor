@@ -4,7 +4,8 @@ interface GradientButtonProps {
   gradient?: string;
   hoverGradient?: string;
   className?: string;
-  style?: React.CSSProperties; // ✅ Added optional style prop
+  style?: React.CSSProperties;
+  disabled?: boolean;  // ✅ Added disabled prop
 }
 
 const GradientButton: React.FC<GradientButtonProps> = ({
@@ -13,22 +14,28 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   gradient = "linear-gradient(0deg, #5A43C6, #8761FF)",
   hoverGradient = "linear-gradient(0deg, #4A36B0, #765FE0)",
   className = "",
-  style = {}, // ✅ Default to empty object
+  style = {},
+  disabled = false, // ✅ Default to false if not provided
 }) => {
   return (
     <button
-      onClick={onClick}
-      className={`rounded-full cursor-pointer font-[600] text-sm text-black px-3 ${className}`}
+      onClick={disabled ? undefined : onClick}  // ✅ Disable onClick when disabled is true
+      className={`rounded-full cursor-pointer font-[600] text-sm text-black px-3 ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`} // ✅ Add styles for disabled state
       style={{
         background: gradient,
-        ...style, // ✅ Spread additional styles like width and height
+        ...style,  // Spread additional styles like width and height
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.background = hoverGradient;
+        if (!disabled) {
+          (e.currentTarget as HTMLButtonElement).style.background = hoverGradient;
+        }
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.background = gradient;
+        if (!disabled) {
+          (e.currentTarget as HTMLButtonElement).style.background = gradient;
+        }
       }}
+      disabled={disabled}  // ✅ Add disabled attribute
     >
       {label}
     </button>
