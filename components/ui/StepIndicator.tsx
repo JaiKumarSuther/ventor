@@ -10,26 +10,34 @@ interface Step {
 interface StepIndicatorProps {
   steps: Step[];
   currentStep: number;
+  onStepClick: (stepNumber: number) => void; // Add a callback for step click
 }
 
 export default function StepIndicator({
   steps,
   currentStep,
+  onStepClick,
 }: StepIndicatorProps) {
   return (
     <div className="flex items-start justify-between mb-8 gap-2">
       {steps.map((step) => (
-        <div key={step.number} className="flex-1">
-          {/* Top Bar */}
+        <div
+          key={step.number}
+          className="flex-1"
+          onClick={() => onStepClick(step.number)} // Handle click to go to the step
+          style={{ cursor: "pointer" }}
+        >
+          {/* Top Bar with scaling on hover */}
           <div
             className={`mb-2 rounded-full ${
               step.number <= currentStep
                 ? "bg-gradient-to-b from-[#5A43C6] to-[#8761FF]"
-                : "bg-[#22242D] "
-            }`}
+                : "bg-[#22242D]"
+            } hover:scale-105`} // Apply scaling on hover to the line
             style={{
               height: "4px",
               borderRadius: "2px",
+              transition: "transform 0.3s ease", // Smooth transition for scaling
             }}
           />
 
@@ -51,7 +59,7 @@ export default function StepIndicator({
               className={`text-xs ${
                 step.number === currentStep
                   ? "bg-gradient-to-b from-[#5A43C6] to-[#8761FF] bg-clip-text text-transparent"
-                  : "text-[#798388] "
+                  : "text-[#798388]"
               }`}
             >
               {step.subtitle}

@@ -6,6 +6,7 @@ import GradientCheckbox from "@/components/ui/GradientCheckbox";
 import DataTable from "@/components/ui/DataTable";
 import Image from "next/image";
 import WalletPopup from "@/components/ui/WalletPopup";
+import { useRouter } from "next/navigation";
 
 interface Wallet {
   id: number;
@@ -141,6 +142,25 @@ export default function WalletsScreen() {
     };
   });
 
+  const router = useRouter();
+
+  function onButtonClick(): void {
+    router.push("/fund-wallet");
+  }
+
+  const handleNewBatch = () => {
+    const newBatch: Batch = {
+      id: batches.length + 1, // Simple ID generation based on current batches
+      name: `Batch ${batches.length + 1}`,
+      isEditing: false,
+      walletIds: [],
+      images: [],
+      wallets: [],
+    };
+
+    setBatches((prevBatches) => [...prevBatches, newBatch]);
+  };
+
   return (
     <div className="overflow-hidden bg-black">
       <div className="flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[700px]">
@@ -221,8 +241,25 @@ export default function WalletsScreen() {
         </div>
 
         <div className="flex-1 bg-[#0F0F10] flex flex-col overflow-hidden">
-          <div className="border-b border-[#22242D] p-[22px] flex-shrink-0">
+          <div className="flex justify-between items-center border-b border-[#22242D] p-[22px] flex-shrink-0">
             <h3 className="text-white text-base">Batches</h3>
+            <div className="flex items-center gap-2">
+              <GradientButton
+                label="New Batch"
+                onClick={() => handleNewBatch()}
+                gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+                hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+                className="w-34 py-2 text-base"
+                // Optional for spacing
+              />
+              <GradientButton
+                label="Fund Wallets"
+                onClick={onButtonClick || (() => router.push("/fund-wallet"))}
+                gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+                hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+                className="w-34 py-2 text-base "
+              />
+            </div>
           </div>
 
           {batches.map((batch) => (

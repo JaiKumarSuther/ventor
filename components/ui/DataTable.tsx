@@ -5,6 +5,7 @@ import Image from "next/image";
 
 interface DataTableProps {
   headerColumns: string[];
+  disableCheckboxes?: boolean;
   rows: {
     id: number;
     isSelected: boolean;
@@ -17,7 +18,7 @@ interface DataTableProps {
   }[];
 }
 
-const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
+const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows, disableCheckboxes  }) => {
   return (
     <div className="h-full flex flex-col">
       {/* Desktop Header */}
@@ -43,7 +44,8 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows }) => {
             >
               {/* Desktop */}
               <div
-                onClick={row.onSelect}
+               onClick={disableCheckboxes ? undefined : row.onSelect}  
+                
                 className="hidden md:block cursor-pointer hover:bg-[#1A1A1A] transition-colors"
               >
                 <div className="grid grid-cols-[2.5fr_1fr_1fr_0.5fr] items-center px-4 lg:px-6 h-[46px]">

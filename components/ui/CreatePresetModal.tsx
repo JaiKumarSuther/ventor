@@ -50,7 +50,7 @@ const CreatePresetModal: React.FC<CreatePresetModalProps> = ({
         style={{ width: "700px", height: "520px" }}
       >
         <h1 className="text-2xl text-white mb-4">
-          Create Present
+          Create Preent
         </h1>
 
         <div className="flex flex-col gap-4 flex-grow overflow-y-auto">

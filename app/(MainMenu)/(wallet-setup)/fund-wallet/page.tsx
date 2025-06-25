@@ -186,6 +186,7 @@ const FundWalletPage = () => {
           </div>
 
           {/* Connect Wallet & Send to Address */}
+
           <div className="flex justify-between gap-3 p-3 md:p-6">
             <div className="flex-1 bg-[#101114] rounded-xl border border-[#22242D] h-24 flex gap-1 flex-col items-center justify-center cursor-pointer">
               <Image
@@ -196,7 +197,10 @@ const FundWalletPage = () => {
               />
               <span className="text-[#6A7A8C] text-sm">Connect Wallet</span>
             </div>
-            <div className="flex-1 bg-[#101114] rounded-xl border border-[#22242D] h-24 flex gap-1 flex-col items-center justify-center cursor-pointer">
+            <div
+              className="flex-1 bg-[#101114] rounded-xl border border-[#22242D] h-24 flex gap-1 flex-col items-center justify-center cursor-pointer"
+              onClick={() => router.push("/send-to-address")} // Navigate to SendToAddressPage
+            >
               <Image
                 src="/assets/send-address.svg"
                 width={28}

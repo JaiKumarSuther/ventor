@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // Import usePathname
 
 export default function Header() {
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
@@ -73,14 +73,14 @@ export default function Header() {
 
             {/* Desktop Right Section */}
             <div className="hidden lg:flex items-center space-x-6">
-              {pathname === "/dashboard" && (
+              {/* {pathname === "/dashboard" && (
                 <SearchInput
                   placeholder="Search here..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="w-64"
                 />
-              )}
+              )} */}
               <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
                 <Image
                   src="/assets/bell.svg"
@@ -106,14 +106,14 @@ export default function Header() {
           </div>
 
           <div className="flex lg:hidden items-center space-x-3">
-            {pathname === "/dashboard" && (
+            {/* {pathname === "/dashboard" && (
               <button
                 onClick={toggleMobileSearch}
                 className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors"
               >
                 <Search className="h-5 w-5" />
               </button>
-            )}
+            )} */}
             <button className="p-2 hover:bg-[#1a1d24] rounded-lg transition-colors">
               <Image
                 src="/assets/bell.svg"
@@ -137,7 +137,7 @@ export default function Header() {
 
         {/* Mobile Search Dropdown */}
 
-        {pathname === "/dashboard" && isMobileSearchOpen && (
+        {/* {pathname === "/dashboard" && isMobileSearchOpen && (
           <div className="lg:hidden border-t border-[#22242D]">
             <div className="py-4 px-2">
               <SearchInput
@@ -148,7 +148,7 @@ export default function Header() {
               />
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
@@ -172,12 +172,13 @@ export default function Header() {
               </nav>
 
               {/* Mobile User Section */}
-              <div className="border-t border-[#22242D] pt-4">
+              <div className="border-t border-[#22242D] pt-4"
+              onClick={() => router.push('/myprofile')}>
                 <div className="flex items-center justify-between px-4 py-2">
                   <div className="flex items-center space-x-3">
                     <Image
                       src="/assets/profile.svg"
-                      onClick={() => router.push('/myprofile')}
+                      
                       width={20}
                       height={20}
                       alt="Profile"

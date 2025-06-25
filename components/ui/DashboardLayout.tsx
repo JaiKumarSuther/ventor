@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import GradientButton from "@/components/ui/GradientButton";
-  import { useRouter } from "next/navigation";
+// import GradientButton from "@/components/ui/GradientButton";
+//   import { useRouter } from "next/navigation";
 
 interface TabItem {
   label: string;
@@ -21,10 +21,10 @@ interface DashboardLayoutProps {
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   children,
   title = "Wallets",
-  buttonLabel = "Fund Wallet",
-  onButtonClick,
+  // buttonLabel = "Fund Wallet",
+  // onButtonClick,
 }) => {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-background px-4 md:px-6 overflow-hidden">
@@ -32,7 +32,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       <div className="w-full flex gap-4 mb-6 flex-row md:items-center justify-between py-4">
         <h2 className="text-foreground text-3xl font-semibold">{title}</h2>
 
-        {buttonLabel && (
+        {/* {buttonLabel && (
           <GradientButton
             label={buttonLabel}
             onClick={onButtonClick || (() => router.push("/fund-wallet"))}
@@ -40,7 +40,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
             hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
             className="w-34 py-2 text-base "
           />
-        )}
+        )} */}
       </div>
 
       {/* Content */}

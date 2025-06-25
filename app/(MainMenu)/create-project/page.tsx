@@ -56,6 +56,10 @@ export default function CreateProject() {
     setProjectData((prev) => ({ ...prev, ...data }));
   };
 
+    const handleStepClick = (stepNumber: number) => {
+    setCurrentStep(stepNumber); // Update current step on click
+  };
+
   return (
     <PageContainer>
       <div className="flex flex-col w-full px-0 gap-8">
@@ -64,8 +68,11 @@ export default function CreateProject() {
         </h1>
 
         <div className="bg-[#FFFFFF05] px-4 md:px-6 py-5 border border-[#FFFFFF1A] rounded-lg">
-          <StepIndicator steps={steps} currentStep={currentStep} />
-
+          <StepIndicator
+        steps={steps}
+        currentStep={currentStep}
+        onStepClick={handleStepClick} // Pass the step click handler
+      />
           <div className="min-h-[500px]">
             {currentStep === 1 && (
               <ProjectMetadataStep
