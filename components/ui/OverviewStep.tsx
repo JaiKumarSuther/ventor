@@ -13,7 +13,6 @@ export default function SettingOverview({
   onFinish,
   onCancel,
 }: SettingOverviewProps) {
-
   const selectedWallets = [
     {
       id: 1,
@@ -87,6 +86,12 @@ export default function SettingOverview({
     ],
   }));
 
+  const settingData = {
+    devBuy: "2.4 SOL",
+    totalSnipe: "2.4 SOL",
+    burRange: "3.8 - 4.4",
+    tipAmount: "97",
+  };
   return (
     <div className="space-y-6">
       <div className="flex flex-col lg:flex-row min-h-[600px]">
@@ -120,19 +125,11 @@ export default function SettingOverview({
                 <div className="text-xs text-[#6A7A8C] mb-4">
                   *Only wallets in this batch will be available for sniping
                 </div>
-
                 <div className="grid grid-cols-2 gap-6">
                   <div>
                     <div className="text-xs text-[#6A7A8C] mb-1">DEV BUY</div>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="2.4"
-                        className="text-white text-lg outline-none font-medium p-2 bg-[#0F0F10] border border-[#22242D] rounded-md pr-12"
-                      />
-                      <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white text-lg font-medium">
-                        SOL
-                      </span>
+                    <div className="text-white text-lg font-medium">
+                      {settingData.devBuy}
                     </div>
                   </div>
 
@@ -140,29 +137,15 @@ export default function SettingOverview({
                     <div className="text-xs text-[#6A7A8C] mb-1">
                       TOTAL SNIPE
                     </div>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="2.4"
-                        className="text-white text-lg font-medium outline-none p-2 bg-[#0F0F10] border border-[#22242D] rounded-md pr-12"
-                      />
-                      <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white text-lg font-medium">
-                        SOL
-                      </span>
+                    <div className="text-white text-lg font-medium">
+                      {settingData.totalSnipe}
                     </div>
                   </div>
 
                   <div>
                     <div className="text-xs text-[#6A7A8C] mb-1">BUR RANGE</div>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="3.8 - 4.4"
-                        className="text-white text-lg font-medium outline-none p-2 bg-[#0F0F10] border border-[#22242D] rounded-md pr-12"
-                      />
-                      <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white text-lg font-medium">
-                        Range
-                      </span>
+                    <div className="text-white text-lg font-medium">
+                      {settingData.burRange}
                     </div>
                   </div>
 
@@ -170,15 +153,8 @@ export default function SettingOverview({
                     <div className="text-xs text-[#6A7A8C] mb-1">
                       TIP AMOUNT
                     </div>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="97"
-                        className="text-white text-lg font-medium outline-none   p-2 bg-[#0F0F10] border border-[#22242D] rounded-md pr-12"
-                      />
-                      <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white text-lg font-medium">
-                        USD
-                      </span>
+                    <div className="text-white text-lg font-medium">
+                      {settingData.tipAmount}
                     </div>
                   </div>
                 </div>

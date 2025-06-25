@@ -39,7 +39,7 @@ const FloatingInput = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="bg-transparent w-full text-white font-semibold placeholder-[#fff] text-sm focus:outline-none"
+          className="bg-transparent w-full text-white font-semibold placeholder-[#6A7A8C] text-sm focus:outline-none"
         />
       </div>
       <label className="absolute left-4 top-4 text-xs text-[#6A7A8C] transition-all">
