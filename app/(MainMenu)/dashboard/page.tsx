@@ -228,7 +228,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div className="w-full max-h-[500px] overflow-y-auto pr-1">
+      <div className="w-full pr-1">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
           {Array.from({ length: 12 }).map((_, index) => (
             <ProjectCard
