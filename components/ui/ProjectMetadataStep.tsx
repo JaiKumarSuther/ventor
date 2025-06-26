@@ -140,7 +140,7 @@ export default function ProjectMetadataStep({
           value={data.description || ""}
           onChange={(e) => handleInputChange("description", e.target.value)}
           placeholder="NFT launchpad for Solana creators"
-          className="w-full bg-[#101017] border border-[#22242D] rounded-md px-3 pt-6 pb-2 text-white placeholder-[#fff] text-sm min-h-[144px] resize-none focus:outline-none"
+          className="w-full bg-[#101017] border border-[#22242D] rounded-md px-3 pt-7 pb-2 text-white placeholder-[#6A7A8C] font-semibold text-sm min-h-[144px] resize-none focus:outline-none"
         />
         <label className="absolute left-3 top-2 text-xs text-[#6A7A8C]">
           Description

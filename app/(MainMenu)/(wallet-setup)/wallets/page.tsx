@@ -241,7 +241,7 @@ export default function WalletsScreen() {
         </div>
 
         <div className="flex-1 bg-[#0F0F10] flex flex-col overflow-hidden">
-          <div className="flex justify-between items-center border-b border-[#22242D] p-[22px] flex-shrink-0">
+          <div className="flex justify-between items-center border-b border-[#22242D] p-[16px] flex-shrink-0">
             <h3 className="text-white text-base">Batches</h3>
             <div className="flex items-center gap-2">
               <GradientButton

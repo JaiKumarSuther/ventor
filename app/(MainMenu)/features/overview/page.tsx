@@ -49,13 +49,13 @@ export default function OverviewPage() {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          <div className="text-[#E43021] border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
+          <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
             Sell Dev
           </div>
-          <div className="text-[#E43021] border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
+          <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default cursor-arrow border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
             Sell All + Dev
           </div>
-          <div className="text-[#00A34F] border border-[#00A34F] rounded-full px-4 py-1.5 text-sm">
+          <div className="text-[#00A34F] border border-[#00A34F] hover:bg-[#0f2a1b]/40 cursor-default rounded-full px-4 py-1.5 text-sm">
             Buy All
           </div>
         </div>
@@ -190,27 +190,18 @@ export default function OverviewPage() {
         </div>
 
         <div className="flex md:justify-end gap-2 md:mt-0 mt-2">
-          <button
-            className="text-xs px-3 py-1 rounded-full"
-            style={{
-              color: "#00A34F",
-              border: "1px solid #00A34F",
-              backgroundColor: "transparent",
-            }}
-          >
-            Buy All
-          </button>
-          <button
-            className="text-xs px-3 py-1 rounded-full"
-            style={{
-              color: "#00A34F",
-              border: "1px solid #00A34F",
-              backgroundColor: "transparent",
-            }}
-          >
-            Sell All
-          </button>
-        </div>
+  <button
+    className="text-xs px-3 py-1 rounded-full border border-[#00A34F] text-[#00A34F] bg-transparent hover:bg-[#0f2a1b]/40"
+  >
+    Buy All
+  </button>
+  <button
+    className="text-xs px-3 py-1 rounded-full border border-[#00A34F] text-[#00A34F] bg-transparent hover:bg-[#0f2a1b]/40"
+  >
+    Sell All
+  </button>
+</div>
+
       </div>
     ))}
   </div>

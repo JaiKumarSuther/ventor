@@ -16,8 +16,6 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-
-
   // Focus on search input when mobile search dropdown opens
   useEffect(() => {
     if (isMobileSearchOpen && mobileSearchInputRef.current) {
@@ -30,7 +28,7 @@ export default function Header() {
     { label: "Dashboard", href: "/dashboard" },
     { label: "Wallets", href: "/wallets" },
     { label: "XID", href: "/xid" },
-    { label: "Market Maker", href: "/market-maker" },
+    { label: "Market Maker", href: "/features/market-maker" },
     { label: "Settings", href: "/settings" },
   ];
 
@@ -52,7 +50,7 @@ export default function Header() {
           </div>
           <div className="flex-1 flex gap-2 justify-between">
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-10">
+            <nav className="hidden lg:flex mt-3 items-center space-x-10">
               {links.map((link) => (
                 <Link
                   key={link.href}
