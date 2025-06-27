@@ -113,7 +113,7 @@ export default function OverviewPage() {
       <div className="flex flex-wrap gap-2">
         <GradientButton label="Add Batch" className="px-4 py-[6px]" />
         <GradientButton label="Add Wallet" className="px-4 py-[6px]" />
-        <button className="border-[1.5px] text-sm font-semibold cursor-pointer text-[#5A43C6] border-[#5A43C6] rounded-full px-4 py-[6px]">
+        <button className="border-[1.5px] text-sm font-semibold cursor-pointer text-[#5A43C6] border-[#5A43C6] hover:bg-[#5b43c614] rounded-full px-4 py-[6px]">
           Configure
         </button>
       </div>

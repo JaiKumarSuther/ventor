@@ -1,18 +1,36 @@
 "use client";
 
-import GradientButton from "@/components/ui/GradientButton";
+// import GradientButton from "@/components/ui/GradientButton";
+import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 export default function SmartSell() {
-  const statusCards = [
-    { label: "Smart Cell Status", value: "OFF" },
-    { label: "Whitelisted Wallets", value: "6" },
-    { label: "Sell % on Buy", value: "1.00%" },
-    { label: "Stop if Holding <", value: "1.00%" },
-    { label: "Min SOL to Activate", value: "0.5000 SOL" },
-    { label: "Min MCAP to Activate", value: "$1.00" },
+  const initialStatusCards = [
+    {
+      key: "smartSell",
+      label: "Smart Sell Status",
+      value: "OFF",
+      editable: false,
+      viewable: true,
+      toggle: true,
+    },
+    { key: "wallets", label: "Whitelisted Wallets", value: "6", editable: true },
+    { key: "sellOnBuy", label: "Sell % on Buy", value: "1.00%", editable: true },
+    { key: "stopIfHolding", label: "Stop if Holding <", value: "1.00%" },
+    { key: "minSol", label: "Min SOL to Activate", value: "0.5000 SOL" },
+    { key: "minMcap", label: "Min MCAP to Activate", value: "$1.00", editable: true },
   ];
+
+  const [statusCardValues, setStatusCardValues] = useState(
+    initialStatusCards.reduce((acc, item) => {
+      const numericPart = item.value.match(/[0-9.]+/)?.[0] || "";
+      acc[item.key] = numericPart;
+      return acc;
+    }, {} as Record<string, string>)
+  );
+
+  const [editingKey, setEditingKey] = useState<string | null>(null);
 
   const requirements = [
     { label: "Token Deployed", met: false },
@@ -23,13 +41,24 @@ export default function SmartSell() {
     { label: "Wallets Whitelisted", met: true },
   ];
 
-  const configButtons = [
-    "Wallets Whitelisted",
-    "Smart Sell % on Buy",
-    "Set Stop Holding",
-    "Set Minimum SOL to Activate",
-    "Set Minimum MCAP to Activate",
-  ];
+  const [tpStates, setTpStates] = useState({
+    smartSell: false,
+  });
+
+  const handleTpToggle = (key: keyof typeof tpStates) => {
+    setTpStates((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleInlineChange = (key: string, value: string) => {
+    if (/^[0-9]*\.?[0-9]*$/.test(value) || value === "") {
+      setStatusCardValues((prev) => ({ ...prev, [key]: value }));
+    }
+  };
+
+  const getUnit = (value: string): string => {
+    const match = value.match(/[a-zA-Z%$]+/g);
+    return match ? match.join("") : "";
+  };
 
   return (
     <div className="p-4 md:p-6 space-y-8">
@@ -44,9 +73,74 @@ export default function SmartSell() {
 
         {/* Status Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {statusCards.map((item, index) => (
-            <StatusCard key={index} {...item} />
-          ))}
+          {initialStatusCards.map((item, index) => {
+            const unit = getUnit(item.value);
+
+            return (
+              <div
+                key={index}
+                className="flex flex-col gap-2 bg-[#FFFFFF05] p-4 rounded-xl border border-[#22242D] relative"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="text-[15px] text-[#FFFFFF] mb-1">{item.label}</div>
+                  {(item.editable || item.viewable) && (
+                    <button
+                      onClick={() => {
+                        if (item.editable) setEditingKey(item.key);
+                      }}
+                      className="flex items-center cursor-pointer text-[#8761FF] font-medium gap-1"
+                    >
+                      {item.editable ? (
+                        <>
+                          <Image src="/assets/edit.svg" alt="Edit" width={17} height={17} />
+                          Edit
+                        </>
+                      ) : (
+                        <>View</>
+                      )}
+                    </button>
+                  )}
+                </div>
+
+                <div className="flex items-center justify-between">
+                  {item.key === "smartSell" &&
+                  statusCardValues[item.key].toLowerCase() === "off" ? (
+                    <div className="flex items-center gap-2 text-xs text-[#FF4D4D] font-semibold bg-[#6E6E6E12] px-3 py-1 rounded-[4px] w-fit">
+                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#FF0000] via-[#FF4D4D] to-[#FF7B7B]" />
+                      OFF
+                    </div>
+                  ) : editingKey === item.key ? (
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="text"
+                        value={statusCardValues[item.key]}
+                        autoFocus
+                        onChange={(e) => handleInlineChange(item.key, e.target.value)}
+                        onBlur={() => setEditingKey(null)}
+                        className="bg-transparent border border-[#333] text-white px-2 py-1 rounded w-[100px] outline-none"
+                      />
+                      <span className="text-white text-base font-semibold">{unit}</span>
+                    </div>
+                  ) : (
+                    <div className="text-lg font-semibold text-[#6A7A8C]">
+                      {statusCardValues[item.key]}
+                      {unit && <span className="ml-1">{unit}</span>}
+                    </div>
+                  )}
+
+                  {item.toggle && (
+                    <CustomToggleSwitch
+                      id={`tp-${item.key}-status`}
+                      checked={tpStates[item.key as keyof typeof tpStates]}
+                      onChange={() =>
+                        handleTpToggle(item.key as keyof typeof tpStates)
+                      }
+                    />
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -62,21 +156,6 @@ export default function SmartSell() {
           Smart Sell becomes available after token deployment.
         </p>
       </div>
-
-      {/* Configuration Buttons */}
-     <div>
-  <SectionTitle>Configuration Actions</SectionTitle>
-  <div className="flex flex-wrap justify-center sm:justify-start gap-3">
-    {configButtons.map((label, index) => (
-      <GradientButton
-        key={index}
-        label={label}
-        className="px-3 py-2 w-full sm:w-auto min-w-[200px] sm:min-w-[220px]"
-      />
-    ))}
-  </div>
-</div>
-
     </div>
   );
 }
@@ -100,30 +179,6 @@ function Card({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return <h3 className="text-white text-2xl mb-4">{children}</h3>;
-}
-
-function StatusCard({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
-  const isOff = value.toLowerCase() === "off";
-
-  return (
-    <div className="flex flex-col gap-2 bg-[#FFFFFF05] p-4 rounded-xl border border-[#22242D]">
-      <div className="text-[15px] text-[#FFFFFF] mb-1">{label}</div>
-      {isOff ? (
-        <div className="flex items-center gap-2 text-xs text-[#FF4D4D] font-semibold bg-[#6E6E6E12] px-3 py-1 rounded-[4px] w-fit">
-          <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#FF0000] via-[#FF4D4D] to-[#FF7B7B]" />
-          OFF
-        </div>
-      ) : (
-        <div className="text-[16px] font-semibold text-[#6A7A8C]">{value}</div>
-      )}
-    </div>
-  );
 }
 
 function RequirementItem({ label, met }: { label: string; met: boolean }) {
