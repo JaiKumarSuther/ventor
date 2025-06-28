@@ -81,14 +81,14 @@ const FundWalletPage = () => {
       {/* Left Column */}
       <div className="flex-1 border border-[#22242D] pb-20 bg-[#101017] flex flex-col gap-8">
         {/* Top Row */}
-        <div className="flex justify-between items-center border-b border-[#22242D] p-5">
-          <h2 className="text-white text-lg font-semibold">Funding Method</h2>
+        <div className="flex justify-between items-center border-b border-[#22242D] p-3 md:p-5">
+          <h2 className="text-white text-sm md:text-lg font-semibold">Funding Method</h2>
           <GradientButton
             label="Start Funding"
             onClick={() => console.log("Start Funding Clicked")}
             gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
             hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-            className="h-9 px-6"
+            className="h-9 md:h-9 px-3 md:px-6"
           />
         </div>
 
