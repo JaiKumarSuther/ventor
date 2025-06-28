@@ -1,7 +1,11 @@
 "use client";
 
+import ActivationChecklist from "@/components/ui/ActivationChecklist";
 // import GradientButton from "@/components/ui/GradientButton";
 import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
+import LastSellTransactions from "@/components/ui/LastSellTransactions";
+import MatrixCard from "@/components/ui/MatrixCard";
+
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -15,11 +19,26 @@ export default function SmartSell() {
       viewable: true,
       toggle: true,
     },
-    { key: "wallets", label: "Whitelisted Wallets", value: "6", editable: true },
-    { key: "sellOnBuy", label: "Sell % on Buy", value: "1.00%", editable: true },
+    {
+      key: "wallets",
+      label: "Whitelisted Wallets",
+      value: "6",
+      editable: true,
+    },
+    {
+      key: "sellOnBuy",
+      label: "Sell % on Buy",
+      value: "1.00%",
+      editable: true,
+    },
     { key: "stopIfHolding", label: "Stop if Holding <", value: "1.00%" },
     { key: "minSol", label: "Min SOL to Activate", value: "0.5000 SOL" },
-    { key: "minMcap", label: "Min MCAP to Activate", value: "$1.00", editable: true },
+    {
+      key: "minMcap",
+      label: "Min MCAP to Activate",
+      value: "$1.00",
+      editable: true,
+    },
   ];
 
   const [statusCardValues, setStatusCardValues] = useState(
@@ -32,14 +51,7 @@ export default function SmartSell() {
 
   const [editingKey, setEditingKey] = useState<string | null>(null);
 
-  const requirements = [
-    { label: "Token Deployed", met: false },
-    { label: "Min SOL Set", met: true },
-    { label: "Min MCAP Set", met: true },
-    { label: "Set % Configured", met: true },
-    { label: "Stop Holding % Set", met: true },
-    { label: "Wallets Whitelisted", met: true },
-  ];
+
 
   const [tpStates, setTpStates] = useState({
     smartSell: false,
@@ -82,7 +94,9 @@ export default function SmartSell() {
                 className="flex flex-col gap-2 bg-[#FFFFFF05] p-4 rounded-xl border border-[#22242D] relative"
               >
                 <div className="flex items-center justify-between">
-                  <div className="text-[15px] text-[#FFFFFF] mb-1">{item.label}</div>
+                  <div className="text-[15px] text-[#FFFFFF] mb-1">
+                    {item.label}
+                  </div>
                   {(item.editable || item.viewable) && (
                     <button
                       onClick={() => {
@@ -92,7 +106,12 @@ export default function SmartSell() {
                     >
                       {item.editable ? (
                         <>
-                          <Image src="/assets/edit.svg" alt="Edit" width={17} height={17} />
+                          <Image
+                            src="/assets/edit.svg"
+                            alt="Edit"
+                            width={17}
+                            height={17}
+                          />
                           Edit
                         </>
                       ) : (
@@ -115,11 +134,15 @@ export default function SmartSell() {
                         type="text"
                         value={statusCardValues[item.key]}
                         autoFocus
-                        onChange={(e) => handleInlineChange(item.key, e.target.value)}
+                        onChange={(e) =>
+                          handleInlineChange(item.key, e.target.value)
+                        }
                         onBlur={() => setEditingKey(null)}
                         className="bg-transparent border border-[#333] text-white px-2 py-1 rounded w-[100px] outline-none"
                       />
-                      <span className="text-white text-base font-semibold">{unit}</span>
+                      <span className="text-white text-base font-semibold">
+                        {unit}
+                      </span>
                     </div>
                   ) : (
                     <div className="text-lg font-semibold text-[#6A7A8C]">
@@ -144,8 +167,11 @@ export default function SmartSell() {
         </div>
       </div>
 
+      <LastSellTransactions/>
+      <ActivationChecklist/>
+
       {/* Activation Requirements */}
-      <div>
+      {/* <div>
         <SectionTitle>Activation Requirements</SectionTitle>
         <div className="flex flex-col gap-4">
           {requirements.map((item, index) => (
@@ -155,6 +181,23 @@ export default function SmartSell() {
         <p className="text-sm text-[#D99235] mt-4">
           Smart Sell becomes available after token deployment.
         </p>
+      </div> */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+        <MatrixCard
+          icon="/assets/supply-held.svg"
+          label="Supply Held"
+          value="182,000 ORBT"
+        />
+        <MatrixCard
+          icon="/assets/live-pnl.svg"
+          label="Total Sold"
+          value={`3,920 SOL`}
+        />
+        <MatrixCard
+          icon="/assets/total-sold.svg"
+          label="Live PNL"
+          value={`+142.3%`}
+        />
       </div>
     </div>
   );
@@ -173,36 +216,6 @@ function Card({
     <div className="bg-[#FFFFFF05] p-4 rounded-xl border border-[#22242D]">
       <h2 className="text-[20px] text-white mb-2">{title}</h2>
       {children}
-    </div>
-  );
-}
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-white text-2xl mb-4">{children}</h3>;
-}
-
-function RequirementItem({ label, met }: { label: string; met: boolean }) {
-  const iconSrc = met ? "/assets/right.svg" : "/assets/cross.svg";
-  const altText = met ? "Success" : "Failure";
-
-  const subtextMap: Record<string, string> = {
-    "Token Deployed": "Required for activation",
-    "Min SOL Set": "Set minimum SOL",
-    "Min MCAP Set": "Set minimum MCAP",
-    "Set % Configured": "Set sell percentage",
-    "Stop Holding % Set": "Set stop holding threshold",
-    "Wallets Whitelisted": "Add at least one wallet",
-  };
-
-  return (
-    <div className="flex items-start gap-3">
-      <div className="flex justify-center items-center bg-[#101217] w-11 aspect-square rounded-md border border-[#22242D]">
-        <Image src={iconSrc} width={20} height={20} alt={altText} />
-      </div>
-      <div className="flex flex-col">
-        <span className="text-sm font-medium text-white">{label}</span>
-        <span className="text-xs text-[#6A7A8C]">{subtextMap[label] || ""}</span>
-      </div>
     </div>
   );
 }

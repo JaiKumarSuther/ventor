@@ -172,7 +172,9 @@ body {
   cursor: pointer;
   transition: background 0.2s ease;
 }
-
+button {
+  cursor: pointer;
+}
 .checkbox-wrapper-simple .tgl-btn-simple::after {
   content: "";
   position: absolute;

@@ -1,13 +1,14 @@
 "use client";
-
-import React from "react";
+import React, { useState } from "react";
 import PageContainer from "@/components/ui/PageContainer";
-import GradientButton from "@/components/ui/GradientButton";
 import LifecycleProgress from "@/components/ui/LifecycleProgress";
 import BubbleMapChart from "@/components/ui/BubbleMapChart";
 import Image from "next/image";
+import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
 
 export default function OverviewPage() {
+    const [smartSellEnabled, setSmartSellEnabled] = useState(true); // <-- Step 2
+
   const stats = [
     {
       label: "Market Cap",
@@ -106,82 +107,86 @@ export default function OverviewPage() {
    <div className="mb-10">
   <h1 className="text-2xl font-semibold mb-4">Wallet Holdings</h1>
 
-  <div className="bg-[#101017] border border-[#22242D] rounded-xl p-5">
-    {/* Header with actions */}
-    <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
-      <h3 className="text-white text-lg font-semibold">Wallet Holdings</h3>
-      <div className="flex flex-wrap gap-2">
-        <GradientButton label="Add Batch" className="px-4 py-[6px]" />
-        <GradientButton label="Add Wallet" className="px-4 py-[6px]" />
-        <button className="border-[1.5px] text-sm font-semibold cursor-pointer text-[#5A43C6] border-[#5A43C6] hover:bg-[#5b43c614] rounded-full px-4 py-[6px]">
-          Configure
+  <div className="bg-[#101017] border border-[#22242D] rounded-xl p-4 sm:p-5">
+    {/* Header Row */}
+    <div className="flex justify-between items-center gap-4 sm:gap-0 mb-5">
+      <div className="text-white text-sm font-medium">Wallet ID</div>
+    
+      <div className="flex justify-start sm:justify-end gap-3">
+      <div className="text-[#6A7A8C] text-sm flex items-center gap-2">
+        Smart Sell
+        <CustomToggleSwitch
+          id="smart-sell"
+          checked={smartSellEnabled}
+          onChange={() => setSmartSellEnabled(!smartSellEnabled)}
+        />
+      </div>
+        <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#0f2a1b]/30">
+          Buy All
+        </button>
+        <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#2e1616]/30">
+          Sell All
         </button>
       </div>
-    </div>
-
-    {/* Table Header */}
-    <div className="hidden md:grid grid-cols-5 text-[#6A7A8C] text-xs border-b border-[#22242D] pb-2 mb-3">
-      <div>Wallet Batches</div>
-      <div>Wallet ID</div>
-      <div>Supply</div>
-      <div>Status</div>
-      <div className="text-right">Actions</div>
     </div>
 
     {/* Table Rows */}
     {[
       {
         name: "Each Wallet",
-        walletId: "JI4D-4498",
+        walletId: "JIAO-4498",
         supply: "89%",
         status: "Active",
-        color: "#00A34F",
+        statusColor: "#00A34F",
       },
       {
         name: "Marketing Wallet",
-        walletId: "VXA-2034",
+        walletId: "VXIA-2034",
         supply: "76%",
         status: "Flagged",
-        color: "#E43021",
+        statusColor: "#E43021",
       },
       {
         name: "Sniper Batch",
-        walletId: "MPSA-1125",
+        walletId: "MPSA-1126",
         supply: "53%",
         status: "Pending",
-        color: "#D99235",
+        statusColor: "#D99235",
       },
     ].map((row, i) => (
       <div
         key={i}
-        className="grid md:grid-cols-5 grid-cols-1 gap-2 items-start md:items-center text-sm py-4 border-b border-[#22242D] last:border-none"
+        className="grid grid-cols-1 sm:grid-cols-5 items-start sm:items-center gap-4 sm:gap-0 border-t border-[#22242D] py-4 text-sm"
       >
+        {/* Wallet Name */}
         <div className="flex items-center gap-2 text-white font-medium">
           <Image
             src="/assets/wallet.svg"
-            width={20}
-            height={20}
-            alt="wallet icon"
-            className="flex-shrink-0"
+            alt="wallet"
+            width={18}
+            height={18}
           />
           {row.name}
         </div>
 
-        <div className="text-[#6A7A8C] text-xs md:mt-0 mt-1">
-          <span className="md:hidden font-semibold text-white">Wallet ID: </span>
+        {/* Wallet ID */}
+        <div className="text-[#6A7A8C]">
+          <span>Wallet ID: </span>
           {row.walletId}
         </div>
 
-        <div className="text-[#8D73FF] font-semibold md:mt-0 mt-1">
-          <span className="md:hidden font-semibold text-white">Supply: </span>
+        {/* Supply */}
+        <div className="text-[#8D73FF]">
+          <span className="text-[#6A7A8C]">Supply: </span>
           {row.supply}
         </div>
 
-        <div className="md:mt-0 mt-1">
+        {/* Status */}
+        <div>
           <span
-            className="text-xs px-2 py-0.5 rounded-md inline-block"
+            className="text-xs px-4 py-2 rounded-md"
             style={{
-              color: row.color,
+              color: row.statusColor,
               backgroundColor: "#6E6E6E12",
             }}
           >
@@ -189,30 +194,30 @@ export default function OverviewPage() {
           </span>
         </div>
 
-        <div className="flex md:justify-end gap-2 md:mt-0 mt-2">
-  <button
-    className="text-xs px-3 py-1 rounded-full border border-[#00A34F] text-[#00A34F] bg-transparent hover:bg-[#0f2a1b]/40"
-  >
-    Buy All
-  </button>
-  <button
-    className="text-xs px-3 py-1 rounded-full border border-[#00A34F] text-[#00A34F] bg-transparent hover:bg-[#0f2a1b]/40"
-  >
-    Sell All
-  </button>
-</div>
-
+        {/* Action Buttons */}
+        <div className="flex justify-start sm:justify-end gap-2">
+          {[25, 50, 100, 25, 50, 100].map((val, idx) => (
+            <button
+              key={idx}
+              className={`text-xs px-4 py-1.5 rounded-md font-medium bg-[#6E6E6E12] ${
+                idx < 3
+                  ? "text-[#00A34F] hover:bg-[#0f2a1b]/40"
+                  : "text-[#E43021] hover:bg-[#2e1616]/40"
+              }`}
+            >
+              {val}
+            </button>
+          ))}
+        </div>
       </div>
     ))}
   </div>
 </div>
 
-
       {/* Bubble Map */}
       <div className="mb-10">
         <h1 className="text-2xl font-semibold mb-4">Bubble Map Distribution</h1>
-          <BubbleMapChart />
-        
+        <BubbleMapChart />
       </div>
     </PageContainer>
   );

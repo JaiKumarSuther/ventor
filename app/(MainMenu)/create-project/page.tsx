@@ -49,7 +49,7 @@ export default function CreateProject() {
     console.log("Cancel clicked");
   };
   const handleFinish = () => {
-    router.push("/swap-manager"); // Redirect to '/myprofile' using router.push
+    router.push("/features/overview"); // Redirect to '/myprofile' using router.push
   };
 
   const updateProjectData = (data: Partial<typeof projectData>) => {

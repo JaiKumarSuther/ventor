@@ -86,7 +86,7 @@ export default function DashboardPage() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDestinationAddress(e.target.value); // Update state when input changes
+    setDestinationAddress(e.target.value);
   };
 
   return (
@@ -237,7 +237,7 @@ export default function DashboardPage() {
               pnl="2%"
               projectId={`VX1A-9034-${index + 1}`}
               status={index % 2 === 0 ? "Launched" : "Not Launched"}
-              onDoubleClick={() => router.push("/features/swap-manager")}
+              onDoubleClick={() => router.push("/features/overview")}
               onMoreClick={() => router.push("/create-project")}
             />
           ))}
