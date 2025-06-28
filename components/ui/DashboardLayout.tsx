@@ -27,7 +27,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   // const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-background px-4 md:px-6 overflow-hidden">
+    <div className="flex flex-col w-full min-h-screen bg-background md:px-6 overflow-hidden">
       {/* Header */}
       <div className="w-full flex gap-4 mb-6 flex-row md:items-center justify-between py-4">
         <h2 className="text-foreground text-3xl font-semibold">{title}</h2>
