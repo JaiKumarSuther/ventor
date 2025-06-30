@@ -177,7 +177,7 @@ export default function WalletSetupStep({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col lg:flex-row min-h-[600px]">
+      <div className="flex flex-col lg:flex-row min-h-[800px]">
         {/* Wallets Section */}
         <div className="flex flex-col flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
           {/* Top Bar */}
@@ -224,13 +224,22 @@ export default function WalletSetupStep({
           </div>
 
           {/* Bottom Action */}
-          <div className="flex p-8">
+          <div className="flex justify-between items-center p-8">
             <GradientButton
-              label="Warmup Wallets"
-              onClick={handleWarmupWalletsClick} // Trigger Popup when clicked
+              label="Fund Wallets"
+              onClick={() => {
+                if (selectedWallets.length > 0) {
+                  window.location.href = "/fund-wallet"; // or use router.push if using Next.js Router
+                }
+              }}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="h-10 px-5"
+              className="h-10 px-5 text-base"
+              disabled={selectedWallets.length === 0}
+              style={{
+                cursor:
+                  selectedWallets.length === 0 ? "not-allowed" : "pointer",
+              }}
             />
           </div>
         </div>
@@ -258,8 +267,9 @@ export default function WalletSetupStep({
                 onClick={() => handleBatchSelect(batch.id)}
                 className="flex items-center justify-between border-b border-[#22242D] bg-[#101017] h-9 px-4 cursor-pointer"
               >
-                <div className="flex items-center gap-2" 
-                onClick={(e) => e.stopPropagation()}
+                <div
+                  className="flex items-center gap-2"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <GradientCheckbox
                     checked={selectedBatches.includes(batch.id)}
