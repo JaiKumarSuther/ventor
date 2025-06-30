@@ -131,9 +131,7 @@ export default function WalletSetupStep({
     ]);
   };
 
-  const handleWarmupWalletsClick = () => {
-    setPopupVisible(true); // Show the popup when the button is clicked
-  };
+ 
 
   const handleSelectAllWallets = () => {
     setSelectedWallets(wallets.map((wallet) => wallet.id));
