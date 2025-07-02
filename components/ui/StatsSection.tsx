@@ -29,16 +29,19 @@ const StatsSection: React.FC<StatsSectionProps> = ({ stats }) => {
         {/* Subtitle */}
       </div>
       <div className="flex flex-wrap justify-start gap-4 sm:gap-6 md:gap-6 w-full max-w-6xl ">
-      {stats.map((stat) => (
-        <div key={stat.id} className="flex-1 min-w-[250px] md:-w-[300px]">
-          <StatsCard
-            title={stat.title}
-            value={stat.value}
-            subtitle={stat.subtitle}
-            alreadyClaimed={stat.alreadyClaimed}
-          />
-        </div>
-      ))}
+      <div className="flex flex-wrap gap-4">
+  {stats.map((stat) => (
+    <div key={stat.id} className="flex-1 min-w-[250px] md:w-[300px]">
+      <StatsCard
+        title={stat.title}
+        value={stat.value}
+        subtitle={stat.subtitle}
+        alreadyClaimed={stat.alreadyClaimed}
+      />
+    </div>
+  ))}
+</div>
+
     </div>
     </div>
   );

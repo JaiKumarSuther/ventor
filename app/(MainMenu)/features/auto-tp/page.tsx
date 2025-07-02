@@ -26,7 +26,7 @@ export default function AutoTP() {
 
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 space-y-8 min-h-screen">
+    <div className="space-y-8 min-h-screen">
       {/* Bottom Button */}
       <div className="flex justify-end">
         <GradientButton

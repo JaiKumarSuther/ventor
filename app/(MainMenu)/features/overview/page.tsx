@@ -5,9 +5,10 @@ import LifecycleProgress from "@/components/ui/LifecycleProgress";
 import BubbleMapChart from "@/components/ui/BubbleMapChart";
 import Image from "next/image";
 import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
+import GradientButton from "@/components/ui/GradientButton";
 
 export default function OverviewPage() {
-    const [smartSellEnabled, setSmartSellEnabled] = useState(true); // <-- Step 2
+  const [smartSellEnabled, setSmartSellEnabled] = useState(true); // <-- Step 2
 
   const stats = [
     {
@@ -49,15 +50,26 @@ export default function OverviewPage() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
-            Sell Dev
+        <div className="flex flex-col justify-between flex-wrap gap-2">
+          <div className="flex justify-end mb-3">
+            <GradientButton
+              label="Deploy"
+              onClick={() => console.log("Deployed")}
+              gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+              hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+              className="h-9 md:h-9 px-3 md:px-6"
+            />
           </div>
-          <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default cursor-arrow border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
-            Sell All + Dev
-          </div>
-          <div className="text-[#00A34F] border border-[#00A34F] hover:bg-[#0f2a1b]/40 cursor-default rounded-full px-4 py-1.5 text-sm">
-            Buy All
+          <div className="flex items-center gap-3">
+            <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
+              Sell Dev
+            </div>
+            <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default cursor-arrow border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
+              Sell All + Dev
+            </div>
+            <div className="text-[#00A34F] border border-[#00A34F] hover:bg-[#0f2a1b]/40 cursor-default rounded-full px-4 py-1.5 text-sm">
+              Buy All
+            </div>
           </div>
         </div>
       </div>
@@ -104,115 +116,115 @@ export default function OverviewPage() {
       </div>
 
       {/* Wallet Holdings */}
-   <div className="mb-10">
-  <h1 className="text-2xl font-semibold mb-4">Wallet Holdings</h1>
+      <div className="mb-10">
+        <h1 className="text-2xl font-semibold mb-4">Wallet Holdings</h1>
 
-  <div className="bg-[#101017] border border-[#22242D] rounded-xl p-4 sm:p-5">
-    {/* Header Row */}
-    <div className="flex justify-between items-center gap-4 sm:gap-0 mb-5">
-      <div className="text-white text-sm font-medium">Wallet ID</div>
-    
-      <div className="flex justify-start sm:justify-end gap-3">
-      <div className="text-[#6A7A8C] text-sm flex items-center gap-2">
-        Smart Sell
-        <CustomToggleSwitch
-          id="smart-sell"
-          checked={smartSellEnabled}
-          onChange={() => setSmartSellEnabled(!smartSellEnabled)}
-        />
-      </div>
-        <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#0f2a1b]/30">
-          Buy All
-        </button>
-        <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#2e1616]/30">
-          Sell All
-        </button>
-      </div>
-    </div>
+        <div className="bg-[#101017] border border-[#22242D] rounded-xl p-4 sm:p-5">
+          {/* Header Row */}
+          <div className="flex justify-between items-center gap-4 sm:gap-0 mb-5">
+            <div className="text-white text-sm font-medium">Wallet ID</div>
 
-    {/* Table Rows */}
-    {[
-      {
-        name: "Each Wallet",
-        walletId: "JIAO-4498",
-        supply: "89%",
-        status: "Active",
-        statusColor: "#00A34F",
-      },
-      {
-        name: "Marketing Wallet",
-        walletId: "VXIA-2034",
-        supply: "76%",
-        status: "Flagged",
-        statusColor: "#E43021",
-      },
-      {
-        name: "Sniper Batch",
-        walletId: "MPSA-1126",
-        supply: "53%",
-        status: "Pending",
-        statusColor: "#D99235",
-      },
-    ].map((row, i) => (
-      <div
-        key={i}
-        className="grid grid-cols-1 sm:grid-cols-5 items-start sm:items-center gap-4 sm:gap-0 border-t border-[#22242D] py-4 text-sm"
-      >
-        {/* Wallet Name */}
-        <div className="flex items-center gap-2 text-white font-medium">
-          <Image
-            src="/assets/wallet.svg"
-            alt="wallet"
-            width={18}
-            height={18}
-          />
-          {row.name}
-        </div>
+            <div className="flex justify-start sm:justify-end gap-3">
+              <div className="text-[#6A7A8C] text-sm flex items-center gap-2">
+                Smart Sell
+                <CustomToggleSwitch
+                  id="smart-sell"
+                  checked={smartSellEnabled}
+                  onChange={() => setSmartSellEnabled(!smartSellEnabled)}
+                />
+              </div>
+              <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#0f2a1b]/30">
+                Buy All
+              </button>
+              <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#2e1616]/30">
+                Sell All
+              </button>
+            </div>
+          </div>
 
-        {/* Wallet ID */}
-        <div className="text-[#6A7A8C]">
-          <span>Wallet ID: </span>
-          {row.walletId}
-        </div>
-
-        {/* Supply */}
-        <div className="text-[#8D73FF]">
-          <span className="text-[#6A7A8C]">Supply: </span>
-          {row.supply}
-        </div>
-
-        {/* Status */}
-        <div>
-          <span
-            className="text-xs px-4 py-2 rounded-md"
-            style={{
-              color: row.statusColor,
-              backgroundColor: "#6E6E6E12",
-            }}
-          >
-            {row.status}
-          </span>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex justify-start sm:justify-end gap-2">
-          {[25, 50, 100, 25, 50, 100].map((val, idx) => (
-            <button
-              key={idx}
-              className={`text-xs px-4 py-1.5 rounded-md font-medium bg-[#6E6E6E12] ${
-                idx < 3
-                  ? "text-[#00A34F] hover:bg-[#0f2a1b]/40"
-                  : "text-[#E43021] hover:bg-[#2e1616]/40"
-              }`}
+          {/* Table Rows */}
+          {[
+            {
+              name: "Each Wallet",
+              walletId: "JIAO-4498",
+              supply: "89%",
+              status: "Active",
+              statusColor: "#00A34F",
+            },
+            {
+              name: "Marketing Wallet",
+              walletId: "VXIA-2034",
+              supply: "76%",
+              status: "Flagged",
+              statusColor: "#E43021",
+            },
+            {
+              name: "Sniper Batch",
+              walletId: "MPSA-1126",
+              supply: "53%",
+              status: "Pending",
+              statusColor: "#D99235",
+            },
+          ].map((row, i) => (
+            <div
+              key={i}
+              className="grid grid-cols-1 sm:grid-cols-5 items-start sm:items-center gap-4 sm:gap-0 border-t border-[#22242D] py-4 text-sm"
             >
-              {val}
-            </button>
+              {/* Wallet Name */}
+              <div className="flex items-center gap-2 text-white font-medium">
+                <Image
+                  src="/assets/wallet.svg"
+                  alt="wallet"
+                  width={18}
+                  height={18}
+                />
+                {row.name}
+              </div>
+
+              {/* Wallet ID */}
+              <div className="text-[#6A7A8C]">
+                <span>Wallet ID: </span>
+                {row.walletId}
+              </div>
+
+              {/* Supply */}
+              <div className="text-[#8D73FF]">
+                <span className="text-[#6A7A8C]">Supply: </span>
+                {row.supply}
+              </div>
+
+              {/* Status */}
+              <div>
+                <span
+                  className="text-xs px-4 py-2 rounded-md"
+                  style={{
+                    color: row.statusColor,
+                    backgroundColor: "#6E6E6E12",
+                  }}
+                >
+                  {row.status}
+                </span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-start sm:justify-end gap-2">
+                {[25, 50, 100, 25, 50, 100].map((val, idx) => (
+                  <button
+                    key={idx}
+                    className={`text-xs px-4 py-1.5 rounded-md font-medium bg-[#6E6E6E12] ${
+                      idx < 3
+                        ? "text-[#00A34F] hover:bg-[#0f2a1b]/40"
+                        : "text-[#E43021] hover:bg-[#2e1616]/40"
+                    }`}
+                  >
+                    {val}
+                  </button>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
 
       {/* Bubble Map */}
       <div className="mb-10">

@@ -1,13 +1,11 @@
 "use client";
-
-import ActivationChecklist from "@/components/ui/ActivationChecklist";
-// import GradientButton from "@/components/ui/GradientButton";
+import React, { useState } from "react";
+import Image from "next/image";
 import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
 import LastSellTransactions from "@/components/ui/LastSellTransactions";
 import MatrixCard from "@/components/ui/MatrixCard";
-
-import Image from "next/image";
-import React, { useState } from "react";
+import ActivationChecklist from "@/components/ui/ActivationChecklist";
+import SelectWalletModal from "@/components/ui/SelectWalletModal"; // Import the Wallet Modal
 
 export default function SmartSell() {
   const initialStatusCards = [
@@ -50,12 +48,11 @@ export default function SmartSell() {
   );
 
   const [editingKey, setEditingKey] = useState<string | null>(null);
-
-
-
   const [tpStates, setTpStates] = useState({
     smartSell: false,
   });
+
+  const [showWalletModal, setShowWalletModal] = useState(false); // Wallet modal state
 
   const handleTpToggle = (key: keyof typeof tpStates) => {
     setTpStates((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -70,6 +67,14 @@ export default function SmartSell() {
   const getUnit = (value: string): string => {
     const match = value.match(/[a-zA-Z%$]+/g);
     return match ? match.join("") : "";
+  };
+
+  const handleViewClick = () => {
+    setShowWalletModal(true); // Show wallet selection modal
+  };
+
+  const handleCloseModal = () => {
+    setShowWalletModal(false); // Close the wallet selection modal
   };
 
   return (
@@ -101,6 +106,7 @@ export default function SmartSell() {
                     <button
                       onClick={() => {
                         if (item.editable) setEditingKey(item.key);
+                        else handleViewClick(); // Open wallet modal if viewable
                       }}
                       className="flex items-center cursor-pointer text-[#8761FF] font-medium gap-1"
                     >
@@ -167,21 +173,9 @@ export default function SmartSell() {
         </div>
       </div>
 
-      <LastSellTransactions/>
-      <ActivationChecklist/>
+      <LastSellTransactions />
+      <ActivationChecklist />
 
-      {/* Activation Requirements */}
-      {/* <div>
-        <SectionTitle>Activation Requirements</SectionTitle>
-        <div className="flex flex-col gap-4">
-          {requirements.map((item, index) => (
-            <RequirementItem key={index} {...item} />
-          ))}
-        </div>
-        <p className="text-sm text-[#D99235] mt-4">
-          Smart Sell becomes available after token deployment.
-        </p>
-      </div> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         <MatrixCard
           icon="/assets/supply-held.svg"
@@ -199,6 +193,9 @@ export default function SmartSell() {
           value={`+142.3%`}
         />
       </div>
+
+      {/* Show Modal */}
+      {showWalletModal && <SelectWalletModal onClose={handleCloseModal} />}
     </div>
   );
 }
