@@ -223,10 +223,11 @@ button {
   width: 18px;
   height: 18px;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #0D0E12;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
-              inset 0 -1px 1px rgba(0, 0, 0, 0.15);
+              inset 0 -1px 1px rgba(0, 0, 0, 0);
   transition: all 0.15s ease;
+  border: 1px solid #868686;
 }
 
 .checkbox-wrapper-65 .cbx svg {

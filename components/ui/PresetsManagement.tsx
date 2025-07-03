@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PresetItem from "./PresetItem";
 import GradientButton from "./GradientButton";
 import CreatePresetModal from "./CreatePresetModal"; // Import the modal component
-import { Zap } from "lucide-react";
+import Image from "next/image";
 
 interface PresetData {
   name: string;
@@ -35,7 +35,9 @@ const PresetsManagement: React.FC = () => {
   return (
     <div className="mb-8 border-b py-10 border-[#22242D]">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-md md:text-2xl lg:text-3xl font-semibold text-white">Presents Management</h1>
+        <h1 className="text-md md:text-2xl lg:text-3xl font-semibold text-white">
+          Presents Management
+        </h1>
         <GradientButton
           label="Create Present"
           onClick={handleOpenModal}
@@ -52,7 +54,9 @@ const PresetsManagement: React.FC = () => {
           onPlay={() => {}}
           onEdit={() => {}}
           onDelete={() => {}}
-          icon={<Zap size={20} color="#E8EAED" />}
+          icon={
+            <Image src="/assets/zap.svg" alt="Edit" width={20} height={20} />
+          }
         />
 
         <PresetItem
@@ -61,7 +65,9 @@ const PresetsManagement: React.FC = () => {
           onPlay={() => {}}
           onEdit={() => {}}
           onDelete={() => {}}
-          icon={<Zap size={20} color="#E8EAED" />}
+          icon={
+            <Image src="/assets/shield.svg" alt="Edit" width={20} height={20} />
+          }
         />
       </div>
 

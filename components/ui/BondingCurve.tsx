@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-export default function LifecycleProgress({ progress }: { progress: number }) {
+export default function BondingCurve({ progress }: { progress: number }) {
   return (
     <div className="bg-[#0D0E12] border border-[#22242D] rounded-xl p-5">
       {/* Title Row */}
@@ -12,7 +12,7 @@ export default function LifecycleProgress({ progress }: { progress: number }) {
           height={16}
           alt="Progress Icon"
         />
-        <h4 className="text-white text-sm font-medium">Lifecycle Progress</h4>
+        <h4 className="text-white text-sm font-medium">Bonding Curve</h4>
       </div>
 
       {/* Progress Info */}

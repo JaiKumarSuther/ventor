@@ -181,33 +181,34 @@ const [wallets, setWallets] = useState([
                 </p>
 
                 <p className="text-[#B4B4B4] text-sm">Mode</p>
-                <div className="relative">
-                  <div
-                    onClick={() => toggleDropdown(wallet.id)}
-                    className="cursor-pointer text-sm text-white text-right pr-6 rounded-full py-2 bg-[#6E6E6E12] flex items-center justify-between pl-4"
-                  >
-                    <span>{wallet.mode}</span>
-                    {openDropdowns[wallet.id] ? (
-                      <ChevronUp size={16} className="absolute right-2" />
-                    ) : (
-                      <ChevronDown size={16} className="absolute right-2" />
-                    )}
-                  </div>
-                  
-                  {openDropdowns[wallet.id] && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-[#1A1B20] border border-[#22242D] rounded-md z-50 shadow-lg">
-                      {["Custom", "Standard", "Advanced"].map((mode) => (
-                        <div
-                          key={mode}
-                          onClick={() => handleModeChange(wallet.id, mode)}
-                          className="px-4 py-2 text-white text-sm cursor-pointer hover:bg-[#2A2B30] first:rounded-t-md last:rounded-b-md"
-                        >
-                          {mode}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+            <div className="relative w-[100px] ml-auto">
+  <div
+    onClick={() => toggleDropdown(wallet.id)}
+    className="cursor-pointer text-sm text-[#6A7A8C] pr-10 rounded-full py-1 bg-[#6E6E6E12] flex items-center justify-between pl-4"
+  >
+    <span>{wallet.mode}</span>
+    {openDropdowns[wallet.id] ? (
+      <ChevronUp size={16} className="absolute right-2" />
+    ) : (
+      <ChevronDown size={16} className="absolute right-2" />
+    )}
+  </div>
+
+  {openDropdowns[wallet.id] && (
+    <div className="absolute top-full left-0 right-0 mt-1 bg-[#1A1B20] border border-[#22242D] rounded-md z-50 shadow-lg">
+      {["Custom", "Standard", "Advanced"].map((mode) => (
+        <div
+          key={mode}
+          onClick={() => handleModeChange(wallet.id, mode)}
+          className="px-4 py-2 text-white text-sm cursor-pointer hover:bg-[#2A2B30] first:rounded-t-md last:rounded-b-md"
+        >
+          {mode}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
               </div>
 
               {/* Action Buttons */}

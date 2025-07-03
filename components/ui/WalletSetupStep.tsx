@@ -4,7 +4,7 @@ import GradientButton from "@/components/ui/GradientButton";
 import GradientCheckbox from "@/components/ui/GradientCheckbox";
 import DashboardActions from "@/components/ui/DashboardActions";
 import DataTable from "@/components/ui/DataTable";
-import WalletPopup from "@/components/ui/WalletPopup"; // Adjust the path if necessary
+import WalletPopup from "@/components/ui/WalletPopup";
 import Image from "next/image";
 
 interface Wallet {
@@ -224,7 +224,7 @@ export default function WalletSetupStep({
           {/* Bottom Action */}
           <div className="flex justify-between items-center p-8">
             <GradientButton
-              label="Fund Wallets"
+              label="Warmup Wallets"
               onClick={() => {
                 if (selectedWallets.length > 0) {
                   window.location.href = "/fund-wallet"; // or use router.push if using Next.js Router

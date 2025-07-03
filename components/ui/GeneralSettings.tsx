@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import CustomToggleSwitch from "./CustomToggleSwitch";
-import Image from "next/image";
 
 interface GeneralSettingsProps {
   tipAmountEnabled: boolean;
@@ -89,12 +88,12 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                 onClick={() => setIsEditing(true)}
                 className="cursor-pointer"
               >
-                <Image
+                {/* <Image
                   src="/assets/pencil.svg"
                   alt="Edit"
                   width={20}
                   height={20}
-                />
+                /> */}
               </button>
             </div>
           )}
@@ -136,12 +135,12 @@ const GeneralSettings: React.FC<GeneralSettingsProps> = ({
                     onClick={() => setSlippageEditing(true)}
                     className="cursor-pointer"
                   >
-                    <Image
+                    {/* <Image
                       src="/assets/pencil.svg"
                       alt="Edit"
                       width={20}
                       height={20}
-                    />
+                    /> */}
                   </button>
                 </div>
               )}

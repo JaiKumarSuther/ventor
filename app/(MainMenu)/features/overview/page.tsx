@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import PageContainer from "@/components/ui/PageContainer";
-import LifecycleProgress from "@/components/ui/LifecycleProgress";
+import BondingCurve from "@/components/ui/BondingCurve";
 import BubbleMapChart from "@/components/ui/BubbleMapChart";
 import Image from "next/image";
 import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
@@ -109,10 +109,9 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      {/* Lifecycle Progress */}
       <div className="mb-10">
-        <h1 className="text-2xl font-semibold mb-4">Lifecycle Progress</h1>
-        <LifecycleProgress progress={80} />
+        <h1 className="text-2xl font-semibold mb-4">Bonding Curve</h1>
+        <BondingCurve progress={80} />
       </div>
 
       {/* Wallet Holdings */}

@@ -4,7 +4,6 @@ import Image from "next/image";
 import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
 import LastSellTransactions from "@/components/ui/LastSellTransactions";
 import MatrixCard from "@/components/ui/MatrixCard";
-import ActivationChecklist from "@/components/ui/ActivationChecklist";
 import SelectWalletModal from "@/components/ui/SelectWalletModal"; // Import the Wallet Modal
 
 export default function SmartSell() {
@@ -174,24 +173,27 @@ export default function SmartSell() {
       </div>
 
       <LastSellTransactions />
-      <ActivationChecklist />
+      {/* <ActivationChecklist /> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-        <MatrixCard
-          icon="/assets/supply-held.svg"
-          label="Supply Held"
-          value="182,000 ORBT"
-        />
-        <MatrixCard
-          icon="/assets/live-pnl.svg"
-          label="Total Sold"
-          value={`3,920 SOL`}
-        />
-        <MatrixCard
-          icon="/assets/total-sold.svg"
-          label="Live PNL"
-          value={`+142.3%`}
-        />
+      <div className="flex flex-col gap-4">
+        <h2 className="text-white text-2xl font-semibold">Summary Metrics</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <MatrixCard
+            icon="/assets/supply-held.svg"
+            label="Supply Held"
+            value="182,000 ORBT"
+          />
+          <MatrixCard
+            icon="/assets/live-pnl.svg"
+            label="Total Sold"
+            value={`3,920 SOL`}
+          />
+          <MatrixCard
+            icon="/assets/total-sold.svg"
+            label="Live PNL"
+            value={`+142.3%`}
+          />
+        </div>
       </div>
 
       {/* Show Modal */}
