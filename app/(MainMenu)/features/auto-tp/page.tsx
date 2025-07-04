@@ -23,7 +23,7 @@ export default function AutoTP() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen gap-3 mt-2 px-4 md:px-0 mb-5">
+    <div className="flex flex-col gap-3 mt-2">
       {/* Token Status Card */}
       <div className="flex items-start lg:items-end flex-col lg:flex-row gap-3 bg-[#FFFFFF05] border border-[#22242D] rounded-md px-4 py-4">
         <div className="flex lg:block gap-2 items-center">

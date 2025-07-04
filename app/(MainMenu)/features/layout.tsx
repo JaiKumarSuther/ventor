@@ -21,11 +21,10 @@ interface TabItem {
 
 export default function DashboardModules({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <TabsBar tabs={defaultTabs}/>
-      <div>
-
-      {children}
+    <div className="bg-[#06070B] flex flex-col">
+      <TabsBar tabs={defaultTabs} />
+      <div className=" pt-4 pb-6">
+        {children}
       </div>
     </div>
   );
