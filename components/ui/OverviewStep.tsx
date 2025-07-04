@@ -1,8 +1,9 @@
+
 "use client";
 import React, { useState } from "react";
 import DashboardActions from "@/components/ui/DashboardActions";
 import DataTable from "@/components/ui/DataTable";
-import GradientCheckbox from "./GradientCheckbox";
+import GradientCheckbox from "@/components/ui/GradientCheckbox";
 
 interface SettingOverviewProps {
   onFinish: () => void;
@@ -48,23 +49,14 @@ export default function SettingOverview({
     },
   ];
 
-  // State to track selected wallet ids
-  const [selectedWalletIds, setSelectedWalletIds] = useState<number[]>([]);
+  // State to track Batch 1 selection (functional)
+  const [isBatch1Selected, setIsBatch1Selected] = useState<boolean>(false);
 
-  // Handle the checkbox toggle for a specific wallet
-  const handleCheckboxChange = (walletId: number) => {
-    setSelectedWalletIds(
-      (prevSelected) =>
-        prevSelected.includes(walletId)
-          ? prevSelected.filter((id) => id !== walletId) // Uncheck if already selected
-          : [...prevSelected, walletId] // Check if not selected
-    );
-  };
-
+  // All wallets are pre-selected (from previous flows) - DataTable checkboxes are disabled
   const walletTableRows = selectedWallets.map((wallet) => ({
     id: wallet.id,
-    isSelected: selectedWalletIds.includes(wallet.id), // Determine if this wallet is selected
-    onSelect: () => handleCheckboxChange(wallet.id), // Toggle on click
+    isSelected: wallet.id === 1 || wallet.id === 4, // Always true to show they were selected in previous flows
+    onSelect: () => {}, // Empty function since checkboxes are disabled
     label: wallet.name,
     subLabel: wallet.address,
     hasCopy: true,
@@ -92,6 +84,7 @@ export default function SettingOverview({
     burRange: "3.8 - 4.4",
     tipAmount: "97",
   };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col lg:flex-row">
@@ -109,12 +102,12 @@ export default function SettingOverview({
               <div className="space-y-4">
                 <div
                   className="flex items-center gap-5 bg-[#FFFFFF05] h-11 w-full p-4 cursor-pointer"
-                  onClick={() => handleCheckboxChange(1)}
+                  onClick={() => setIsBatch1Selected(!isBatch1Selected)}
                 >
                   <div onClick={(e) => e.stopPropagation()}>
                     <GradientCheckbox
-                      checked={selectedWalletIds.includes(1)}
-                      onChange={() => handleCheckboxChange(1)}
+                      checked={isBatch1Selected}
+                      onChange={() => setIsBatch1Selected(!isBatch1Selected)}
                     />
                   </div>
                   <span className="text-white text-sm font-medium">
@@ -177,7 +170,7 @@ export default function SettingOverview({
               </span>
             </div>
 
-            {/* Wallet Table */}
+            {/* Wallet Table - Checkboxes disabled to show previous selections */}
             <DataTable
               headerColumns={["Address", "Balance", "# Use", "Age"]}
               rows={walletTableRows}

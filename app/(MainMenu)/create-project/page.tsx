@@ -22,7 +22,7 @@ export default function CreateProject() {
     telegramUrl: "",
     selectedWallets: [] as number[],
     selectedBatches: [] as number[],
-    launchMode: "", // <-- Added field for Launch Mode
+    launchMode: "",
     sniperSettings: {
       devBuy: 2.4,
       totalSnipe: 2.4,

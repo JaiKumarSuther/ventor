@@ -106,7 +106,7 @@ export default function SniperSettingsStep({
       </div>
 
       {/* ACTION BUTTONS */}
-      <div className="flex justify-end pt-10">
+      <div className="flex justify-end">
         <DashboardActions
           onFirstAction={onCancel}
           onSecondAction={onNext}
