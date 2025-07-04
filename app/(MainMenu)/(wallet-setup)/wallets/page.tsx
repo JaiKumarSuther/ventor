@@ -163,7 +163,7 @@ export default function WalletsScreen() {
 
   return (
     <div className="overflow-hidden bg-black">
-      <div className="flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[430px]">
+      <div className="flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[550px]">
         <div className="flex flex-col border-b md:border-b-0 md:border-r border-[#22242D] bg-[#0F0F10] w-full md:w-1/2">
           <div className="flex items-center justify-between p-4 gap-4 border-b border-[#22242D] flex-shrink-0">
             <h3 className="text-white text-base font-semibold">Wallets</h3>
@@ -339,7 +339,7 @@ export default function WalletsScreen() {
               >
                 <label
                   htmlFor="file-upload"
-                  className="flex flex-col items-center justify-center gap-2 rounded-lg  border-[#444] p-6 text-center cursor-pointer w-full hover:bg-[#18191b]"
+                  className="flex flex-col items-center justify-center gap-2 rounded-lg  border-[#444] p-6 text-center cursor-pointer w-full hover:bg-[#0000001e]"
                 >
                   <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
                     <Image

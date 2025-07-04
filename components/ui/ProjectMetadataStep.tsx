@@ -149,7 +149,7 @@ export default function ProjectMetadataStep({
 
       {/* Upload Box (File Upload with Click Anywhere to Trigger) */}
       <div
-        className="bg-[#101114] flex flex-col border border-[#22242D] p-4 gap-4"
+        className="bg-[#101017] flex flex-col border border-[#22242D] p-4 gap-4"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault();

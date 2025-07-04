@@ -213,7 +213,7 @@ export default function WalletSetupStep({
           </div>
 
           {/* Wallet Table - Scrollable */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 border-t border-[#22242D] overflow-y-auto">
             <DataTable
               headerColumns={["Address", "Balance", "# Use", "Age"]}
               rows={walletTableRows}
