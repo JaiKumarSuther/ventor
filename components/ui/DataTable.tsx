@@ -23,7 +23,7 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows, disableCheck
     <div className="h-full flex flex-col">
       {/* Desktop Header */}
       <div className="hidden md:block flex-shrink-0">
-        <div className="grid grid-cols-[2.5fr_1fr_1fr_0.5fr] bg-[#101017] px-4 lg:px-6 h-9 text-[#6A7A8C] text-xs font-medium items-center border-b border-[#22242D]">
+        <div className="grid grid-cols-[2.5fr_1fr_1fr_0.5fr]  bg-[#101017] px-4 lg:px-6 h-9 text-[#6A7A8C] text-xs font-medium items-center border-b border-[#22242D]">
           {headerColumns.map((header, idx) => (
             <span key={idx} className="truncate">
               {header}
