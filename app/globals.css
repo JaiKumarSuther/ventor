@@ -5,7 +5,7 @@
   --foreground: #171717;
 }
 
-  /* @theme inline {
+/* @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-sans: var(--font-geist-sans);
@@ -28,7 +28,7 @@ body {
 /* styles.css or global.css */
 .outline-text {
   color: transparent;
-  -webkit-text-stroke: 1px #8761FF80;
+  -webkit-text-stroke: 1px #8761ff80;
 }
 
 .bg-radial-circle {
@@ -38,14 +38,13 @@ body {
 .button-30 {
   align-items: center;
   appearance: none;
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   border-radius: 6px;
-  border: 1px solid #2E2E3A;
+  border: 1px solid #2e2e3a;
   box-shadow: 0 2px 4px rgba(135, 97, 255, 0.1),
-              0 6px 12px rgba(135, 97, 255, 0.1),
-              inset 0 -2px 0 rgba(255, 255, 255, 0.05);
+    0 6px 12px rgba(135, 97, 255, 0.1), inset 0 -2px 0 rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
-  color: #E5E5F0;
+  color: #e5e5f0;
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono", monospace;
@@ -61,19 +60,19 @@ body {
 }
 
 .button-30:hover {
-  background-color: #2A2A3A;
+  background-color: #2a2a3a;
   box-shadow: 0 4px 12px rgba(135, 97, 255, 0.2);
   transform: translateY(-1px);
 }
 
 .button-30:active {
-  background-color: #20202D;
+  background-color: #20202d;
   transform: translateY(1px);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .button-30:focus {
-  outline: 2px solid #8761FF;
+  outline: 2px solid #8761ff;
   outline-offset: 2px;
 }
 .checkbox-wrapper-42 input[type="checkbox"] {
@@ -121,7 +120,7 @@ body {
 
 .checkbox-wrapper-42 input[type="checkbox"]:checked ~ .cbx {
   border-color: transparent;
-  background: linear-gradient(to right, #5A43C6, #8761FF);
+  background: linear-gradient(to right, #5a43c6, #8761ff);
   animation: jelly-42 0.6s ease;
 }
 
@@ -154,7 +153,7 @@ body {
   }
 }
 .checkbox-wrapper-simple {
-  --on: #8761FF;
+  --on: #8761ff;
   --off: #ccc;
 }
 
@@ -195,7 +194,6 @@ button {
   left: 20px;
 }
 
-
 .checkbox-wrapper-65 *,
 .checkbox-wrapper-65 ::after,
 .checkbox-wrapper-65 ::before {
@@ -223,9 +221,9 @@ button {
   width: 18px;
   height: 18px;
   border-radius: 4px;
-  background-color: #0D0E12;
+  background-color: #0d0e12;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
-              inset 0 -1px 1px rgba(0, 0, 0, 0);
+    inset 0 -1px 1px rgba(0, 0, 0, 0);
   transition: all 0.15s ease;
   border: 1px solid #868686;
 }
@@ -258,4 +256,25 @@ button {
   float: left;
   margin-left: 6px;
   line-height: 18px;
+}
+
+
+/* Add this in your global CSS */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #101017; /* Dark background */
+  border-radius: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #5A43C6; /* Primary gradient color */
+  border-radius: 8px;
+  border: 2px solid #101017;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #8761FF;
 }

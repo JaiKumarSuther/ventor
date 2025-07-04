@@ -3,9 +3,10 @@
 import React, { useState } from "react";
 import GradientButton from "@/components/ui/GradientButton";
 import CustomToggleSwitch from "@/components/ui/CustomToggleSwitch";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function AutoTP() {
+  
   const [tpStates, setTpStates] = useState({
     tp1: false,
     tp2: false,
@@ -22,7 +23,7 @@ export default function AutoTP() {
   };
 
   return (
-    <div className="flex flex-col gap-3 mt-2 px-4 md:px-0 mb-5">
+    <div className="flex flex-col min-h-screen gap-3 mt-2 px-4 md:px-0 mb-5">
       {/* Token Status Card */}
       <div className="flex items-start lg:items-end flex-col lg:flex-row gap-3 bg-[#FFFFFF05] border border-[#22242D] rounded-md px-4 py-4">
         <div className="flex lg:block gap-2 items-center">
@@ -137,6 +138,7 @@ function Card({
   title: string;
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   return (
     <div className="mb-3">
       {title && (
@@ -145,7 +147,7 @@ function Card({
           <GradientButton
             label="Custom TP"
             className="px-5 py-2"
-            onClick={() => router.push("/custom-tp")}
+            onClick={() =>router.push('/custom-tp')}
           />
         </div>
       )}

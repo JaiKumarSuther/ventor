@@ -14,102 +14,98 @@ export default function WalletsPage() {
   const [selectNoSupply, setSelectNoSupply] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState("Present 1");
 
-
-const walletData = [
-  {
-    id: "wallet_22x9A...3Fb",
-    holding: "222.3",
-    worth: "165.56",
-    percent: "20%",
-  },
-  {
-    id: "wallet_A1B2C...XYZ",
-    holding: "120.5",
-    worth: "98.42",
-    percent: "12%",
-  },
-  {
-    id: "wallet_8Hd7Q...L0p",
-    holding: "89.1",
-    worth: "73.20",
-    percent: "8%",
-  },
-  {
-    id: "wallet_XYZ93...LMN",
-    holding: "312.0",
-    worth: "250.00",
-    percent: "24%",
-  },
-  {
-    id: "wallet_77QpR...Tz1",
-    holding: "140.0",
-    worth: "120.00",
-    percent: "10%",
-  },
-  {
-    id: "wallet_5FgZ1...Na9",
-    holding: "60.7",
-    worth: "45.88",
-    percent: "6%",
-  },
-  {
-    id: "wallet_ZZ3k9...R2q",
-    holding: "305.3",
-    worth: "210.65",
-    percent: "18%",
-  },
-  {
-    id: "wallet_3Fb3D...D4e",
-    holding: "198.7",
-    worth: "150.00",
-    percent: "14%",
-  },
-  {
-    id: "wallet_998xL...Ee7",
-    holding: "75.2",
-    worth: "55.25",
-    percent: "5%",
-  },
-  {
-    id: "wallet_5FgZ1...Na9",
-    holding: "60.7",
-    worth: "45.88",
-    percent: "6%",
-  },
-  {
-    id: "wallet_ZZ3k9...R2q",
-    holding: "305.3",
-    worth: "210.65",
-    percent: "18%",
-  },
-  {
-    id: "wallet_3Fb3D...D4e",
-    holding: "198.7",
-    worth: "150.00",
-    percent: "14%",
-  },
-  {
-    id: "wallet_998xL...Ee7",
-    holding: "75.2",
-    worth: "55.25",
-    percent: "5%",
-  },
-  {
-    id: "wallet_5FgZ1...Na9",
-    holding: "60.7",
-    worth: "45.88",
-    percent: "6%",
-  },
-  {
-    id: "wallet_ZZ3k9...R2q",
-    holding: "305.3",
-    worth: "210.65",
-    percent: "18%",
-  },
-
-
-];
-
+  const walletData = [
+    {
+      id: "wallet_22x9A...3Fb",
+      holding: "222.3",
+      worth: "165.56",
+      percent: "20%",
+    },
+    {
+      id: "wallet_A1B2C...XYZ",
+      holding: "120.5",
+      worth: "98.42",
+      percent: "12%",
+    },
+    {
+      id: "wallet_8Hd7Q...L0p",
+      holding: "89.1",
+      worth: "73.20",
+      percent: "8%",
+    },
+    {
+      id: "wallet_XYZ93...LMN",
+      holding: "312.0",
+      worth: "250.00",
+      percent: "24%",
+    },
+    {
+      id: "wallet_77QpR...Tz1",
+      holding: "140.0",
+      worth: "120.00",
+      percent: "10%",
+    },
+    {
+      id: "wallet_5FgZ1...Na9",
+      holding: "60.7",
+      worth: "45.88",
+      percent: "6%",
+    },
+    {
+      id: "wallet_ZZ3k9...R2q",
+      holding: "305.3",
+      worth: "210.65",
+      percent: "18%",
+    },
+    {
+      id: "wallet_3Fb3D...D4e",
+      holding: "198.7",
+      worth: "150.00",
+      percent: "14%",
+    },
+    {
+      id: "wallet_998xL...Ee7",
+      holding: "75.2",
+      worth: "55.25",
+      percent: "5%",
+    },
+    {
+      id: "wallet_5FgZ1...Na9",
+      holding: "60.7",
+      worth: "45.88",
+      percent: "6%",
+    },
+    {
+      id: "wallet_ZZ3k9...R2q",
+      holding: "305.3",
+      worth: "210.65",
+      percent: "18%",
+    },
+    {
+      id: "wallet_3Fb3D...D4e",
+      holding: "198.7",
+      worth: "150.00",
+      percent: "14%",
+    },
+    {
+      id: "wallet_998xL...Ee7",
+      holding: "75.2",
+      worth: "55.25",
+      percent: "5%",
+    },
+    {
+      id: "wallet_5FgZ1...Na9",
+      holding: "60.7",
+      worth: "45.88",
+      percent: "6%",
+    },
+    {
+      id: "wallet_ZZ3k9...R2q",
+      holding: "305.3",
+      worth: "210.65",
+      percent: "18%",
+    },
+  ];
 
   return (
     <div className="bg-[#06070B] px-4 md:px-0 w-full">
@@ -156,16 +152,18 @@ const walletData = [
 
         {/* Wallets Grid */}
         <div className="px-4 pb-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pr-2">
-            {walletData.map((wallet, index) => (
-              <WalletCard
-                key={index}
-                walletId={wallet.id}
-                holding={wallet.holding}
-                worth={wallet.worth}
-                percent={wallet.percent}
-              />
-            ))}
+          <div className="max-h-[450px] overflow-y-auto pr-1 custom-scroll">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pr-2">
+              {walletData.map((wallet, index) => (
+                <WalletCard
+                  key={index}
+                  walletId={wallet.id}
+                  holding={wallet.holding}
+                  worth={wallet.worth}
+                  percent={wallet.percent}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -128,13 +128,13 @@ export default function DashboardPage() {
               height="40px"
             />
           </div>
-            <GradientButton
-              onClick={handleCreateProject}
-              label="Create Project"
-              gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
-              hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="h-10 w-full md:w-44"
-            />
+          <GradientButton
+            onClick={handleCreateProject}
+            label="Create Project"
+            gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+            hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+            className="h-10 w-full md:w-44"
+          />
         </div>
       </div>
 
@@ -235,18 +235,20 @@ export default function DashboardPage() {
       )}
 
       <div className="w-full pr-1">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-          {Array.from({ length: 12 }).map((_, index) => (
-            <ProjectCard
-              key={index}
-              title={`SOLPhoenix SOL ${index + 1}`}
-              pnl="2%"
-              projectId={`VX1A-9034-${index + 1}`}
-              status={index % 2 === 0 ? "Launched" : "Not Launched"}
-              onDoubleClick={() => router.push("/features/overview")}
-              onMoreClick={() => router.push("/create-project")}
-            />
-          ))}
+        <div className="max-h-[500px] overflow-y-auto custom-scroll pr-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <ProjectCard
+                key={index}
+                title={`SOLPhoenix SOL ${index + 1}`}
+                pnl="2%"
+                projectId={`VX1A-9034-${index + 1}`}
+                status={index % 2 === 0 ? "Launched" : "Not Launched"}
+                onDoubleClick={() => router.push("/features/overview")}
+                onMoreClick={() => router.push("/create-project")}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </PageContainer>
