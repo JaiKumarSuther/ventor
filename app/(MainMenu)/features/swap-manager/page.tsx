@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import PageContainer from "@/components/ui/PageContainer";
 import WalletCard from "@/components/ui/WalletCard";
 import PresetSelector from "@/components/ui/PresetSelector";
 import ActionButtons from "@/components/ui/ActionButtons";
@@ -107,52 +106,15 @@ const walletData = [
     worth: "210.65",
     percent: "18%",
   },
-  {
-    id: "wallet_3Fb3D...D4e",
-    holding: "198.7",
-    worth: "150.00",
-    percent: "14%",
-  },
-  {
-    id: "wallet_998xL...Ee7",
-    holding: "75.2",
-    worth: "55.25",
-    percent: "5%",
-  },
-  {
-    id: "wallet_5FgZ1...Na9",
-    holding: "60.7",
-    worth: "45.88",
-    percent: "6%",
-  },
-  {
-    id: "wallet_ZZ3k9...R2q",
-    holding: "305.3",
-    worth: "210.65",
-    percent: "18%",
-  },
-  {
-    id: "wallet_3Fb3D...D4e",
-    holding: "198.7",
-    worth: "150.00",
-    percent: "14%",
-  },
-  {
-    id: "wallet_998xL...Ee7",
-    holding: "75.2",
-    worth: "55.25",
-    percent: "5%",
-  },
+
 
 ];
 
 
   return (
-    <PageContainer>
+    <div className="bg-[#06070B] px-4 md:px-0 w-full">
       {/* Tabs Bar */}
-      
-
-      <div className="border border-[#22242D] mt-5">
+      <div className="border border-[#22242D] mt-5 mb-10">
         <div className="flex flex-col md:flex-row flex-wrap w-full bg-[#FFFFFF05] mb-10 border-b border-[#22242D]">
           {/* Left side */}
           <div className="flex-1 md:flex-3 flex flex-col md:border-r px-3 md:px-5 py-5 md:py-10 gap-3 md:gap-5 border-[#22242D] min-w-0">
@@ -207,6 +169,6 @@ const walletData = [
           </div>
         </div>
       </div>
-    </PageContainer>
+    </div>
   );
 }

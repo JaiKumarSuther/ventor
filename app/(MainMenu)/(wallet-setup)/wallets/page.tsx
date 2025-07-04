@@ -163,7 +163,7 @@ export default function WalletsScreen() {
 
   return (
     <div className="overflow-hidden bg-black">
-      <div className="flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[700px]">
+      <div className="flex flex-col md:flex-row border border-[#22242D] overflow-hidden min-h-[450px]">
         <div className="flex flex-col border-b md:border-b-0 md:border-r border-[#22242D] bg-[#0F0F10] w-full md:w-1/2">
           <div className="flex items-center justify-between p-4 gap-4 border-b border-[#22242D] flex-shrink-0">
             <h3 className="text-white text-base font-semibold">Wallets</h3>

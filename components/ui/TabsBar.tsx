@@ -35,7 +35,7 @@ export default function TabsBar({ tabs }: TabsBarProps) {
   };
 
   return (
-    <div className="flex gap-3 md:gap-6 items-start py-2 w-full">
+    <div className="flex gap-3 px-4 md:px-0 md:gap-6 items-start py-2 w-full">
       {/* Back Button */}
       <button
         onClick={handleBack}

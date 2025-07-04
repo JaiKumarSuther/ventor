@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import PageContainer from "@/components/ui/PageContainer";
 import BondingCurve from "@/components/ui/BondingCurve";
 import BubbleMapChart from "@/components/ui/BubbleMapChart";
 import Image from "next/image";
@@ -34,9 +33,9 @@ export default function OverviewPage() {
   ];
 
   return (
-    <PageContainer>
+    <div className="bg-[#06070B] px-4 md:px-0 w-full">
       {/* Header */}
-      <div className="bg-[#FFFFFF05] border border-[#22242D] p-6 rounded-2xl mb-8 mt-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+      <div className="bg-[#FFFFFF05] border border-[#22242D] p-6 rounded-2xl my-4 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
         <div className="flex gap-4 items-start">
           <div className="w-20 aspect-square rounded-md bg-[#0F0F0F] border border-[#FFFFFF1F]" />
           <div className="flex flex-col">
@@ -51,23 +50,23 @@ export default function OverviewPage() {
         </div>
 
         <div className="flex flex-col justify-between flex-wrap gap-2">
-          <div className="flex justify-end mb-3">
+          <div className="flex md:justify-end mb-3">
             <GradientButton
               label="Deploy"
               onClick={() => console.log("Deployed")}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="h-9 md:h-9 px-3 md:px-6"
+              className="h-9 md:h-9 px-6"
             />
           </div>
           <div className="flex items-center gap-3">
-            <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
+            <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default border border-[#E43021] rounded-full px-3.5 md:px-4 py-1.5 text-sm">
               Sell Dev
             </div>
-            <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default cursor-arrow border border-[#E43021] rounded-full px-4 py-1.5 text-sm">
+            <div className="text-[#E43021] hover:bg-[#2a0f0f]/40 cursor-default cursor-arrow border border-[#E43021] rounded-full px-3.5 md:px-4 py-1.5 text-sm">
               Sell All + Dev
             </div>
-            <div className="text-[#00A34F] border border-[#00A34F] hover:bg-[#0f2a1b]/40 cursor-default rounded-full px-4 py-1.5 text-sm">
+            <div className="text-[#00A34F] border border-[#00A34F] hover:bg-[#0f2a1b]/40 cursor-default rounded-full px-3.5 md:px-4 py-1.5 text-sm">
               Buy All
             </div>
           </div>
@@ -75,7 +74,7 @@ export default function OverviewPage() {
       </div>
 
       {/* Stats */}
-      <div className="mb-10">
+      <div className="mb-4">
         <h1 className="text-2xl font-semibold mb-4">Stats</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((stat, idx) => (
@@ -109,21 +108,21 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      <div className="mb-10">
+      <div className="mb-4">
         <h1 className="text-2xl font-semibold mb-4">Bonding Curve</h1>
         <BondingCurve progress={80} />
       </div>
 
       {/* Wallet Holdings */}
-      <div className="mb-10">
+      <div className="mb-4">
         <h1 className="text-2xl font-semibold mb-4">Wallet Holdings</h1>
 
         <div className="bg-[#101017] border border-[#22242D] rounded-xl p-4 sm:p-5">
           {/* Header Row */}
-          <div className="flex justify-between items-center gap-4 sm:gap-0 mb-5">
+          <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 sm:gap-0 mb-5">
             <div className="text-white text-sm font-medium">Wallet ID</div>
 
-            <div className="flex justify-start sm:justify-end gap-3">
+            <div className="flex gap-3">
               <div className="text-[#6A7A8C] text-sm flex items-center gap-2">
                 Smart Sell
                 <CustomToggleSwitch
@@ -132,10 +131,10 @@ export default function OverviewPage() {
                   onChange={() => setSmartSellEnabled(!smartSellEnabled)}
                 />
               </div>
-              <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#0f2a1b]/30">
+              <button className="text-xs text-[#00A34F] border border-[#00A34F] px-4 py-[5px] rounded-full font-medium hover:bg-[#0f2a1b]/30">
                 Buy All
               </button>
-              <button className="text-xs text-[#00A34F] border border-[#00A34F] px-7 py-[5px] rounded-full font-medium hover:bg-[#2e1616]/30">
+              <button className="text-xs text-[#00A34F] border border-[#00A34F] px-4 py-[5px] rounded-full font-medium hover:bg-[#2e1616]/30">
                 Sell All
               </button>
             </div>
@@ -210,7 +209,7 @@ export default function OverviewPage() {
                 {[25, 50, 100, 25, 50, 100].map((val, idx) => (
                   <button
                     key={idx}
-                    className={`text-xs px-4 py-1.5 rounded-md font-medium bg-[#6E6E6E12] ${
+                    className={`flex-1 text-xs md:px-4 py-1.5 rounded-md font-medium bg-[#6E6E6E12] ${
                       idx < 3
                         ? "text-[#00A34F] hover:bg-[#0f2a1b]/40"
                         : "text-[#E43021] hover:bg-[#2e1616]/40"
@@ -230,6 +229,6 @@ export default function OverviewPage() {
         <h1 className="text-2xl font-semibold mb-4">Bubble Map Distribution</h1>
         <BubbleMapChart />
       </div>
-    </PageContainer>
+    </div>
   );
 }

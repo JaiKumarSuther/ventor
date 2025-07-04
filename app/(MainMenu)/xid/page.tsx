@@ -1,5 +1,5 @@
 export default function XID() {
     return (
-        <div>We are working on it</div>
+        <div className="min-h-screen">We are working on it</div>
     ) 
 }

@@ -77,7 +77,7 @@ export default function SmartSell() {
   };
 
   return (
-    <div className="p-4 md:p-6 space-y-8">
+    <div className="pb-10 pt-5 px-5 md:px-0 space-y-8">
       {/* Token Status */}
       <div className="flex flex-col gap-4">
         <Card title="Token Status">

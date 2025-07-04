@@ -27,10 +27,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   // const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-background md:px-6 overflow-hidden">
+    <div className="flex flex-col w-full pb-10 bg-background overflow-hidden">
       {/* Header */}
-      <div className="w-full flex gap-4 mb-6 flex-row md:items-center justify-between py-4">
-        <h2 className="text-foreground text-3xl font-semibold">{title}</h2>
+      <div className="w-full flex gap-4 flex-row md:items-center justify-between">
+        <h2 className="text-foreground text-3xl mb-4 font-semibold">{title}</h2>
 
         {/* {buttonLabel && (
           <GradientButton
@@ -44,7 +44,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       </div>
 
       {/* Content */}
-      <div className="flex-1 w-full">{children}</div>
+      <div className="w-full">{children}</div>
     </div>
   );
 };

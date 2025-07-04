@@ -9,9 +9,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-[#06070B] text-white">
+    <div className="w-full flex flex-col bg-[#06070B] text-white">
       <Header />
-      <main className="w-full px-5 py-10 md:px-10 md:py-10 mb-20">
+      <main className="w-full py-10 md:px-10 pt-10">
         {children}
       </main>
       <FooterStatusBar />

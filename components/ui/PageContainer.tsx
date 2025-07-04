@@ -7,7 +7,7 @@ interface PageContainerProps {
 
 export default function PageContainer({ children }: PageContainerProps) {
   return (
-    <div className="bg-[#06070B] w-full">
+    <div className="bg-[#06070B] px-4 pb-10 md:px-0 w-full">
       {children}
     </div>
   );

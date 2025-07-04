@@ -118,7 +118,7 @@ export default function DashboardPage() {
             <OutlinedButton
               onClick={() => {}}
               label="Claim Dev Rewards"
-              width="155px"
+              width="165px"
               height="40px"
             />
             <OutlinedButton
