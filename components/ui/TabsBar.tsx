@@ -35,17 +35,17 @@ export default function TabsBar({ tabs }: TabsBarProps) {
   };
 
   return (
-    <div className="flex gap-3 px-4 md:px-0 md:gap-6 items-start py-2 w-full">
+    <div className="flex gap-2 px-4 md:px-0 md:gap-4 items-start py-1 w-full">
       {/* Back Button */}
       <button
         onClick={handleBack}
-        className="text-white cursor-pointer hover:text-[#8761FF] flex items-start"
+        className="text-white hover:text-[#8761FF] flex items-center"
       >
-        <ArrowLeft size={20} className="sm:size-6 md:size-6 w-4 md:w-6" />
+        <ArrowLeft size={18} className="w-4 md:w-5" />
       </button>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 sm:gap-6 w-full justify-start">
+      <div className="flex flex-wrap gap-2 sm:gap-4 w-full justify-start">
         {tabs.map((tab, index) => {
           const isActive = tab.route && pathname.startsWith(tab.route);
           return (
@@ -54,7 +54,7 @@ export default function TabsBar({ tabs }: TabsBarProps) {
               onClick={() => handleTabClick(tab)}
               className={`${
                 isActive ? "text-[#8761FF]" : "text-white"
-              } text-xs sm:text-sm md:text-base cursor-pointer hover:text-[#8761FF] font-semibold transition`}
+              } text-xs sm:text-sm font-semibold hover:text-[#8761FF] transition`}
             >
               {tab.label}
             </button>
