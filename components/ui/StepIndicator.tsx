@@ -19,7 +19,7 @@ export default function StepIndicator({
   onStepClick,
 }: StepIndicatorProps) {
   return (
-    <div className="flex items-start justify-between mb-8 gap-2">
+    <div className="flex items-start justify-between mb-4 gap-2">
       {steps.map((step) => (
         <div
           key={step.number}

@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="w-full flex flex-col bg-[#06070B] text-white">
       <Header />
-      <main className="w-full py-10 md:px-10 pt-10">
+      <main className="w-full py-6 md:px-10">
         {children}
       </main>
       <FooterStatusBar />

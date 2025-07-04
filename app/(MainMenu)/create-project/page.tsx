@@ -31,7 +31,7 @@ export default function CreateProject() {
       tidAmount: [78, 95, 97, 99],
     },
   });
-   const router = useRouter(); // Initialize useRouter
+  const router = useRouter(); // Initialize useRouter
 
   const steps = [
     { number: 1, title: "Project Metadata Configuration", subtitle: "Step 1" },
@@ -56,24 +56,24 @@ export default function CreateProject() {
     setProjectData((prev) => ({ ...prev, ...data }));
   };
 
-    const handleStepClick = (stepNumber: number) => {
+  const handleStepClick = (stepNumber: number) => {
     setCurrentStep(stepNumber); // Update current step on click
   };
 
   return (
-    <PageContainer>
+    <div className="bg-[#06070B] pb-8 md:px-0 w-full">
       <div className="flex flex-col w-full px-0 gap-8">
-        <h1 className="text-3xl font-semibold text-[#FFFFFF] pb-6 border-b border-[#FFFFFF14]">
+        <h1 className="text-3xl font-semibold text-[#FFFFFF] border-b border-[#FFFFFF14]">
           Create Project
         </h1>
 
         <div className="bg-[#FFFFFF05] px-4 md:px-6 py-5 border border-[#FFFFFF1A] rounded-lg">
           <StepIndicator
-        steps={steps}
-        currentStep={currentStep}
-        onStepClick={handleStepClick} // Pass the step click handler
-      />
-          <div className="min-h-[500px]">
+            steps={steps}
+            currentStep={currentStep}
+            onStepClick={handleStepClick} // Pass the step click handler
+          />
+          <div className="">
             {currentStep === 1 && (
               <ProjectMetadataStep
                 data={projectData}
@@ -82,7 +82,7 @@ export default function CreateProject() {
                 onCancel={handleCancel}
               />
             )}
-            
+
             {currentStep === 2 && (
               <LaunchModeStep
                 data={{ launchMode: projectData.launchMode }}
@@ -105,13 +105,13 @@ export default function CreateProject() {
             )}
             {currentStep === 5 && (
               <SettingOverview
-                onFinish={(handleFinish)}
+                onFinish={handleFinish}
                 onCancel={handleCancel}
               />
             )}
           </div>
         </div>
       </div>
-    </PageContainer>
+    </div>
   );
 }

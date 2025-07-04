@@ -77,7 +77,7 @@ export default function ProjectMetadataStep({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* First row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <FloatingInput
@@ -94,7 +94,7 @@ export default function ProjectMetadataStep({
         />
 
         <div className="relative flex flex-col items-center w-full md:flex-row md:w-auto flex-1 gap-2 md:gap-6 mb-4 md:mb-8">
-          <div className="relative flex flex-col items-center w-full md:flex-row md:w-auto flex-1 gap-2 md:gap-6 mb-4 md:mb-8">
+          <div className="relative flex flex-col items-center w-full md:flex-row md:w-auto flex-1 gap-2 md:gap-6 mb-4">
             <div
               className="bg-[#101114] border border-[#22242D] rounded-lg flex justify-between items-center px-5 py-2 h-[72px] cursor-pointer w-full relative"
               onClick={toggleDropdown}
@@ -149,7 +149,7 @@ export default function ProjectMetadataStep({
 
       {/* Upload Box (File Upload with Click Anywhere to Trigger) */}
       <div
-        className="bg-[#101114] flex flex-col border border-[#22242D] p-4 gap-4"
+        className="bg-[#101017] flex flex-col border border-[#22242D] p-4 gap-4"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault();
@@ -167,7 +167,7 @@ export default function ProjectMetadataStep({
       >
         <label
           htmlFor="file-upload"
-          className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer w-full hover:bg-[#18191b]"
+          className="flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center cursor-pointer w-full hover:bg-[#09090c22]"
         >
           <div className="flex items-center justify-center border border-[#22242D] rounded-md w-10 h-10">
             <Image
