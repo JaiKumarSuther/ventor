@@ -103,11 +103,10 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-white font-semibold text-sm mb-1">
-              Launch + Bundle + Snipe
+              Risk Mode
             </h3>
             <p className="text-[#6A7A8C] text-sm break-words">
-              Enable aggressive automation settings with reduced safety checks. Use with caution.
-            </p>
+           Enable aggressive automation settings with reduced safety checks. Use with caution.</p>
           </div>
       
           <CustomToggleSwitch

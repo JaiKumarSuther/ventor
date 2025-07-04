@@ -71,6 +71,78 @@ const walletData = [
     worth: "55.25",
     percent: "5%",
   },
+  {
+    id: "wallet_5FgZ1...Na9",
+    holding: "60.7",
+    worth: "45.88",
+    percent: "6%",
+  },
+  {
+    id: "wallet_ZZ3k9...R2q",
+    holding: "305.3",
+    worth: "210.65",
+    percent: "18%",
+  },
+  {
+    id: "wallet_3Fb3D...D4e",
+    holding: "198.7",
+    worth: "150.00",
+    percent: "14%",
+  },
+  {
+    id: "wallet_998xL...Ee7",
+    holding: "75.2",
+    worth: "55.25",
+    percent: "5%",
+  },
+  {
+    id: "wallet_5FgZ1...Na9",
+    holding: "60.7",
+    worth: "45.88",
+    percent: "6%",
+  },
+  {
+    id: "wallet_ZZ3k9...R2q",
+    holding: "305.3",
+    worth: "210.65",
+    percent: "18%",
+  },
+  {
+    id: "wallet_3Fb3D...D4e",
+    holding: "198.7",
+    worth: "150.00",
+    percent: "14%",
+  },
+  {
+    id: "wallet_998xL...Ee7",
+    holding: "75.2",
+    worth: "55.25",
+    percent: "5%",
+  },
+  {
+    id: "wallet_5FgZ1...Na9",
+    holding: "60.7",
+    worth: "45.88",
+    percent: "6%",
+  },
+  {
+    id: "wallet_ZZ3k9...R2q",
+    holding: "305.3",
+    worth: "210.65",
+    percent: "18%",
+  },
+  {
+    id: "wallet_3Fb3D...D4e",
+    holding: "198.7",
+    worth: "150.00",
+    percent: "14%",
+  },
+  {
+    id: "wallet_998xL...Ee7",
+    holding: "75.2",
+    worth: "55.25",
+    percent: "5%",
+  },
 
 ];
 

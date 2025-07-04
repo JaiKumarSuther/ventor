@@ -105,30 +105,36 @@ export default function DashboardPage() {
       <div className="flex justify-between flex-col gap-4 lg:flex-row pt-10 mb-10 border-b border-[#FFFFFF14]">
         <h1 className="text-3xl font-semibold text-white">Projects</h1>
         <div className="flex items-center gap-4 mb-6 flex-col md:flex-row">
-          <div className="flex gap-4 justify-between w-full">
+          <div className="flex justify-between gap-4">
             <SearchInput
               placeholder="Search here..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-64"
+              className="w-55"
             />
             <FilterButton label="Filter" />
           </div>
-          <div className="flex gap-2 md:gap-4 w-full justify-between">
+          <div className="flex gap-4 justify-between">
+            <OutlinedButton
+              onClick={() => {}}
+              label="Claim Dev Rewards"
+              width="155px"
+              height="40px"
+            />
             <OutlinedButton
               onClick={handleGetBackAllSOL}
               label="Get Back all SOL"
-              width="176px"
+              width="155px"
               height="40px"
             />
+          </div>
             <GradientButton
               onClick={handleCreateProject}
               label="Create Project"
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="h-10 w-44"
+              className="h-10 w-full md:w-44"
             />
-          </div>
         </div>
       </div>
 
