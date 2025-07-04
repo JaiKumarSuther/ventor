@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import PageContainer from "@/components/ui/PageContainer";
 import StepIndicator from "@/components/ui/StepIndicator";
 import ProjectMetadataStep from "@/components/ui/ProjectMetadataStep";
 import WalletSetupStep from "@/components/ui/WalletSetupStep";
