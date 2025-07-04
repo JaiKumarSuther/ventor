@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import DashboardActions from "@/components/ui/DashboardActions";
@@ -87,7 +86,8 @@ export default function SettingOverview({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row min-h-[600px]">
+        {" "}
         {/* Setting Overview Section */}
         <div className="flex flex-col justify-between flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
           <div>
@@ -155,7 +155,6 @@ export default function SettingOverview({
             </div>
           </div>
         </div>
-
         {/* Selected Wallets Section */}
         <div className="flex flex-col justify-between border border-[#22242D] bg-[#0F0F10]">
           <div>

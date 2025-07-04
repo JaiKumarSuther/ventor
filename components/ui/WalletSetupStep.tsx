@@ -131,8 +131,6 @@ export default function WalletSetupStep({
     ]);
   };
 
- 
-
   const handleSelectAllWallets = () => {
     setSelectedWallets(wallets.map((wallet) => wallet.id));
   };
@@ -175,7 +173,8 @@ export default function WalletSetupStep({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row min-h-[800px]">
+        {" "}
         {/* Wallets Section */}
         <div className="flex flex-col flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
           {/* Top Bar */}
@@ -241,7 +240,6 @@ export default function WalletSetupStep({
             />
           </div>
         </div>
-
         {/* Batch Selection */}
         <div className="flex flex-col flex-[3] border border-[#22242D] bg-[#0F0F10]">
           <div className="flex items-center justify-between px-4 py-4 border-b border-[#22242D]">

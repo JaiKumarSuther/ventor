@@ -77,7 +77,7 @@ export default function ProjectMetadataStep({
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-6">
       {/* First row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <FloatingInput
@@ -149,7 +149,7 @@ export default function ProjectMetadataStep({
 
       {/* Upload Box (File Upload with Click Anywhere to Trigger) */}
       <div
-        className="bg-[#101017] flex flex-col border border-[#22242D] p-4 gap-4"
+        className="bg-[#101114] flex flex-col border border-[#22242D] p-4 gap-4"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault();

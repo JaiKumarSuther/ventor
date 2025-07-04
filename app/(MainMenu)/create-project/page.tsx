@@ -60,7 +60,7 @@ export default function CreateProject() {
   };
 
   return (
-    <div className="bg-[#06070B] pb-8 md:px-0 w-full">
+    <div className="bg-[#06070B] pb-14 md:px-0 w-full">
       <div className="flex flex-col w-full px-0 gap-8">
         <h1 className="text-3xl font-semibold text-[#FFFFFF] border-b border-[#FFFFFF14]">
           Create Project
