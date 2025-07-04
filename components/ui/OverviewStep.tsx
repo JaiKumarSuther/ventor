@@ -87,7 +87,7 @@ export default function SettingOverview({
   return (
     <div className="space-y-6">
       <div className="flex flex-col lg:flex-row min-h-[600px]">
-        {" "}
+        
         {/* Setting Overview Section */}
         <div className="flex flex-col justify-between flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
           <div>
@@ -101,10 +101,10 @@ export default function SettingOverview({
               {/* Batch 1 Section */}
               <div className="space-y-4">
                 <div
-                  className="flex items-center gap-5 bg-[#FFFFFF05] h-11 w-full p-4 cursor-pointer"
+                  className="flex items-center gap-2 bg-[#FFFFFF05] h-11 w-full p-4 cursor-pointer"
                   onClick={() => setIsBatch1Selected(!isBatch1Selected)}
                 >
-                  <div onClick={(e) => e.stopPropagation()}>
+                  <div onClick={(e) => e.stopPropagation()} className="flex items-center">
                     <GradientCheckbox
                       checked={isBatch1Selected}
                       onChange={() => setIsBatch1Selected(!isBatch1Selected)}
@@ -162,9 +162,9 @@ export default function SettingOverview({
             <div className="flex items-center justify-between px-4 py-4 border-b border-[#22242D]">
               <h3 className="text-white text-base">Selected Wallets</h3>
             </div>
-            <div className="text-sm p-5 text-[#6A7A8C]">
-              WALLETS:
-              <span className="text-white font-semibold">
+            <div className="text-sm p-5 border-b border-[#22242D] text-[#6A7A8C]">
+              WALLETS: 
+              <span className="text-white pl-1 font-semibold">
                 {selectedWallets.length}
               </span>
             </div>

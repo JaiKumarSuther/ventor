@@ -31,10 +31,10 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
       <div className="space-y-4">
         {/* Launch Only Dev */}
         <div
-          className="flex items-center justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
+          className="flex  justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
           onClick={() => handleFundingMethodChange("launch-dev")}
         >
-          <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
+          <div className="flex justify-center  bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
             <Image
               src="/assets/refresh.svg"
               width={20}
@@ -50,18 +50,20 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
               Launch with real-time snipe detection.
             </p>
           </div>
-          <RoundedGradientCheckbox
+          <div className="flex items-start md:items-center">
+            <RoundedGradientCheckbox
             checked={data.launchMode === "launch-dev"}
             onChange={() => handleFundingMethodChange("launch-dev")}
           />
+          </div>
         </div>
 
         {/* Launch + Snipe */}
         <div
-          className="flex items-center justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
+          className="flex justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
           onClick={() => handleFundingMethodChange("launch-snipe")}
         >
-          <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
+          <div className="flex justify-center  bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
             <Image
               src="/assets/refresh.svg"
               width={20}
@@ -78,18 +80,20 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
               distribution to avoid front-running and bot activity.
             </p>
           </div>
-          <RoundedGradientCheckbox
+          <div className="flex items-start md:items-center">
+            <RoundedGradientCheckbox
             checked={data.launchMode === "launch-snipe"}
             onChange={() => handleFundingMethodChange("launch-snipe")}
           />
+          </div>
         </div>
 
         {/* Launch + Bundle + Snipe */}
         <div
-          className="flex items-center justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
+          className="flex  justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
           onClick={() => handleFundingMethodChange("bundle-snipe")}
         >
-          <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
+          <div className="flex justify-center  bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
             <Image
               src="/assets/refresh.svg"
               width={20}
@@ -107,18 +111,20 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
               distribution.
             </p>
           </div>
-          <RoundedGradientCheckbox
+          <div className="flex items-start md:items-center">
+            <RoundedGradientCheckbox
             checked={data.launchMode === "bundle-snipe"}
             onChange={() => handleFundingMethodChange("bundle-snipe")}
           />
+          </div>
         </div>
 
         {/* Risk Mode */}
         <div
-          className="flex mt-30 items-center justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
+          className="flex mt-30  justify-between gap-4 rounded-md p-4 cursor-pointer hover:bg-[#101217] flex-wrap sm:flex-nowrap"
           onClick={() => handleFundingMethodChange("bundle-snipe")}
         >
-          <div className="flex justify-center items-center bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
+          <div className="flex justify-center  bg-[#101217] border border-[#22242D] rounded-sm w-11 h-11 shrink-0">
             <Image
               src="/assets/refresh.svg"
               width={20}
