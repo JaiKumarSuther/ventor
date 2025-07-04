@@ -99,7 +99,7 @@ export default function CustomTP() {
   };
 
   return (
-    <div className=" bg-[#000000] min-h-screen mb-15">
+    <div className=" bg-[#000000] min-h-[70vh] mb-15">
       {/* Back Button */}
       <button
         onClick={handleBack}

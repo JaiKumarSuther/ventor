@@ -48,22 +48,16 @@ export default function SettingOverview({
     },
   ];
 
-  // State to track Batch 1 selection (functional)
   const [isBatch1Selected, setIsBatch1Selected] = useState<boolean>(false);
 
-  // All wallets are pre-selected (from previous flows) - DataTable checkboxes are disabled
   const walletTableRows = selectedWallets.map((wallet) => ({
     id: wallet.id,
-    isSelected: wallet.id === 1 || wallet.id === 4, // Always true to show they were selected in previous flows
-    onSelect: () => {}, // Empty function since checkboxes are disabled
+    isSelected: wallet.id === 1 || wallet.id === 4,
+    onSelect: () => {},
     label: wallet.name,
     subLabel: wallet.address,
     hasCopy: true,
-    icon: (
-      <div className="w-4 h-4 rounded-full bg-gradient-to-b from-[#5A43C6] to-[#8761FF] flex items-center justify-center">
-        <span className="text-xs font-bold text-white">Ξ</span>
-      </div>
-    ),
+
     columns: [
       <span key="balance" className="text-white text-sm">
         {wallet.balance}
