@@ -77,7 +77,7 @@ export default function ProjectMetadataStep({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 min-h-[600px]">
       {/* First row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <FloatingInput
@@ -103,7 +103,7 @@ export default function ProjectMetadataStep({
                 <p className="text-[#6A7A8C] text-xs">Launchpad</p>
                 <h1 className="text-sm font-semibold text-white pt-1">
                   {selectedLaunchpad}
-                </h1>
+                </h1> 
               </div>
               <ChevronDown
                 size={20}

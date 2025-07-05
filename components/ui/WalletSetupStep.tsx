@@ -173,7 +173,7 @@ export default function WalletSetupStep({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col lg:flex-row min-h-[800px]">
+      <div className="flex flex-col lg:flex-row min-h-[600px]">
         {" "}
         {/* Wallets Section */}
         <div className="flex flex-col flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
