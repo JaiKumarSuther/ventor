@@ -76,7 +76,7 @@ export default function SniperSettingsStep({
         {/* BUNDLE RANGE */}
         {launchMode === "bundle-snipe" && (
           <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
-            <h1 className="w-full md:w-[40%] pl-10 font-medium text-[#6A7A8C] text-sm">
+            <h1 className="w-full md:w-[40%] md:pl-4 font-medium text-[#6A7A8C] text-sm">
               BUNDLE RANGE
             </h1>
             <div className="w-full pt-8">
@@ -114,7 +114,7 @@ export default function SniperSettingsStep({
         {/* SNIPE RANGE */}
         {launchMode === "bundle-snipe" && (
           <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
-            <h1 className="w-full md:w-[40%] pl-10 font-medium text-[#6A7A8C] text-sm">
+            <h1 className="w-full md:w-[40%] md:pl-4 font-medium text-[#6A7A8C] text-sm">
               SNIPE RANGE
             </h1>
             <div className="w-full pt-8">

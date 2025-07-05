@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useRef, useCallback } from "react";
 
@@ -21,7 +20,7 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
   step = 0.1,
   initialMinValue = 3.8,
   initialMaxValue = 4.4,
-  
+
   onChange,
   className = "",
 }) => {
@@ -88,9 +87,11 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
       // Mouse events
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleEnd);
-      
+
       // Touch events
-      document.addEventListener("touchmove", handleTouchMove, { passive: false });
+      document.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
       document.addEventListener("touchend", handleEnd);
 
       return () => {
@@ -104,8 +105,8 @@ const DualRangeSlider: React.FC<DualRangeSliderProps> = ({
 
   const minPercentage = getPercentage(minValue);
   const maxPercentage = getPercentage(maxValue);
-const averageValue = (minValue + maxValue) / 2;
-const averagePercentage = getPercentage(averageValue);
+  const averageValue = (minValue + maxValue) / 2;
+  const averagePercentage = getPercentage(averageValue);
   return (
     <div className={`relative w-full ${className}`}>
       {/* Value labels above thumbs and average */}

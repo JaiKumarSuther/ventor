@@ -245,7 +245,7 @@ export default function WalletSetupStep({
           </div>
 
           {/* Button Footer */}
-          <div className="p-6 space-x-4">
+          <div className="flex justify-between md:justify-start px-2 py-4 md:px-6 space-x-2 md:space-x-4">
             <GradientButton
               label="Warmup Wallets"
               onClick={() => {
@@ -255,7 +255,7 @@ export default function WalletSetupStep({
               }}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="h-10 w-40 px-5 text-base"
+              className="h-10 md:w-40 px-5 text-base"
              
               disabled={selectedWallets.length === 0}
               style={{
@@ -268,7 +268,7 @@ export default function WalletSetupStep({
               onClick={() => router.push("/fund-wallet")}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="h-10 w-40 px-5 text-base"
+              className="h-10 md:w-40 px-5 text-base"
               disabled={selectedWallets.length === 0}
               style={{
                 cursor:
