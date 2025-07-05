@@ -20,7 +20,7 @@ export default function SniperSettingsStep({
   const [selectedCount] = useState<number>(5);
 
   return (
-    <div className="flex flex-col justify-between gap-10 md:gap-10 p-6 min-h-[600px]">
+    <div className="flex flex-col justify-between gap-10 md:gap-10 p-6 min-h-[700px]">
       {/* DEV BUY & TOTAL WALLETS SELECTED */}
       <div>
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-10 w-full">

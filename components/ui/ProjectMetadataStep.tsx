@@ -77,9 +77,10 @@ export default function ProjectMetadataStep({
   };
 
   return (
-    <div className="space-y-6 min-h-[600px]">
+    <div className="flex flex-col justify-between min-h-[700px]">
       {/* First row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <FloatingInput
           label="Project Name"
           value={data.projectName || ""}
@@ -259,6 +260,7 @@ export default function ProjectMetadataStep({
           placeholder="https://solphoenix.xyz"
           onChange={(value) => handleInputChange("telegramUrl", value)}
         />
+      </div>
       </div>
 
       {/* Action Buttons */}
