@@ -100,7 +100,11 @@ export default function CreateProject() {
               />
             )}
             {currentStep === 4 && (
-              <SniperSettingsStep onNext={handleNext} onCancel={handleCancel} />
+                <SniperSettingsStep
+    onNext={handleNext}
+    onCancel={handleCancel}
+    launchMode={projectData.launchMode} // ✅ pass it here
+  />
             )}
             {currentStep === 5 && (
               <SettingOverview

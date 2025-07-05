@@ -7,11 +7,13 @@ import SingleRangeSlider from "./SingleRangeSlider";
 interface SniperSettingsStepProps {
   onNext: () => void;
   onCancel: () => void;
+  launchMode?: string;
 }
 
 export default function SniperSettingsStep({
   onNext,
   onCancel,
+  launchMode,
 }: SniperSettingsStepProps) {
   const [buyRangeValues, setBuyRangeValues] = useState({ min: 3.8, max: 4.4 });
   const [devBuyValue, setDevBuyValue] = useState(2.4);
@@ -29,7 +31,6 @@ export default function SniperSettingsStep({
             DEV BUY
           </h1>
           <div className="w-full pt-6">
-            
             <SingleRangeSlider
               min={0}
               max={5}
@@ -42,7 +43,6 @@ export default function SniperSettingsStep({
 
         {/* TOTAL WALLETS */}
         <div className="flex md:items-center flex-col md:flex-row gap-5 md:gap-10 w-full md:w-auto flex-1">
-          
           <h1 className="font-medium text-[#6A7A8C] pt-10 md:pt-0 md:pl-0 text-sm whitespace-nowrap">
             TOTAL WALLETS SELECTED
           </h1>
@@ -50,46 +50,85 @@ export default function SniperSettingsStep({
             <p className="text-[#6A7A8C] text-xs mb-1">
               Number of wallets selected
             </p>
-            <h1 className="text-sm font-semibold text-white">
-              {selectedCount}
-            </h1>
+            <h1 className="text-sm font-semibold text-white">{selectedCount}</h1>
           </div>
         </div>
       </div>
 
-      {/* TOTAL SNIPE */}
-      <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
-        <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
-          
-          TOTAL SNIPE
-        </h1>
-        <div className="w-full pt-8">
-          <SingleRangeSlider
-            min={0}
-            max={5}
-            step={0.1}
-            initialValue={totalSnipeValue}
-            onChange={setTotalSnipeValue}
-          />
+      {/* TOTAL BUNDLE & CONDITIONAL BUNDLE RANGE */}
+      <div className="flex flex-col md:flex-row gap-10 w-full">
+        {/* TOTAL BUNDLE */}
+        <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
+          <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
+            TOTAL BUNDLE
+          </h1>
+          <div className="w-full pt-8">
+            <SingleRangeSlider
+              min={0}
+              max={5}
+              step={0.1}
+              initialValue={totalSnipeValue}
+              onChange={setTotalSnipeValue}
+            />
+          </div>
         </div>
+
+        {/* BUNDLE RANGE */}
+        {launchMode === "bundle-snipe" && (
+          <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
+            <h1 className="w-full md:w-[40%] pl-10 font-medium text-[#6A7A8C] text-sm">
+              BUNDLE RANGE
+            </h1>
+            <div className="w-full pt-8">
+              <DualRangeSlider
+                min={3.0}
+                max={5.0}
+                step={0.1}
+                initialMinValue={buyRangeValues.min}
+                initialMaxValue={buyRangeValues.max}
+                onChange={(min, max) => setBuyRangeValues({ min, max })}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* BUY RANGE */}
-      <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
-        <h1 className="w-full md:w-[48%] font-medium text-[#6A7A8C] text-sm">
-          BUY RANGE
-        </h1>
-        <div className="w-full pt-8">
-          
-          <DualRangeSlider
-            min={3.0}
-            max={5.0}
-            step={0.1}
-            initialMinValue={buyRangeValues.min}
-            initialMaxValue={buyRangeValues.max}
-            onChange={(min, max) => setBuyRangeValues({ min, max })}
-          />
+      {/* TOTAL SNIPE & CONDITIONAL SNIPE RANGE */}
+      <div className="flex flex-col md:flex-row gap-10 w-full">
+        {/* TOTAL SNIPE */}
+        <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
+          <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
+            TOTAL SNIPE
+          </h1>
+          <div className="w-full pt-8">
+            <SingleRangeSlider
+              min={0}
+              max={5}
+              step={0.1}
+              initialValue={totalSnipeValue}
+              onChange={setTotalSnipeValue}
+            />
+          </div>
         </div>
+
+        {/* SNIPE RANGE */}
+        {launchMode === "bundle-snipe" && (
+          <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
+            <h1 className="w-full md:w-[40%] pl-10 font-medium text-[#6A7A8C] text-sm">
+              SNIPE RANGE
+            </h1>
+            <div className="w-full pt-8">
+              <DualRangeSlider
+                min={3.0}
+                max={5.0}
+                step={0.1}
+                initialMinValue={buyRangeValues.min}
+                initialMaxValue={buyRangeValues.max}
+                onChange={(min, max) => setBuyRangeValues({ min, max })}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* TID AMOUNT */}
