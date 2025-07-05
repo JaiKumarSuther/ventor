@@ -24,7 +24,7 @@ export default function SniperSettingsStep({
       {/* DEV BUY & TOTAL WALLETS SELECTED */}
       <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-10 w-full">
         {/* DEV BUY */}
-        <div className="flex flex-col items-center md:flex-row w-full md:w-[545px]">
+        <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
           <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
             DEV BUY
           </h1>
@@ -58,7 +58,7 @@ export default function SniperSettingsStep({
       </div>
 
       {/* TOTAL SNIPE */}
-      <div className="flex flex-col items-center md:flex-row w-full md:w-[545px]">
+      <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
         <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
           
           TOTAL SNIPE
@@ -75,7 +75,7 @@ export default function SniperSettingsStep({
       </div>
 
       {/* BUY RANGE */}
-      <div className="flex flex-col items-center md:flex-row w-full md:w-[545px]">
+      <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
         <h1 className="w-full md:w-[48%] font-medium text-[#6A7A8C] text-sm">
           BUY RANGE
         </h1>
@@ -93,7 +93,7 @@ export default function SniperSettingsStep({
       </div>
 
       {/* TID AMOUNT */}
-      <div className="flex flex-col items-center md:flex-row w-full md:w-[545px]">
+      <div className="flex flex-col items-end md:flex-row w-full md:w-[545px]">
         <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
           TID AMOUNT
         </h1>
