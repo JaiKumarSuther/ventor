@@ -162,8 +162,8 @@ export default function WalletsScreen() {
   };
 
   return (
-    <div className="overflow-hidden  bg-black">
-      <div className="flex flex-col md:flex-row border h-screen border-[#22242D] overflow-hidden min-h-[550px]">
+    <div className=" px-4 bg-black">
+      <div className="flex flex-col md:flex-row border min-h-screen border-[#22242D] ">
         <div className="flex flex-col border-b md:border-b-0 md:border-r border-[#22242D] bg-[#0F0F10] w-full md:w-1/2">
           <div className="flex items-center justify-between p-4 gap-4 border-b border-[#22242D] flex-shrink-0">
             <h3 className="text-white text-base font-semibold">Wallets</h3>
@@ -176,7 +176,7 @@ export default function WalletsScreen() {
             />
           </div>
 
-          <div className=" overflow-hidden">
+          <div className=" ">
             <DataTable
               headerColumns={["Address", "Balance", "# Use", "Age"]}
               rows={allWalletRows}
@@ -240,24 +240,23 @@ export default function WalletsScreen() {
           </div>
         </div>
 
-        <div className="flex-1 bg-[#0F0F10] flex flex-col overflow-hidden">
+        <div className="flex-1 bg-[#0F0F10] flex flex-col ">
           <div className="flex justify-between items-center border-b border-[#22242D] p-[16px] flex-shrink-0">
             <h3 className="text-white text-base">Batches</h3>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between gap-2">
               <GradientButton
                 label="New Batch"
                 onClick={() => handleNewBatch()}
                 gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
                 hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-                className="w-34 py-2 text-base"
-        
+                className="w-28 md:w-34 py-2 text-base"
               />
               <GradientButton
                 label="Fund Wallets"
                 onClick={onButtonClick || (() => router.push("/fund-wallet"))}
                 gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
                 hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-                className="w-34 py-2 text-base"
+                className="w-28 md:w-34 py-2 text-base"
                 disabled={selectedWalletIds.length === 0} // Disable button if no wallets are selected
                 style={{
                   cursor:
@@ -399,7 +398,7 @@ export default function WalletsScreen() {
               </div>
 
               {/* Wallets Table per Batch */}
-              <div className="bg-[#101017] border border-[#22242D] flex-1 overflow-hidden">
+              <div className="bg-[#101017] border border-[#22242D] flex-1 ">
                 <DataTable
                   headerColumns={["Address", "Balance", "# Use", "Age"]}
                   rows={walletRows}

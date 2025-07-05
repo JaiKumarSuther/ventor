@@ -35,7 +35,7 @@ export default function TabsBar({ tabs }: TabsBarProps) {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 px-4 md:px-0 py-2 w-full">
+    <div className="flex md:flex-row items-start md:items-center gap-2 md:gap-4 px-4 md:px-0 py-2 w-full">
       {/* Back Button */}
       <button
         onClick={handleBack}
@@ -45,7 +45,7 @@ export default function TabsBar({ tabs }: TabsBarProps) {
       </button>
 
       {/* Tabs */}
-      <div className="flex gap-2 sm:gap-4 overflow-x-auto w-full scrollbar-hide">
+      <div className="flex gap-2 sm:gap-4 w-full flex-wrap">
         {tabs.map((tab, index) => {
           const isActive = tab.route && pathname.startsWith(tab.route);
           return (

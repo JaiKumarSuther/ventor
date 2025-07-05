@@ -77,7 +77,7 @@ const FundWalletPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col md:flex-row gap-0 min-h-[800px]">
+    <div className="w-full flex px-4 flex-col md:flex-row gap-0 min-h-screen">
       {/* Left Column */}
       <div className="flex-1 border border-[#22242D] pb-20 bg-[#101017] flex flex-col gap-8">
         {/* Top Row */}

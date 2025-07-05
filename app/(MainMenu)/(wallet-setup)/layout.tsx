@@ -4,10 +4,10 @@
 import React from "react";
 import DashboardLayout from "@/components/ui/DashboardLayout";
 
-export default function WalletsLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <DashboardLayout>
-      {children}
-    </DashboardLayout>
-  );
+export default function WalletsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <DashboardLayout>{children}</DashboardLayout>;
 }

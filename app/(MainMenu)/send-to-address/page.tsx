@@ -1,8 +1,9 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import GradientButton from "@/components/ui/GradientButton";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Copy } from "lucide-react"; // Back + Copy icons
+import { ArrowLeft, Copy } from "lucide-react";
 
 const SendToAddressPage = () => {
   const [timeRemaining, setTimeRemaining] = useState<number>(3600); // 1 hour
@@ -25,10 +26,11 @@ const SendToAddressPage = () => {
     navigator.clipboard.writeText(address);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    
   };
 
   return (
-    <div className="flex flex-col bg-[#101017] rounded-2xl p-6 min-h-[500px] shadow-xl">
+    <div className="flex flex-col md:pb-12 px-4 rounded-2xl  shadow-xl">
       {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         <button
@@ -41,8 +43,7 @@ const SendToAddressPage = () => {
       </div>
 
       {/* Content Box */}
-      <div className="bg-[#101114] border border-[#22242D] rounded-xl p-6 space-y-6 shadow-md">
-
+      <div className="bg-[#101114] border-2 border-[#22242D] rounded-xl p-6 space-y-6 shadow-md">
         {/* Address Row */}
         <div>
           <h3 className="text-sm text-[#A0A0A0] mb-1">Address to Send</h3>
@@ -72,13 +73,14 @@ const SendToAddressPage = () => {
           <h3 className="text-sm text-[#A0A0A0] mb-1">Time Remaining</h3>
           <div className="bg-[#15161A] px-4 py-3 rounded-lg border border-[#22242D]">
             <p className="text-white text-base font-semibold">
-              {Math.floor(timeRemaining / 60)}:{String(timeRemaining % 60).padStart(2, "0")} minutes
+              {Math.floor(timeRemaining / 60)}:
+              {String(timeRemaining % 60).padStart(2, "0")} minutes
             </p>
           </div>
         </div>
 
         {/* Confirm Button */}
-        <div className="flex justify-center pt-2">
+        <div className="flex justify-center ">
           <GradientButton
             label="Confirm Send"
             onClick={() => console.log("Send confirmed")}

@@ -1,5 +1,5 @@
 export default function MarketMaker() {
     return (
-        <div className="min-h-screen">We are working on it</div>
+        <div className="min-h-screen px-4">We are working on it</div>
     ) 
 }
