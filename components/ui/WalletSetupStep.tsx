@@ -6,6 +6,7 @@ import DashboardActions from "@/components/ui/DashboardActions";
 import DataTable from "@/components/ui/DataTable";
 import WalletPopup from "@/components/ui/WalletPopup";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Wallet {
   id: number;
@@ -80,6 +81,8 @@ export default function WalletSetupStep({
     { id: 1, name: "Batch 1" },
     { id: 2, name: "Batch 2" },
   ]);
+
+  const router = useRouter();
 
   const [isPopupVisible, setPopupVisible] = useState<boolean>(false); // State for popup visibility
 
@@ -171,13 +174,11 @@ export default function WalletSetupStep({
     setBatches([...batches, { id: newId, name: `Batch ${newId}` }]);
   };
 
-
+  
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col lg:flex-row min-h-[730px]">
-        {" "}
-        {/* Wallets Section */}
         {/* Wallets Section */}
         <div className="flex flex-col flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
           {/* Top Bar */}
@@ -216,7 +217,7 @@ export default function WalletSetupStep({
           </div>
 
           {/* Scrollable Wallet Content */}
-          <div className="flex-1 overflow-y-auto px-1">
+          <div className="flex-1 overflow-y-auto">
             {/* Original Wallets */}
             <div className="border-t border-[#22242D]">
               <DataTable
@@ -227,7 +228,7 @@ export default function WalletSetupStep({
 
             {/* New Wallets */}
             {newWallets.length > 0 && (
-              <div className="border-t border-[#22242D] mt-6 pt-4 bg-[#0F0F10] shadow-inner rounded-md">
+              <div className="border-t border-[#22242D] mt-6 pt-4 bg-[#0F0F10] shadow-inner">
                 <div className="px-4 pb-3 border-b border-[#22242D]">
                   <h3 className="text-white text-base font-semibold">
                     New Wallets
@@ -244,17 +245,30 @@ export default function WalletSetupStep({
           </div>
 
           {/* Button Footer */}
-          <div className="p-6">
+          <div className="p-6 space-x-4">
             <GradientButton
               label="Warmup Wallets"
               onClick={() => {
                 if (selectedWallets.length > 0) {
-                  window.location.href = "/fund-wallet";
+                  setPopupVisible(true)
                 }
               }}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
-              className="h-10 px-5 text-base"
+              className="h-10 w-40 px-5 text-base"
+             
+              disabled={selectedWallets.length === 0}
+              style={{
+                cursor:
+                  selectedWallets.length === 0 ? "not-allowed" : "pointer",
+              }}
+            />
+            <GradientButton
+              label="Fund Wallet"
+              onClick={() => router.push("/fund-wallet")}
+              gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
+              hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
+              className="h-10 w-40 px-5 text-base"
               disabled={selectedWallets.length === 0}
               style={{
                 cursor:
@@ -325,7 +339,8 @@ export default function WalletSetupStep({
           </div>
         </div>
       </div>
-      {isPopupVisible && (
+
+       {isPopupVisible && (
         <WalletPopup
           isOpen={isPopupVisible}
           onClose={() => setPopupVisible(false)}
