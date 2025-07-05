@@ -39,7 +39,7 @@ export default function WalletSetupStep({
   onNext,
   onCancel,
 }: WalletSetupStepProps) {
-  const [wallets, setWallets] = useState<Wallet[]>([
+  const [wallets] = useState<Wallet[]>([
     {
       id: 1,
       name: "Wallet1",
