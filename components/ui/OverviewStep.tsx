@@ -80,7 +80,7 @@ export default function SettingOverview({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col lg:flex-row min-h-[700px]">
+      <div className="flex flex-col lg:flex-row min-h-[730px]">
         
         {/* Setting Overview Section */}
         <div className="flex flex-col justify-between flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">

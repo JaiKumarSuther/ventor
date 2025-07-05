@@ -20,7 +20,7 @@ export default function SniperSettingsStep({
   const [selectedCount] = useState<number>(5);
 
   return (
-    <div className="flex flex-col gap-16 md:gap-20 p-6 min-h-[700px]">
+    <div className="flex flex-col gap-16 md:gap-20 p-6 min-h-[730px]">
       {/* DEV BUY & TOTAL WALLETS SELECTED */}
       <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-10 w-full">
         {/* DEV BUY */}
@@ -29,7 +29,7 @@ export default function SniperSettingsStep({
             DEV BUY
           </h1>
           <div className="w-full pt-6">
-            {" "}
+            
             <SingleRangeSlider
               min={0}
               max={5}
@@ -42,7 +42,7 @@ export default function SniperSettingsStep({
 
         {/* TOTAL WALLETS */}
         <div className="flex md:items-center flex-col md:flex-row gap-5 md:gap-10 w-full md:w-auto flex-1">
-          {" "}
+          
           <h1 className="font-medium text-[#6A7A8C] pt-10 md:pt-0 md:pl-0 text-sm whitespace-nowrap">
             TOTAL WALLETS SELECTED
           </h1>
@@ -60,7 +60,7 @@ export default function SniperSettingsStep({
       {/* TOTAL SNIPE */}
       <div className="flex flex-col items-center md:flex-row w-full md:w-[545px]">
         <h1 className="w-full md:w-[48%] font-[500] text-[#6A7A8C] text-sm mb-2 md:mb-0">
-          {" "}
+          
           TOTAL SNIPE
         </h1>
         <div className="w-full pt-8">
@@ -80,7 +80,7 @@ export default function SniperSettingsStep({
           BUY RANGE
         </h1>
         <div className="w-full pt-8">
-          {" "}
+          
           <DualRangeSlider
             min={3.0}
             max={5.0}
@@ -110,8 +110,7 @@ export default function SniperSettingsStep({
       </div>
 
       {/* ACTION BUTTONS */}
-      <div className="flex justify-end pt-15">
-        {" "}
+      <div className="flex justify-end pt-22">
         <DashboardActions
           onFirstAction={onCancel}
           onSecondAction={onNext}

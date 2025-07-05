@@ -39,40 +39,89 @@ export default function WalletSetupStep({
   onNext,
   onCancel,
 }: WalletSetupStepProps) {
-  const [wallets, setWallets] = useState<Wallet[]>([
-    {
-      id: 1,
-      name: "Wallet1",
-      address: "wallet_22x9A...3Fb",
-      balance: 0,
-      use: 1,
-      age: 1,
-    },
-    {
-      id: 2,
-      name: "Wallet2",
-      address: "wallet_3y7ZK...1Ab",
-      balance: 0,
-      use: 1,
-      age: 1,
-    },
-    {
-      id: 3,
-      name: "Wallet3",
-      address: "wallet_9xQ2L...7Vc",
-      balance: 0,
-      use: 1,
-      age: 1,
-    },
-    {
-      id: 4,
-      name: "Wallet4",
-      address: "wallet_5mNpT...8Ys",
-      balance: 0,
-      use: 1,
-      age: 1,
-    },
-  ]);
+ const [wallets, setWallets] = useState<Wallet[]>([
+  {
+    id: 1,
+    name: "Wallet1",
+    address: "wallet_22x9A...3Fb",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 2,
+    name: "Wallet2",
+    address: "wallet_3y7ZK...1Ab",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 3,
+    name: "Wallet3",
+    address: "wallet_9xQ2L...7Vc",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 4,
+    name: "Wallet4",
+    address: "wallet_5mNpT...8Ys",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 5,
+    name: "Wallet5",
+    address: "wallet_7pZLt...2Xw",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 6,
+    name: "Wallet6",
+    address: "wallet_1rJMb...9Kd",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 7,
+    name: "Wallet7",
+    address: "wallet_4aKsT...7Gh",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 8,
+    name: "Wallet8",
+    address: "wallet_2zUvA...6Lq",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 9,
+    name: "Wallet9",
+    address: "wallet_8mQcB...5Yt",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+  {
+    id: 10,
+    name: "Wallet10",
+    address: "wallet_6xWpM...4Ez",
+    balance: 0,
+    use: 1,
+    age: 1,
+  },
+]);
+
 
   const [batches, setBatches] = useState<Batch[]>([
     { id: 1, name: "Batch 1" },
@@ -173,7 +222,7 @@ export default function WalletSetupStep({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col lg:flex-row min-h-[700px]">
+      <div className="flex flex-col lg:flex-row min-h-[730px]">
         {" "}
         {/* Wallets Section */}
         <div className="flex flex-col flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">

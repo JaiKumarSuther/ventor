@@ -27,7 +27,7 @@ const LaunchModeStep: React.FC<LaunchModeStepProps> = ({
   };
 
   return (
-    <div className="flex flex-col justify-between min-h-[700px] space-y-6">
+    <div className="flex flex-col justify-between min-h-[730px] space-y-6">
       <div className="space-y-4">
         {/* Launch Only Dev */}
         <div
