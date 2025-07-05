@@ -33,7 +33,7 @@ const DataTable: React.FC<DataTableProps> = ({ headerColumns, rows, disableCheck
       </div>
 
       {/* Table Body */}
-      <div className="flex-1 overflow-y-auto max-h-[520px] custom-scroll pr-1">
+      <div className="flex-1 overflow-y-auto max-h-[520px] custom-scroll">
         {rows.map((row, idx) => {
           const bgColor = idx % 2 === 0 ? "" : "bg-[#FFFFFF05]";
 

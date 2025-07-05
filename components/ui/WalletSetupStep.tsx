@@ -39,89 +39,42 @@ export default function WalletSetupStep({
   onNext,
   onCancel,
 }: WalletSetupStepProps) {
- const [wallets, setWallets] = useState<Wallet[]>([
-  {
-    id: 1,
-    name: "Wallet1",
-    address: "wallet_22x9A...3Fb",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 2,
-    name: "Wallet2",
-    address: "wallet_3y7ZK...1Ab",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 3,
-    name: "Wallet3",
-    address: "wallet_9xQ2L...7Vc",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 4,
-    name: "Wallet4",
-    address: "wallet_5mNpT...8Ys",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 5,
-    name: "Wallet5",
-    address: "wallet_7pZLt...2Xw",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 6,
-    name: "Wallet6",
-    address: "wallet_1rJMb...9Kd",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 7,
-    name: "Wallet7",
-    address: "wallet_4aKsT...7Gh",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 8,
-    name: "Wallet8",
-    address: "wallet_2zUvA...6Lq",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 9,
-    name: "Wallet9",
-    address: "wallet_8mQcB...5Yt",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-  {
-    id: 10,
-    name: "Wallet10",
-    address: "wallet_6xWpM...4Ez",
-    balance: 0,
-    use: 1,
-    age: 1,
-  },
-]);
+  const [wallets, setWallets] = useState<Wallet[]>([
+    {
+      id: 1,
+      name: "Wallet1",
+      address: "wallet_22x9A...3Fb",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
+    {
+      id: 2,
+      name: "Wallet2",
+      address: "wallet_3y7ZK...1Ab",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
+    {
+      id: 3,
+      name: "Wallet3",
+      address: "wallet_9xQ2L...7Vc",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
+    {
+      id: 4,
+      name: "Wallet4",
+      address: "wallet_5mNpT...8Ys",
+      balance: 0,
+      use: 1,
+      age: 1,
+    },
+  ]);
 
+  const [newWallets, setNewWallets] = useState<Wallet[]>([]);
 
   const [batches, setBatches] = useState<Batch[]>([
     { id: 1, name: "Batch 1" },
@@ -166,19 +119,38 @@ export default function WalletSetupStep({
   };
 
   const handleNewWallet = () => {
-    const newId = wallets.length + 1;
-    setWallets([
-      ...wallets,
-      {
-        id: newId,
-        name: `Wallet${newId}`,
-        address: `wallet_${Math.random().toString(36).substr(2, 8)}`,
-        balance: 0,
-        use: 1,
-        age: 1,
-      },
-    ]);
+    const newId = wallets.length + newWallets.length + 1;
+    const newWallet: Wallet = {
+      id: newId,
+      name: `Wallet${newId}`,
+      address: `wallet_${Math.random().toString(36).substr(2, 8)}`,
+      balance: 0,
+      use: 1,
+      age: 1,
+    };
+    setNewWallets((prev) => [...prev, newWallet]);
   };
+  const getWalletRows = (walletArray: Wallet[]) =>
+    walletArray.map((wallet) => ({
+      id: wallet.id,
+      isSelected: selectedWallets.includes(wallet.id),
+      onSelect: () => handleWalletSelect(wallet.id),
+      label: wallet.name,
+      subLabel: wallet.address,
+      hasCopy: true,
+      icon: (
+        <div className="w-4 h-4 rounded-full bg-gradient-to-b from-[#5A43C6] to-[#8761FF] flex items-center justify-center">
+          <span className="text-xs font-bold text-white">Ξ</span>
+        </div>
+      ),
+      columns: [
+        <div className="flex items-center gap-2" key="balance">
+          <span>{wallet.balance}</span>
+        </div>,
+        <span key="use">{wallet.use}</span>,
+        <span key="age">{wallet.age}</span>,
+      ],
+    }));
 
   const handleSelectAllWallets = () => {
     setSelectedWallets(wallets.map((wallet) => wallet.id));
@@ -225,6 +197,7 @@ export default function WalletSetupStep({
       <div className="flex flex-col lg:flex-row min-h-[730px]">
         {" "}
         {/* Wallets Section */}
+        {/* Wallets Section */}
         <div className="flex flex-col flex-[5] border border-[#22242D] bg-[#FFFFFF05] border-r-0">
           {/* Top Bar */}
           <div className="flex flex-col md:flex-row items-center justify-between p-4 gap-4">
@@ -261,21 +234,41 @@ export default function WalletSetupStep({
             </div>
           </div>
 
-          {/* Wallet Table - Scrollable */}
-          <div className="flex-1 border-t border-[#22242D] overflow-y-auto">
-            <DataTable
-              headerColumns={["Address", "Balance", "# Use", "Age"]}
-              rows={walletTableRows}
-            />
+          {/* Scrollable Wallet Content */}
+          <div className="flex-1 overflow-y-auto px-1">
+            {/* Original Wallets */}
+            <div className="border-t border-[#22242D]">
+              <DataTable
+                headerColumns={["Address", "Balance", "# Use", "Age"]}
+                rows={getWalletRows(wallets)}
+              />
+            </div>
+
+            {/* New Wallets */}
+            {newWallets.length > 0 && (
+              <div className="border-t border-[#22242D] mt-6 pt-4 bg-[#0F0F10] shadow-inner rounded-md">
+                <div className="px-4 pb-3 border-b border-[#22242D]">
+                  <h3 className="text-white text-base font-semibold">
+                    New Wallets
+                  </h3>
+                </div>
+                <div>
+                  <DataTable
+                    headerColumns={["Address", "Balance", "# Use", "Age"]}
+                    rows={getWalletRows(newWallets)}
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Bottom Action */}
-          <div className="flex justify-between items-center p-8">
+          {/* Button Footer */}
+          <div className="p-6">
             <GradientButton
               label="Warmup Wallets"
               onClick={() => {
                 if (selectedWallets.length > 0) {
-                  window.location.href = "/fund-wallet"; // or use router.push if using Next.js Router
+                  window.location.href = "/fund-wallet";
                 }
               }}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
