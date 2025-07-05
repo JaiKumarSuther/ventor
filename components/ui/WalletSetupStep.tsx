@@ -171,26 +171,7 @@ export default function WalletSetupStep({
     setBatches([...batches, { id: newId, name: `Batch ${newId}` }]);
   };
 
-  const walletTableRows = wallets.map((wallet) => ({
-    id: wallet.id,
-    isSelected: selectedWallets.includes(wallet.id),
-    onSelect: () => handleWalletSelect(wallet.id),
-    label: wallet.name,
-    subLabel: wallet.address,
-    hasCopy: true,
-    icon: (
-      <div className="w-4 h-4 rounded-full bg-gradient-to-b from-[#5A43C6] to-[#8761FF] flex items-center justify-center">
-        <span className="text-xs font-bold text-white">Ξ</span>
-      </div>
-    ),
-    columns: [
-      <div className="flex items-center gap-2" key="balance">
-        <span>{wallet.balance}</span>
-      </div>,
-      <span key="use">{wallet.use}</span>,
-      <span key="age">{wallet.age}</span>,
-    ],
-  }));
+
 
   return (
     <div className="space-y-6">
