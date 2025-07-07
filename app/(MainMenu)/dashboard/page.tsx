@@ -11,6 +11,7 @@ import OutlinedButton from "@/components/ui/OutlinedButton";
 import GradientButton from "@/components/ui/GradientButton";
 import SelectTypeModal from "@/components/ui/SelectTypeModal"; // ✅ ADD THIS
 import CreateCTOModal from "@/components/ui/CreateCTOModal";
+import WalletPopup from "@/components/ui/WalletPopup";
 
 export default function DashboardPage() {
   const [search, setSearch] = useState("");
@@ -19,6 +20,7 @@ export default function DashboardPage() {
   const [isSelectModalOpen, setSelectModalOpen] = useState(false); // ✅ NEW
   const [destinationAddress, setDestinationAddress] = useState("");
   const [isConfirming, setConfirming] = useState(false); // To handle confirmation step
+  const [isWalletPopupOpen, setWalletPopupOpen] = useState(false);
 
   const summaryData = [
     {
@@ -62,6 +64,10 @@ export default function DashboardPage() {
 
   const router = useRouter();
 
+  const handleWalletSave = (walletCount: string) => {
+    router.push(`/create-project?wallets=${walletCount}`);
+  };
+
   // Handler functions
   const handleGetBackAllSOL = () => {
     setPopupVisible(true); // Show the popup when the button is clicked
@@ -78,7 +84,7 @@ export default function DashboardPage() {
 
   const handleNewProjectClick = () => {
     setSelectModalOpen(false);
-    router.push("/create-project");
+    setWalletPopupOpen(true); // Show wallet count input
   };
 
   const handleAddressSubmit = () => {
@@ -249,7 +255,7 @@ export default function DashboardPage() {
       )}
 
       <div className="w-full pr-1">
-        <div className="max-h-[500px] overflow-y-auto custom-scroll pr-2">
+        <div className="max-h-[700px] overflow-y-auto custom-scroll pr-2">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {Array.from({ length: 12 }).map((_, index) => (
               <ProjectCard
@@ -279,6 +285,11 @@ export default function DashboardPage() {
           setCTOModalOpen(false);
           router.push("/create-project?flow=cto"); // ✅ pass param
         }}
+      />
+      <WalletPopup
+        isOpen={isWalletPopupOpen}
+        onClose={() => setWalletPopupOpen(false)}
+        onSave={handleWalletSave}
       />
     </PageContainer>
   );

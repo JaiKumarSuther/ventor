@@ -4,9 +4,16 @@ import { ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
 import MatrixCard from "@/components/ui/MatrixCard";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import TPModal from "@/components/ui/TPModal";
 
 export default function CustomTP() {
   const router = useRouter();
+  const [selectedWalletId, setSelectedWalletId] = useState<string | null>(null);
+  const [isTPModalOpen, setTPModalOpen] = useState(false);
+  const [walletTPs, setWalletTPs] = useState<
+    Record<string, { mcap: string; percent: string }[]>
+  >({});
+
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
     {}
   );
@@ -16,64 +23,55 @@ export default function CustomTP() {
     {
       id: "wallet_22x9A...3Fb_1",
       balance: "222.3",
-      MCAP: "165.56",
-      percent: "25%",
+      supplyHeld: "25",
       mode: "Custom",
     },
     {
       id: "wallet_22x9A...3Fb_2",
       balance: "222.3",
-      MCAP: "165.56",
-      percent: "25%",
+      supplyHeld: "20",
       mode: "Standard",
     },
     {
       id: "wallet_22x9A...3Fb_3",
       balance: "222.3",
-      MCAP: "165.56",
-      percent: "25%",
+      supplyHeld: "10",
       mode: "Advanced",
     },
     {
       id: "wallet_22x9A...3Fb_4",
       balance: "300.5",
-      MCAP: "250.75",
-      percent: "30%",
+      supplyHeld: "30",
       mode: "Custom",
     },
     {
       id: "wallet_22x9A...3Fb_5",
       balance: "150.2",
-      MCAP: "120.45",
-      percent: "15%",
+      supplyHeld: "15",
       mode: "Standard",
     },
     {
       id: "wallet_22x9A...3Fb_6",
       balance: "500.0",
-      MCAP: "450.00",
-      percent: "50%",
+      supplyHeld: "50",
       mode: "Advanced",
     },
     {
       id: "wallet_22x9A...3Fb_7",
       balance: "400.0",
-      MCAP: "350.00",
-      percent: "40%",
+      supplyHeld: "40",
       mode: "Custom",
     },
     {
       id: "wallet_22x9A...3Fb_8",
       balance: "100.0",
-      MCAP: "80.00",
-      percent: "10%",
+      supplyHeld: "10",
       mode: "Standard",
     },
     {
       id: "wallet_22x9A...3Fb_9",
       balance: "250.0",
-      MCAP: "220.00",
-      percent: "25%",
+      supplyHeld: "25",
       mode: "Advanced",
     },
   ]);
@@ -145,12 +143,18 @@ export default function CustomTP() {
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-white text-xl">Wallet</span>
                     <div className="flex items-center gap-3">
-                      <button className="text-[#8761FF] cursor-pointer text-xs flex items-center gap-1">
+                      <button
+                        className="text-[#8761FF] cursor-pointer text-xs flex items-center gap-1"
+                        onClick={() => {
+                          setSelectedWalletId(wallet.id);
+                          setTPModalOpen(true);
+                        }}
+                      >
                         <Image
                           src="/assets/edit.svg"
                           width={20}
                           height={20}
-                          alt="wallet"
+                          alt="edit"
                         />
                         <span>Edit</span>
                       </button>
@@ -159,7 +163,7 @@ export default function CustomTP() {
                           src="/assets/remove.svg"
                           width={14}
                           height={14}
-                          alt="wallet"
+                          alt="remove"
                         />
                         <span>Delete</span>
                       </button>
@@ -178,14 +182,9 @@ export default function CustomTP() {
                       {wallet.balance}
                     </p>
 
-                    <p className="text-[#B4B4B4] text-sm">MCAP</p>
+                    <p className="text-[#B4B4B4] text-sm">Supply Held</p>
                     <p className="text-sm text-[#929292] text-right">
-                      {wallet.MCAP}
-                    </p>
-
-                    <p className="text-[#B4B4B4] text-sm">%</p>
-                    <p className="text-sm text-[#929292] text-right">
-                      {wallet.percent}
+                      {wallet.supplyHeld ?? "—"}%
                     </p>
 
                     <p className="text-[#B4B4B4] text-sm">Mode</p>
@@ -243,6 +242,15 @@ export default function CustomTP() {
           </div>
         </div>
       </div>
+      <TPModal
+        isOpen={isTPModalOpen}
+        onClose={() => setTPModalOpen(false)}
+        walletId={selectedWalletId!}
+        initialTPs={walletTPs[selectedWalletId || ""] || []}
+        onSave={(walletId, tps) => {
+          setWalletTPs((prev) => ({ ...prev, [walletId]: tps }));
+        }}
+      />
     </div>
   );
 }
