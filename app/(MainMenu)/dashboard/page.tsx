@@ -9,10 +9,14 @@ import SearchInput from "@/components/ui/SearchInput";
 import { useRouter } from "next/navigation";
 import OutlinedButton from "@/components/ui/OutlinedButton";
 import GradientButton from "@/components/ui/GradientButton";
+import SelectTypeModal from "@/components/ui/SelectTypeModal"; // ✅ ADD THIS
+import CreateCTOModal from "@/components/ui/CreateCTOModal";
 
 export default function DashboardPage() {
   const [search, setSearch] = useState("");
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [isCTOModalOpen, setCTOModalOpen] = useState(false);
+  const [isSelectModalOpen, setSelectModalOpen] = useState(false); // ✅ NEW
   const [destinationAddress, setDestinationAddress] = useState("");
   const [isConfirming, setConfirming] = useState(false); // To handle confirmation step
 
@@ -64,6 +68,16 @@ export default function DashboardPage() {
   };
 
   const handleCreateProject = () => {
+    setSelectModalOpen(true); // ✅ OPEN MODAL
+  };
+
+  const handleCTOClick = () => {
+    setSelectModalOpen(false);
+    setCTOModalOpen(true); // ✅ Open the CTO modal
+  };
+
+  const handleNewProjectClick = () => {
+    setSelectModalOpen(false);
     router.push("/create-project");
   };
 
@@ -251,6 +265,21 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+      <SelectTypeModal
+        isOpen={isSelectModalOpen}
+        onClose={() => setSelectModalOpen(false)}
+        onCTOClick={handleCTOClick}
+        onNewProjectClick={handleNewProjectClick}
+      />
+      <CreateCTOModal
+        isOpen={isCTOModalOpen}
+        onClose={() => setCTOModalOpen(false)}
+        onSave={(address) => {
+          console.log("CTO Wallet Address saved:", address);
+          setCTOModalOpen(false);
+          router.push("/create-project?flow=cto"); // ✅ pass param
+        }}
+      />
     </PageContainer>
   );
 }

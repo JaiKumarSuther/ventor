@@ -134,7 +134,7 @@ export default function CustomTP() {
           Wallet Management
         </p>
         <div className="w-full pr-1">
-          <div className="max-h-[400px] overflow-y-auto custom-scroll pr-2 mb-15">
+          <div className="max-h-[700px] overflow-y-auto custom-scroll pr-2 mb-15">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {wallets.map((wallet) => (
                 <div
