@@ -40,10 +40,18 @@ interface WalletPopupProps {
   onSave: (wallets: string) => void;
 }
 
+interface WalletPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (wallets: string) => void;
+  text?: string; // 👈 added text prop
+}
+
 const WalletPopup: React.FC<WalletPopupProps> = ({
   isOpen,
   onClose,
   onSave,
+  text = "Number of trade per wallet (free of charges)", // 👈 fallback text
 }) => {
   const [wallets, setWallets] = useState<string>("");
 
@@ -56,7 +64,7 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
     isOpen && (
       <div className="fixed inset-0 flex justify-center items-center bg-[#0008] bg-opacity-50">
         <div className="bg-[#101017] rounded-lg p-6 w-[631px]">
-          <h3 className="text-xl text-white mb-4">Number of trade per wallet (free of charges)</h3>
+          <h3 className="text-xl text-white mb-4">{text}</h3> {/* 👈 dynamic text */}
 
           <FloatingInput
             label="NO OF WALLETS"
@@ -78,5 +86,6 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
     )
   );
 };
+
 
 export default WalletPopup;

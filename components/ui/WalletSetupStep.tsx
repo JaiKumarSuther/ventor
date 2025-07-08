@@ -362,6 +362,7 @@ export default function WalletSetupStep({
             handleCreateMultipleWallets(walletCount);
             setPopupVisible(false);
           }}
+           text="Enter the number of wallets you want to create" 
         />
       )}
     </div>
