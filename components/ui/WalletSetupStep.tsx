@@ -121,18 +121,34 @@ export default function WalletSetupStep({
     onNext();
   };
 
+  // Trigger popup
   const handleNewWallet = () => {
-    const newId = wallets.length + newWallets.length + 1;
-    const newWallet: Wallet = {
-      id: newId,
-      name: `Wallet${newId}`,
-      address: `wallet_${Math.random().toString(36).substr(2, 8)}`,
-      balance: 0,
-      use: 1,
-      age: 1,
-    };
-    setNewWallets((prev) => [...prev, newWallet]);
+    setPopupVisible(true);
   };
+
+  const handleCreateMultipleWallets = (countString: string) => {
+    const count = parseInt(countString);
+    if (isNaN(count) || count <= 0) return;
+
+    const startId = wallets.length + newWallets.length + 1;
+    const createdWallets: Wallet[] = Array.from(
+      { length: count },
+      (_, index) => {
+        const id = startId + index;
+        return {
+          id,
+          name: `Wallet${id}`,
+          address: `wallet_${Math.random().toString(36).substr(2, 8)}`,
+          balance: 0,
+          use: 1,
+          age: 1,
+        };
+      }
+    );
+
+    setNewWallets((prev) => [...prev, ...createdWallets]);
+  };
+
   const getWalletRows = (walletArray: Wallet[]) =>
     walletArray.map((wallet) => ({
       id: wallet.id,
@@ -156,15 +172,16 @@ export default function WalletSetupStep({
     }));
 
   const handleSelectAllWallets = () => {
-    setSelectedWallets(wallets.map((wallet) => wallet.id));
+    const allWalletIds = [...wallets, ...newWallets].map((wallet) => wallet.id);
+    setSelectedWallets(allWalletIds);
   };
-
   const handleDeselectAllWallets = () => {
     setSelectedWallets([]);
   };
 
   const handleRandomSelectWallets = () => {
-    const shuffled = [...wallets].sort(() => 0.5 - Math.random());
+    const combinedWallets = [...wallets, ...newWallets];
+    const shuffled = combinedWallets.sort(() => 0.5 - Math.random());
     const half = Math.ceil(shuffled.length / 2);
     setSelectedWallets(shuffled.slice(0, half).map((wallet) => wallet.id));
   };
@@ -173,8 +190,6 @@ export default function WalletSetupStep({
     const newId = batches.length + 1;
     setBatches([...batches, { id: newId, name: `Batch ${newId}` }]);
   };
-
-  
 
   return (
     <div className="space-y-6">
@@ -250,13 +265,12 @@ export default function WalletSetupStep({
               label="Warmup Wallets"
               onClick={() => {
                 if (selectedWallets.length > 0) {
-                  setPopupVisible(true)
+                  setPopupVisible(true);
                 }
               }}
               gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
               hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
               className="h-10 md:w-40 px-5 text-base"
-             
               disabled={selectedWallets.length === 0}
               style={{
                 cursor:
@@ -340,12 +354,12 @@ export default function WalletSetupStep({
         </div>
       </div>
 
-       {isPopupVisible && (
+      {isPopupVisible && (
         <WalletPopup
           isOpen={isPopupVisible}
           onClose={() => setPopupVisible(false)}
-          onSave={() => {
-            console.log("Saving wallets...");
+          onSave={(walletCount) => {
+            handleCreateMultipleWallets(walletCount);
             setPopupVisible(false);
           }}
         />
