@@ -3,20 +3,20 @@
 import React from "react";
 import GradientButton from "@/components/ui/GradientButton";
 import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface SelectTypeModalProps {
   isOpen: boolean;
   onClose: () => void;
   onCTOClick: () => void;
-  onNewProjectClick: () => void;
 }
 
 const SelectTypeModal: React.FC<SelectTypeModalProps> = ({
   isOpen,
   onClose,
   onCTOClick,
-  onNewProjectClick,
 }) => {
+  const router = useRouter();
   if (!isOpen) return null;
 
   return (
@@ -43,7 +43,7 @@ const SelectTypeModal: React.FC<SelectTypeModalProps> = ({
           />
           <GradientButton
             label="New Project"
-            onClick={onNewProjectClick}
+            onClick={() => router.push('/create-project')}
             gradient="linear-gradient(0deg, #5A43C6, #8761FF)"
             hoverGradient="linear-gradient(0deg, #4A36B0, #765FE0)"
             className="flex-1 h-12 rounded-full text-sm sm:text-base"

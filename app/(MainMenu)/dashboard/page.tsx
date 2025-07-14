@@ -275,7 +275,6 @@ export default function DashboardPage() {
         isOpen={isSelectModalOpen}
         onClose={() => setSelectModalOpen(false)}
         onCTOClick={handleCTOClick}
-        onNewProjectClick={handleNewProjectClick}
       />
       <CreateCTOModal
         isOpen={isCTOModalOpen}
