@@ -82,10 +82,6 @@ export default function DashboardPage() {
     setCTOModalOpen(true); // ✅ Open the CTO modal
   };
 
-  const handleNewProjectClick = () => {
-    setSelectModalOpen(false);
-    setWalletPopupOpen(true); // Show wallet count input
-  };
 
   const handleAddressSubmit = () => {
     setConfirming(true); // After destination is filled, show confirmation step
